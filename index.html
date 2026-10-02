@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ConnectIQ — Manufacturing Memory & Device Activation</title>
+  <meta name="description" content="ConnectIQ gives every factory a memory: WIP movement, machine states, measurements and human actions linked to quality outcomes, with secure device activation and signed firmware provisioning." />
+  <meta name="theme-color" content="#07111f" />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#top">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap nav">
+      <a class="brand" href="#top" aria-label="ConnectIQ home">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>ConnectIQ</span>
+      </a>
+      <nav class="nav-links" id="primaryNav" aria-label="Primary navigation">
+        <a href="#solutions">Solutions</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#network">Partner Network</a>
+      </nav>
+      <div class="nav-actions">
+        <a class="btn btn-secondary btn-small" href="#network">Become a partner</a>
+        <a class="btn btn-primary btn-small" href="https://api.huawei.connectiq.asia/" target="_blank" rel="noopener">Activate device →</a>
+        <button class="mobile-menu" type="button" aria-label="Open menu" aria-controls="primaryNav" aria-expanded="false">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow">AI-ready factory infrastructure</div>
+          <h1>Give every factory<br><span>a memory.</span></h1>
+          <p class="lead">ConnectIQ turns WIP movement, machine states, measurements and human actions into a living record linked to quality outcomes—so factories can learn, not just monitor.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="https://api.huawei.connectiq.asia/" target="_blank" rel="noopener">Flash or activate a device →</a>
+          </div>
+          <div class="trust-row">
+            <span class="pill dark">RFID + BLE + machine data</span>
+            <span class="pill dark">Signed device activation</span>
+            <span class="pill dark">Factory-state event graph</span>
+          </div>
+        </div>
+
+        <div class="hero-card" role="img" aria-label="Manufacturing memory dashboard preview showing live factory events">
+          <div class="window-bar">
+            <div class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+            <span>Factory Memory / Live Plant</span>
+          </div>
+          <div class="memory-panel">
+            <div class="memory-toolbar">
+              <strong>Manufacturing Memory Stream</strong>
+              <span class="live">Live</span>
+            </div>
+            <div class="factory-map">
+              <div class="map-canvas">
+                <div class="route r1"></div><div class="route r2"></div><div class="route r3"></div>
+                <div class="node n1"><strong><span class="signal"></span>WIP Rack A</strong>Part OP-1248 arrived</div>
+                <div class="node n2"><strong><span class="signal"></span>CNC-05</strong>Cycle 18 completed</div>
+                <div class="node n3"><strong><span class="signal"></span>QC Station 2</strong>Ø42.00 measured 42.013</div>
+                <div class="node n4"><strong><span class="signal"></span>Operator 017</strong>Insert changed at T03</div>
+              </div>
+              <div class="side-stream">
+                <div class="stream-item">
+                  <div class="stream-top"><strong>Quality drift detected</strong><span class="time">08:42</span></div>
+                  <p>Diameter trend linked to tool episode T03.</p><span class="tag">Feedback created</span>
+                </div>
+                <div class="stream-item">
+                  <div class="stream-top"><strong>Queue threshold</strong><span class="time">08:35</span></div>
+                  <p>Part waited 46 min before CNC-05.</p><span class="tag">Flow memory</span>
+                </div>
+                <div class="stream-item">
+                  <div class="stream-top"><strong>Skill evidence</strong><span class="time">08:31</span></div>
+                  <p>Measurement attributed to operator 017.</p><span class="tag">Skill passport</span>
+                </div>
+              </div>
+            </div>
+            <div class="memory-footer">
+              <div class="metric"><span>Events captured</span><strong id="eventCount">12,840</strong></div>
+              <div class="metric"><span>Linked contexts</span><strong>4 layers</strong></div>
+              <div class="metric"><span>Open actions</span><strong>06</strong></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="signal-strip">
+      <div class="wrap signal-box">
+        <strong>One memory layer across the physical factory.</strong>
+        <div class="signal-list" aria-label="Supported signal sources">
+          <span>RFID readers</span><span>BLE gauges</span><span>CNC files</span><span>Cameras</span><span>Human feedback</span><span>ERP / MES</span>
+        </div>
+      </div>
+    </div>
+
+    <section id="memory">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">The problem</div>
+            <h2>A factory with dashboards can still forget.</h2>
+          </div>
+          <p class="section-lead">Most systems record isolated transactions. They rarely preserve the full sequence—what moved, who acted, which tool or machine state was present, what was measured, and what outcome followed.</p>
+        </div>
+        <div class="problem-grid">
+          <article class="problem-card"><div class="problem-icon" aria-hidden="true">⌁</div><div><h3>Movement is lost</h3><p>WIP location and waiting time disappear after the job is completed.</p></div></article>
+          <article class="problem-card"><div class="problem-icon" aria-hidden="true">◎</div><div><h3>Measurements are isolated</h3><p>Dimensions live in spreadsheets without the process episode that created them.</p></div></article>
+          <article class="problem-card"><div class="problem-icon" aria-hidden="true">↺</div><div><h3>Experience retires</h3><p>Operator adjustments and recovery actions remain in people’s heads.</p></div></article>
+          <article class="problem-card"><div class="problem-icon" aria-hidden="true">◇</div><div><h3>AI lacks context</h3><p>Models receive data points, but not the trusted relationships between them.</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="solutions">
+      <div class="wrap">
+        <div class="section-head">
+          <div><div class="eyebrow">Start small. Compound memory.</div><h2>Useful on day one. Smarter over time.</h2></div>
+          <p class="section-lead">Each ConnectIQ module solves an immediate operational problem while contributing structured events to the same manufacturing-memory layer.</p>
+        </div>
+        <div class="solutions-grid">
+          <article class="solution-card">
+            <span class="pill light">RFID WIP</span><h3>Know where work is—and how long it waited.</h3><p>Self-map racks, machines and queues. Turn movement into flow history instead of a temporary location dot.</p>
+            <div class="mini-ui"><div class="mini-row"><strong>OP-1248 · Rack A → CNC-05</strong><span class="status good">In process</span></div><div class="mini-row"><span>Queue time</span><strong>46 min</strong></div><div class="mini-row"><span>Prior route</span><strong>Cutting → Deburr</strong></div></div>
+          </article>
+          <article class="solution-card">
+            <span class="pill light">FDM Quality</span><h3>Close the loop between measurement and machining.</h3><p>Capture BLE gauge data, calculate SPC, and send actionable feedback to the person who can correct the process.</p>
+            <div class="mini-ui"><div class="mini-row"><strong>Ø42.00 ±0.02</strong><span class="status warn">Trending high</span></div><div class="mini-row"><span>Last reading</span><strong>42.013 mm</strong></div><div class="mini-row"><span>Suggested check</span><strong>Tool T03 offset</strong></div></div>
+          </article>
+          <article class="solution-card">
+            <span class="pill light">Digital Skill Passport</span><h3>Turn real work into trusted skill evidence.</h3><p>Link training, methods, measurements and quality outcomes to an individual—without reducing capability to attendance records.</p>
+            <div class="mini-ui"><div class="mini-row"><strong>Operator 017 · Turning</strong><span class="status good">Verified</span></div><div class="mini-row"><span>Evidence</span><strong>18 measured parts</strong></div><div class="mini-row"><span>Outcome</span><strong>Within plan</strong></div></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="pricing">
+      <div class="wrap">
+        <div class="section-head">
+          <div><div class="eyebrow">Pricing</div><h2>Separate readiness, activation and recurring value.</h2></div>
+          <p class="section-lead">OEMs distribute ConnectIQ-ready hardware widely. Customers pay when a device and software capability start creating value. Prices shown are indicative and exclude GST.</p>
+        </div>
+        <div class="pricing-grid">
+          <article class="price-card featured"><span class="featured-label">Start here</span><span class="pill light">Get started</span><h3>RFID Starter Kit</h3><div class="price-amount">From S$200</div><p class="small">A Vernier caliper and the ConnectIQ app, ready to capture measurements from day one.</p><ul><li>Digital Vernier caliper with Bluetooth</li><li>ConnectIQ app to record and review readings</li><li>Readings linked to the part and the operator</li><li>Quick-start setup guide</li></ul><a class="btn btn-dark" href="https://akhp06-cs.myshopify.com/products/plug-play-rfid-starter-kit" target="_blank" rel="noopener">Click here for more</a></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="network" class="dark-section">
+      <div class="wrap partner-model">
+        <div>
+          <div class="eyebrow">Partner network</div>
+          <h2>Flash broadly. Activate securely. Learn centrally.</h2>
+          <p class="section-lead">OEMs ship ConnectIQ-ready hardware, system integrators deploy it, and end customers activate the capabilities they need—while ConnectIQ maintains the signed identity, event model and manufacturing-memory layer.</p>
+          <div class="principles">
+            <div class="principle"><div class="check" aria-hidden="true">✓</div><div><strong>No downloadable “master firmware”</strong><p>Firmware is signed, provisioned and bound to approved device identities.</p></div></div>
+            <div class="principle"><div class="check" aria-hidden="true">✓</div><div><strong>Payment unlocks capabilities—not source code</strong><p>Activation credits control reader, module and site entitlements.</p></div></div>
+            <div class="principle"><div class="check" aria-hidden="true">✓</div><div><strong>Every deployment strengthens the network</strong><p>New connectors and event mappings expand compatibility for the ecosystem.</p></div></div>
+          </div>
+        </div>
+        <div class="model-visual" role="img" aria-label="Partner and activation model: OEMs register device identities, the ConnectIQ control plane issues signed activation, and factory events build manufacturing memory">
+          <div class="model-row"><div class="model-box"><strong>Hardware OEM</strong><span>Flashes approved ConnectIQ-ready image</span></div><div class="arrow">→</div><div class="model-box"><strong>Device Identity</strong><span>MAC / eFuse / serial registered</span></div></div>
+          <div class="model-core"><strong>ConnectIQ Control Plane</strong><p>Signed manifest · Activation token · Capability entitlements · Event schema · Audit history</p></div>
+          <div class="model-row"><div class="model-box"><strong>SI / Distributor</strong><span>Buys credits and deploys customer sites</span></div><div class="arrow">→</div><div class="model-box"><strong>End Customer</strong><span>Activates software and builds memory</span></div></div>
+          <div class="model-row"><div class="model-box"><strong>Factory Events</strong><span>WIP, machine, gauge, operator, quality</span></div><div class="arrow">→</div><div class="model-box"><strong>Manufacturing Memory</strong><span>Context compounds across workflows</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <div class="wrap faq-grid">
+        <div><div class="eyebrow">Trust and governance</div><h2>Built for factories that cannot risk a black box.</h2><p class="section-lead">Clear security and ownership boundaries for OEMs, system integrators and plant IT teams.</p></div>
+        <div class="faq-list">
+          <details open><summary>Does an OEM receive ConnectIQ source code?</summary><p>No. Approved OEMs receive a controlled flashing package or factory tool that provisions signed images to registered devices. Signing keys, activation services and the event-memory layer remain under ConnectIQ control.</p></details>
+          <details><summary>What happens after payment?</summary><p>The system creates a short-lived provisioning request tied to the customer, device identity, firmware channel and purchased capabilities. The request is consumed during flashing and recorded in an immutable audit trail.</p></details>
+          <details><summary>Can a customer use the hardware without subscribing?</summary><p>Yes, in a basic state: the device remains ConnectIQ-ready and can operate with limited local functions. Manufacturing-memory, workflow and AI capabilities activate only when the relevant entitlement is present.</p></details>
+          <details><summary>Who owns factory data?</summary><p>You own your operational data. ConnectIQ uses it only to provide the service and maintain security, and—where contractually agreed—uses de-identified patterns to improve connectors and models.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section style="padding-top:0">
+      <div class="wrap final-cta">
+        <div><div class="eyebrow">Connect the edge to intelligence</div><h2>Your first device solves a task. Your connected history compounds.</h2><p>Start with one device and one workflow. Every activation adds context to a manufacturing memory that grows with your factory.</p></div>
+        <a class="btn btn-primary" href="#solutions">Start activation flow →</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-row"><div class="brand"><span class="brand-mark" aria-hidden="true"></span><span>ConnectIQ</span></div><div>Manufacturing Memory · Secure device activation · Signed firmware</div><div>© 2026 ConnectIQ</div></div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
