@@ -99,22 +99,7 @@ h3 { font-size: 23px; line-height: 1.15; letter-spacing: -.02em; }
   color: var(--white);
 }
 .brand { display:flex; align-items:center; gap: 12px; font-weight: 850; letter-spacing: -.03em; font-size: 21px; }
-.brand-mark {
-  position: relative;
-  width: 34px; height: 34px;
-  border-radius: 11px;
-  border: 1px solid rgba(85,230,181,.7);
-  background: linear-gradient(145deg, rgba(85,230,181,.18), rgba(117,169,255,.10));
-  overflow: hidden;
-}
-.brand-mark::before, .brand-mark::after {
-  content: "";
-  position: absolute;
-  background: var(--mint);
-  border-radius: 99px;
-}
-.brand-mark::before { width: 19px; height: 4px; left: 7px; top: 10px; transform: rotate(-28deg); }
-.brand-mark::after { width: 13px; height: 4px; left: 10px; top: 20px; transform: rotate(28deg); }
+.brand-logo { width:36px; height:36px; display:block; object-fit:contain; flex-shrink:0; }
 .nav-links { display: flex; align-items: center; gap: 26px; color: #b7c4d3; font-size: 14px; font-weight: 650; }
 .nav-links a:hover { color: var(--white); }
 .nav-actions { display: flex; align-items: center; gap: 10px; }
