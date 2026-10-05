@@ -190,15 +190,6 @@ input[type=range]{width:100%;accent-color:var(--green);height:30px;cursor:ew-res
 .total{text-align:right}
 .total strong{font-size:26px;display:block;letter-spacing:-.03em;font-weight:500;font-variant-numeric:tabular-nums;color:var(--ink)}
 .excluded{font-size:10px;background:var(--green-pale);border:1px solid var(--line);padding:11px 12px;color:#3f5c4b;line-height:1.65;margin:16px 0}
-.ladder-wrap{overflow-x:auto;border:1px solid var(--line);background:#fff;margin-top:20px}
-.ladder{width:100%;border-collapse:collapse;font-size:12px;font-variant-numeric:tabular-nums}
-.ladder th{font:9px var(--mono);color:var(--muted);letter-spacing:.075em;padding:12px 20px;text-align:left;border-bottom:1px solid var(--line)}
-.ladder td{padding:12px 20px;border-bottom:1px solid var(--line);white-space:nowrap}
-.ladder tr:last-child td{border:0}
-details.detail{border:1px solid var(--line);background:#fff;margin-top:20px}
-details.detail summary{padding:15px 20px;font-size:12px;cursor:pointer}
-details.detail .ladder-wrap{border:0;border-top:1px solid var(--line);margin:0}
-details.detail>.fine{padding:13px 20px}
 
 .faq{display:grid;grid-template-columns:.85fr 1.3fr;gap:10%;padding-top:10px}
 .faq h2{font-size:50px;line-height:1.05;margin-top:25px;letter-spacing:-.04em}
@@ -394,7 +385,6 @@ dialog::backdrop{background:#0f3d2e70;backdrop-filter:blur(3px)}
         <p class="fine" style="margin-top:10px">Proposed pricing in SGD per month, excluding taxes. Intermediate prices require approval.</p>
       </div>
     </div>
-    <details class="detail"><summary>See the reader pricing ladder and how the calculation works</summary><div class="ladder-wrap"><table class="ladder"><thead><tr><th>READER CAPACITY</th><th>BLENDED / READER / MONTH</th><th>TOTAL / MONTH</th></tr></thead><tbody id="ladder-body"></tbody></table></div><p class="fine">For in-between counts, total monthly prices are interpolated between these anchors. Your total never falls when you add a reader, and the blended rate decreases toward S$8 at 100 readers.</p></details>
   </section>
 
   <section class="section faq" id="faq">
@@ -479,7 +469,6 @@ dialog::backdrop{background:#0f3d2e70;backdrop-filter:blur(3px)}
   };
   const slider = $('#reader-slider'), number = $('#reader-number'), presets = $('.presets');
   presets.innerHTML = anchors.map(([n]) => `<button type="button" data-preset="${n}" aria-pressed="false">${n}</button>`).join('');
-  $('#ladder-body').innerHTML = anchors.map(([n, t]) => `<tr><td>${n} reader${n === 1 ? '' : 's'}</td><td>${money(t / n)}</td><td><strong>${money(t)}</strong></td></tr>`).join('');
   const setReaders = n => {
     n = Math.min(100, Math.max(1, Math.round(Number(n) || 1)));
     const total = totalFor(n), rate = total / n, word = n === 1 ? 'reader' : 'readers';
