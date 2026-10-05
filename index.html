@@ -449,6 +449,17 @@ dialog::backdrop{background:#0f3d2e70;backdrop-filter:blur(3px)}
   const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  /* In-page links: scroll to the section without adding #section to the address bar */
+  document.addEventListener('click', e => {
+    const link = e.target.closest('a[href^="#"]');
+    if (!link) return;
+    const target = document.getElementById(link.getAttribute('href').slice(1));
+    if (!target) return;
+    e.preventDefault();
+    target.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+  });
+  if (location.hash) history.replaceState(null, '', location.pathname + location.search);
+
   /* Mobile nav */
   const toggle = $('.menu-toggle'), mobileNav = $('#mobile-nav');
   toggle.addEventListener('click', () => { mobileNav.hidden = !mobileNav.hidden; toggle.setAttribute('aria-expanded', String(!mobileNav.hidden)); });
