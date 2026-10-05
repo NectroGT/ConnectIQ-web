@@ -74,7 +74,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible{o
 .hero-copy{padding:15px 0 30px}
 .hero h1{font-size:clamp(64px,7.6vw,126px);line-height:.94;letter-spacing:-.065em}
 .hero h1 .serif{display:block;margin-top:3px;color:var(--green)}
-.hero-copy>p{font-size:17px;max-width:385px;margin:29px 0 25px;color:#46594f}
+.hero-copy>p{font-size:17px;max-width:385px;margin:29px 0 25px;color:var(--muted)}
 .hero-buttons{display:flex;align-items:center;gap:27px;flex-wrap:wrap}
 .hero-footnote{color:var(--muted);display:flex;align-items:center;gap:11px;margin-top:33px}
 .tiny-cross{font:20px/1 var(--mono);color:var(--green-text)}
@@ -123,6 +123,8 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible{o
 /* Navy sections: re-point the colour tokens so text, borders and accents read on #0B1F3A */
 .navy{background:#0B1F3A;--ink:#fff;--text:#e3eaf3;--muted:#a3b3c8;--line:#ffffff24;--green-text:#55E6B5;color:var(--text)}
 .faq.navy{padding-top:83px}
+.navy .button.ink{background:var(--green);color:#0B1F3A}
+.navy .button.ink:hover{background:var(--mint)}
 .section-top{display:flex;justify-content:space-between;gap:20px;align-items:center;border-top:1px solid var(--line);padding-top:17px;margin-bottom:42px;color:var(--ink)}
 .section-top>.mono{font-size:9px;color:var(--muted)}
 .intro{display:grid;grid-template-columns:1.15fr 1fr;align-items:start;gap:10%;margin-bottom:55px}
@@ -297,7 +299,7 @@ dialog::backdrop{background:#0f3d2e70;backdrop-filter:blur(3px)}
 </header>
 
 <main id="main">
-  <section class="hero" id="top" aria-labelledby="hero-title">
+  <section class="hero navy" id="top" aria-labelledby="hero-title">
     <div class="hero-overline"><span class="eyebrow"><i class="square"></i> The infrastructure for a factory that learns.</span><span class="mono hero-edition">CONNECTIQ / MANUFACTURING MEMORY</span></div>
     <div class="hero-layout">
       <div class="hero-copy">
