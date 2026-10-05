@@ -67,7 +67,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible{o
 .mobile-nav a{display:block;padding:15px 0;border-bottom:1px solid var(--line)}
 
 /* Hero */
-.hero{padding:31px 3.4% 0}
+.hero{padding:31px 3.4% 40px}
 .hero-overline{display:flex;justify-content:space-between;gap:20px;margin-bottom:30px;align-items:center;color:var(--ink)}
 .hero-edition{color:var(--muted)}
 .hero-layout{display:grid;grid-template-columns:1.08fr 1fr;gap:32px;min-height:640px}
@@ -96,13 +96,6 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible{o
 @keyframes scan{0%{transform:translateY(0);opacity:0}12%{opacity:.9}88%{opacity:.5}100%{transform:translateY(168px);opacity:0}}
 @keyframes wire{0%{stroke-dashoffset:500}100%{stroke-dashoffset:-500}}
 .motion-paused *{animation-play-state:paused!important}
-.hero-index{border-top:1px solid var(--line);margin-top:30px;display:grid;grid-template-columns:repeat(3,1fr)}
-.hero-index a{position:relative;padding:23px 30px 24px 0;border-right:1px solid var(--line)}
-.hero-index a:not(:first-child){padding-left:30px}
-.hero-index a:last-child{border-right:0}
-.hero-index .mono{display:block;color:var(--muted);font-size:9px;margin-bottom:7px}
-.hero-index strong{font-weight:400;font-size:16px;color:var(--ink)}
-.hero-index a>span:last-child{position:absolute;right:25px;top:40px;color:var(--green-text)}
 
 .signal-ticker{border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;padding:15px 0;background:#fff}
 .ticker-track{display:flex;width:max-content;animation:ticker 55s linear infinite}
@@ -257,11 +250,9 @@ dialog::backdrop{background:#0f3d2e70;backdrop-filter:blur(3px)}
 }
 @media(max-width:760px){
   .site-header{height:70px;padding:0 18px;gap:12px}.site-header .brand{width:180px}.nav-actions>.button{display:none}
-  .hero{padding:23px 18px 0}.hero-layout{grid-template-columns:1fr;gap:24px;min-height:0}
+  .hero{padding:23px 18px 32px}.hero-layout{grid-template-columns:1fr;gap:24px;min-height:0}
   .hero h1{font-size:clamp(58px,16vw,100px)}.hero-buttons{flex-direction:row;align-items:center}
   .memory-art{min-height:440px}
-  .hero-index{grid-template-columns:1fr}.hero-index a{border-right:0;border-bottom:1px solid var(--line);padding:15px 30px 15px 0!important}
-  .hero-index a>span:last-child{top:15px;right:3px}.hero-index a:last-child{border-bottom:0}
   .section{padding:49px 20px}.section-top>.mono{display:none}
   .intro{grid-template-columns:1fr;gap:20px;margin-bottom:32px}
   .memory-explainer,.app-display,.plan-grid,.faq{grid-template-columns:1fr}
@@ -332,11 +323,6 @@ dialog::backdrop{background:#0f3d2e70;backdrop-filter:blur(3px)}
         </svg>
         <div class="art-bottom"><div><span class="mono">ONE EVENT. CONNECTED CONTEXT.</span><strong id="hero-event">Factory signals → context → memory</strong></div><span class="mono" id="hero-event-index">04 / 04</span></div>
       </div>
-    </div>
-    <div class="hero-index">
-      <a href="#memory"><span class="mono">01 / CONNECT</span><strong>Capture what happens.</strong><span>↗</span></a>
-      <a href="#memory"><span class="mono">02 / CONTEXTUALISE</span><strong>Understand what matters.</strong><span>↗</span></a>
-      <a href="#memory"><span class="mono">03 / REMEMBER</span><strong>Build on what you know.</strong><span>↗</span></a>
     </div>
   </section>
 
