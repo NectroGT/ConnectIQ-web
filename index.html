@@ -8,11 +8,11 @@
 <title>ConnectIQ</title>
 <link rel="icon" href="assets/logo.png" type="image/png">
 <style>
-/* Green palette: deep forest ink, leaf accent, pale mint surfaces on a warm off-white page. */
+/* Mint palette: #21C98F accent and #55E6B5 highlight on deep green ink; --green-text is a darker shade for small text on light backgrounds. */
 :root{
   --paper:#f4f6f1;--white:#fff;--ink:#0f3d2e;--text:#1a2e25;--muted:#5d7066;
-  --green:#1f8a4c;--green-dark:#16673a;--green-light:#e6f3eb;--green-pale:#f1f8f3;
-  --line:#d3ddd6;--art:#145c3c;--art-line:#8fe0b0;--art-soft:#c9f0d8;
+  --green:#21C98F;--mint:#55E6B5;--green-dark:#17a374;--green-text:#0d7a55;--green-light:#e2f9f0;--green-pale:#f0fbf7;
+  --line:#d3ddd6;--art:#0c3328;--art-line:#55E6B5;--art-soft:#b9f3de;
   --warn:#7a5a14;--warn-bg:#fbf3df;
   --mono:'SFMono-Regular',Consolas,'Liberation Mono',monospace;
   --sans:Arial,Helvetica,sans-serif;--serif:Georgia,'Times New Roman',serif;
@@ -27,7 +27,7 @@ h1,h2,h3,p{margin:0}
 h1,h2,h3{font-weight:500;color:var(--ink)}
 img{max-width:100%;height:auto}
 [hidden]{display:none!important}
-a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible{outline:3px solid #6fcf97;outline-offset:4px}
+a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible{outline:3px solid #21C98F;outline-offset:4px}
 .serif{font-family:var(--serif);font-weight:400;font-style:italic;letter-spacing:-.05em}
 .mono{font:10px/1.5 var(--mono);letter-spacing:.065em}
 .eyebrow{font:11px/1.5 var(--mono);letter-spacing:.1em;display:inline-flex;align-items:center;gap:10px;text-transform:uppercase}
@@ -39,9 +39,9 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible{o
 .button span{font-size:18px;line-height:1}
 .button:hover{transform:translateY(-2px)}
 .button.ink{background:var(--ink);color:#fff}
-.button.ink:hover{background:var(--green-dark)}
-.button.leaf{background:var(--green);color:#fff}
-.button.leaf:hover{background:var(--green-dark)}
+.button.ink:hover{background:var(--green);color:var(--ink)}
+.button.leaf{background:var(--green);color:var(--ink)}
+.button.leaf:hover{background:var(--mint)}
 .button.paper{background:var(--paper);color:var(--ink)}
 .button.outline{background:transparent;border-color:var(--line);color:var(--ink)}
 .button.outline:hover{background:var(--green-light)}
@@ -77,7 +77,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible{o
 .hero-copy>p{font-size:17px;max-width:385px;margin:29px 0 25px;color:#46594f}
 .hero-buttons{display:flex;align-items:center;gap:27px;flex-wrap:wrap}
 .hero-footnote{color:var(--muted);display:flex;align-items:center;gap:11px;margin-top:33px}
-.tiny-cross{font:20px/1 var(--mono);color:var(--green)}
+.tiny-cross{font:20px/1 var(--mono);color:var(--green-text)}
 .memory-art{background:var(--art);position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;min-height:600px;color:#eafaf0}
 .art-top{position:relative;display:flex;justify-content:space-between;align-items:center;padding:20px 23px;z-index:1;border-bottom:1px solid #ffffff1c}
 .motion-button{border:1px solid #ffffff3b;background:transparent;color:#fff;width:29px;height:29px;font-size:11px;padding:0}
@@ -102,7 +102,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible{o
 .hero-index a:last-child{border-right:0}
 .hero-index .mono{display:block;color:var(--muted);font-size:9px;margin-bottom:7px}
 .hero-index strong{font-weight:400;font-size:16px;color:var(--ink)}
-.hero-index a>span:last-child{position:absolute;right:25px;top:40px;color:var(--green)}
+.hero-index a>span:last-child{position:absolute;right:25px;top:40px;color:var(--green-text)}
 
 .signal-ticker{border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;padding:15px 0;background:#fff}
 .ticker-track{display:flex;width:max-content;animation:ticker 55s linear infinite}
@@ -119,9 +119,9 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible{o
 .intro h2 .serif{color:var(--green)}
 .intro>p{padding-top:9px;font-size:15px;color:var(--muted);line-height:1.8;max-width:440px}
 
-.memory-explainer{display:grid;grid-template-columns:1fr 1.35fr;background:#e6ede8}
+.memory-explainer{display:grid;grid-template-columns:1fr 1.35fr;background:#e7f5ef}
 .memory-chapter{background:var(--ink);color:#dff1e6;padding:38px}
-.memory-chapter .eyebrow{font-size:9px;color:#9fd3b5}
+.memory-chapter .eyebrow{font-size:9px;color:#55E6B5}
 .memory-chapter h3{color:#fff;font-size:31px;line-height:1.18;letter-spacing:-.02em;margin:29px 0 21px}
 .memory-chapter h3 .serif{color:var(--art-line)}
 .memory-chapter p{font-size:13px;line-height:1.8;color:#b4d3c0}
@@ -132,7 +132,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible{o
 .stack-row strong{font-weight:500;font-size:16px}
 .stack-row>span:nth-last-child(2){color:#5f7a6b;font-size:11px}
 .stack-row i{font-style:normal;font-size:17px}
-.stack-row.active strong,.stack-row.active i{color:var(--green)}
+.stack-row.active strong,.stack-row.active i{color:var(--green-text)}
 .stack-desc{font-size:12px;line-height:1.7;color:#4c6b5a;padding:0 20px 22px 49px}
 
 
@@ -141,7 +141,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible{o
 .partner-grid article{padding:29px 30px 32px 0;display:flex;flex-direction:column;align-items:start;border-right:1px solid var(--line)}
 .partner-grid article:not(:first-child){padding-left:30px}
 .partner-grid article:last-child{border-right:0}
-.partner-number{color:#8fbf9f;font-size:58px;line-height:1;margin-bottom:30px}
+.partner-number{color:#21C98F;font-size:58px;line-height:1;margin-bottom:30px}
 .partner-grid .eyebrow{font-size:9px;color:var(--muted)}
 .partner-grid h3{font-size:23px;margin:12px 0}
 .partner-grid p{font-size:13px;color:var(--muted);line-height:1.8;margin-bottom:25px;max-width:315px}
@@ -166,15 +166,15 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible{o
 .kit h3 .serif{color:var(--green)}
 .kit>p{font-size:13px;line-height:1.75;color:var(--muted);margin:17px 0}
 .kit-graphic{display:flex;align-items:center;gap:16px;margin:4px 0 20px;padding:18px 20px;background:var(--paper);border:1px solid var(--line)}
-.kit-device{width:52px;height:64px;flex:none;border:1px solid #7fa78f;display:grid;place-items:center;font-size:29px;background:var(--green-light);color:var(--green-dark)}
+.kit-device{width:52px;height:64px;flex:none;border:1px solid #21C98F;display:grid;place-items:center;font-size:29px;background:var(--green-light);color:var(--green-dark)}
 .kit-graphic strong{font-size:14px;font-weight:500;display:block}
 .kit-graphic small{font-size:10px;color:var(--muted)}
 .feature{padding:10px 0;border-top:1px solid var(--line);display:flex;gap:12px;align-items:baseline;font-size:12px}
-.feature i{font-style:normal;color:var(--green)}
+.feature i{font-style:normal;color:var(--green-text)}
 .kit .bottom{margin-top:auto;padding-top:23px}
 .calculator{padding:32px;border-top:3px solid var(--green);margin-top:-1px;background:#fbfcf9}
 .calc-top{display:flex;justify-content:space-between;align-items:flex-start;gap:20px}
-.badge{display:inline-flex;background:var(--green-light);color:var(--green-dark);padding:5px 8px;font:9px/1.4 var(--mono);letter-spacing:.04em;white-space:nowrap}
+.badge{display:inline-flex;background:var(--green-light);color:var(--green-text);padding:5px 8px;font:9px/1.4 var(--mono);letter-spacing:.04em;white-space:nowrap}
 .countrow{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:24px 0 8px}
 .countrow label{font-size:13px;font-weight:500}
 .fine{font-size:10px;line-height:1.65;color:var(--muted)}
@@ -190,7 +190,7 @@ input[type=range]{width:100%;accent-color:var(--green);height:30px;cursor:ew-res
 .range-labels{display:flex;justify-content:space-between;font:9px var(--mono);color:var(--muted);margin:2px 0 18px}
 .presets{display:grid;grid-template-columns:repeat(6,1fr);gap:7px;margin-bottom:22px}
 .presets button{background:#fff;border:1px solid var(--line);padding:9px 5px;font-size:12px}
-.presets button[aria-pressed=true]{border-color:var(--green);color:var(--green-dark);background:var(--green-light)}
+.presets button[aria-pressed=true]{border-color:var(--green);color:var(--green-text);background:var(--green-light)}
 .price-display{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;background:var(--green-light);padding:19px 17px;margin-bottom:16px}
 .price-caption{display:block;margin-bottom:8px;font:8px var(--mono);letter-spacing:.08em;color:var(--muted)}
 .big-price{font-size:50px;letter-spacing:-.06em;line-height:1.1;display:block;font-variant-numeric:tabular-nums;color:var(--ink)}
@@ -215,12 +215,12 @@ details.detail>.fine{padding:13px 20px}
 .faq details:last-child{border-bottom:1px solid var(--line)}
 .faq summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:22px 0;cursor:pointer;color:var(--ink)}
 .faq summary::-webkit-details-marker{display:none}
-.faq summary span{font-size:22px;color:var(--green);transition:transform .2s}
+.faq summary span{font-size:22px;color:var(--green-text);transition:transform .2s}
 .faq details[open] summary span{transform:rotate(45deg)}
 .faq details p{font-size:13px;color:var(--muted);line-height:1.8;padding-bottom:23px;max-width:520px}
 
-.closing{background:#e3efe7;text-align:center;padding-top:60px;padding-bottom:63px}
-.closing .eyebrow{color:#4e7a60}
+.closing{background:#e2f9f0;text-align:center;padding-top:60px;padding-bottom:63px}
+.closing .eyebrow{color:#0d7a55}
 .closing h2{font-size:clamp(38px,4.3vw,66px);line-height:1.07;letter-spacing:-.035em;margin:30px 0}
 .closing h2 .serif{color:var(--green)}
 .closing>div{display:flex;justify-content:center;align-items:center;gap:30px;flex-wrap:wrap}
@@ -310,19 +310,19 @@ dialog::backdrop{background:#0f3d2e70;backdrop-filter:blur(3px)}
       <div class="memory-art" aria-label="Illustration of factory signals becoming connected manufacturing memory">
         <div class="art-top"><span class="mono">THE MEMORY FIELD / 001</span><button id="motion-toggle" class="motion-button" aria-label="Pause motion" aria-pressed="false">Ⅱ</button></div>
         <svg class="field-svg" viewBox="0 0 620 640" role="img" aria-labelledby="field-title"><title id="field-title">A connected field linking part, process, person and quality evidence</title>
-          <defs><pattern id="dots" width="26" height="26" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r=".7" fill="#7fd6a3" opacity=".32"/></pattern>
-          <linearGradient id="plate" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#9ff0c0" stop-opacity=".16"/><stop offset="1" stop-color="#0f4a30" stop-opacity=".06"/></linearGradient></defs>
+          <defs><pattern id="dots" width="26" height="26" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r=".7" fill="#55E6B5" opacity=".32"/></pattern>
+          <linearGradient id="plate" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#55E6B5" stop-opacity=".16"/><stop offset="1" stop-color="#0c3328" stop-opacity=".06"/></linearGradient></defs>
           <rect width="620" height="640" fill="url(#dots)"/>
-          <g fill="none" stroke="#86d9a8" stroke-width="1">
+          <g fill="none" stroke="#55E6B5" stroke-width="1">
             <path d="M64 281 310 139 556 281 310 423Z" opacity=".26"/><path d="M64 343 310 201 556 343 310 485Z" opacity=".38"/><path d="M64 405 310 263 556 405 310 547Z" opacity=".22"/>
             <path d="M310 84V564M36 317 583 317" stroke-dasharray="2 8" opacity=".4"/>
           </g>
-          <g fill="url(#plate)" stroke="#a9ecc4" stroke-width="1.1">
+          <g fill="url(#plate)" stroke="#55E6B5" stroke-width="1.1">
             <path class="slab slab-5" d="m120 386 190-110 190 110-190 110Z"/><path class="slab slab-4" d="m120 344 190-110 190 110-190 110Z"/>
             <path class="slab slab-3" d="m120 302 190-110 190 110-190 110Z"/><path class="slab slab-2" d="m120 260 190-110 190 110-190 110Z"/>
-            <path class="slab" d="m120 218 190-110 190 110-190 110Z" fill="#2e9a62" fill-opacity=".38"/>
+            <path class="slab" d="m120 218 190-110 190 110-190 110Z" fill="#21C98F" fill-opacity=".38"/>
           </g>
-          <g class="field-wires" stroke="#c4f2d6" fill="none" stroke-width="1.3">
+          <g class="field-wires" stroke="#b9f3de" fill="none" stroke-width="1.3">
             <path d="M44 179H123L239 246 310 205"/><path d="M566 175H490L382 237 310 195"/><path d="M48 472H125L228 413 310 460"/><path d="M566 474H490L388 415 310 460"/>
           </g>
           <g fill="#ecfff3"><circle class="node-pulse" cx="239" cy="246" r="5"/><circle class="node-pulse d1" cx="382" cy="237" r="5"/><circle class="node-pulse d2" cx="228" cy="413" r="5"/><circle class="node-pulse d3" cx="388" cy="415" r="5"/></g>
