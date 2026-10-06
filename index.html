@@ -1,693 +1,2448 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#07111f">
-<meta name="description" content="ConnectIQ connects factory signals, work-in-progress and quality evidence into Manufacturing Memory.">
-<title>ConnectIQ</title>
-<link rel="icon" href="assets/logo.png" type="image/png">
-<style>
-/* Wireframe palette: #07111F navy ink, #F4F7F8 paper, #55E6B5 / #21C98F mint; --green-text (#087A56) is the readable mint for small text on light backgrounds. */
-:root{
-  --paper:#f4f7f8;--white:#fff;--ink:#07111f;--text:#07111f;--muted:#526174;--navy:#07111f;
-  --green:#21c98f;--mint:#55e6b5;--green-dark:#17a374;--green-text:#087a56;--green-light:#e9f7f2;--green-pale:#f1fbf7;
-  --line:#e0e7ea;
-  --warn:#7a5a14;--warn-bg:#fbf3df;
-  --mono:'SFMono-Regular',Consolas,'Liberation Mono',monospace;
-  --sans:Arial,Helvetica,sans-serif;--serif:Georgia,'Times New Roman',serif;
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:100px}
-body{margin:0;background:var(--paper);color:var(--text);font-family:var(--sans);line-height:1.55;-webkit-font-smoothing:antialiased}
-a{color:inherit;text-decoration:none}
-button,input,select,textarea{font:inherit;color:inherit}
-button{cursor:pointer}
-h1,h2,h3,p{margin:0}
-h1,h2,h3{font-weight:500;color:var(--ink)}
-img{max-width:100%;height:auto}
-[hidden]{display:none!important}
-a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible{outline:3px solid #21C98F;outline-offset:4px}
-.serif{font-family:var(--serif);font-weight:400;font-style:normal;letter-spacing:-.05em}
-.mono{font:10px/1.5 var(--mono);letter-spacing:.065em}
-.eyebrow{font:11px/1.5 var(--mono);letter-spacing:.1em;display:inline-flex;align-items:center;gap:10px;text-transform:uppercase;color:var(--green)}
-.square{width:7px;height:7px;background:var(--green);display:inline-block}
-.skip-link{position:fixed;top:-100px;left:20px;z-index:200;background:var(--ink);color:#fff;padding:12px 18px}
-.skip-link:focus{top:12px}
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#07111f" />
+    <meta
+      name="description"
+      content="ConnectIQ connects factory signals, work-in-progress and quality evidence into Manufacturing Memory."
+    />
+    <title>ConnectIQ</title>
+    <link rel="icon" href="assets/logo.png" type="image/png" />
+    <link rel="stylesheet" href="assets/css/global.css?v=1" />
+    <style>
+      /* Header */
+      /* Hero */
+      .hero {
+        padding: 115px 3.4% 40px;
+      }
+      .hero-overline {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        margin-bottom: 30px;
+        align-items: center;
+        color: var(--ink);
+      }
+      .hero-edition {
+        color: var(--muted);
+      }
+      .hero-layout {
+        display: grid;
+        grid-template-columns: 1.08fr 1fr;
+        gap: 32px;
+        min-height: 640px;
+      }
+      .hero-copy {
+        padding: 15px 0 30px;
+      }
+      .hero h1 {
+        font-size: clamp(64px, 7.6vw, 126px);
+        line-height: 0.94;
+        letter-spacing: -0.065em;
+      }
+      .hero h1 .serif {
+        display: block;
+        margin-top: 3px;
+        color: var(--green);
+      }
+      .hero-copy > p {
+        font-size: 17px;
+        max-width: 385px;
+        margin: 29px 0 25px;
+        color: #c6d1de;
+      }
+      .hero-buttons {
+        display: flex;
+        align-items: center;
+        gap: 27px;
+        flex-wrap: wrap;
+      }
+      .hero-footnote {
+        color: var(--muted);
+        display: flex;
+        align-items: center;
+        gap: 11px;
+        margin-top: 33px;
+      }
+      .tiny-cross {
+        font: 20px/1 var(--mono);
+        color: var(--green-text);
+      }
+      /* Hero dashboard card (from the wireframe), on its own dark panel */
+      .hero-card {
+        background: rgba(255, 255, 255, 0.055);
+        padding: 18px;
+        color: #fff;
+        align-self: center;
+        border-radius: 28px;
+        border: 1px solid rgba(85, 230, 181, 0.35);
+        backdrop-filter: blur(15px);
+        box-shadow:
+          0 0 0 1px rgba(85, 230, 181, 0.1),
+          0 0 28px rgba(85, 230, 181, 0.18),
+          0 34px 90px rgba(0, 0, 0, 0.38);
+        animation: card-glow 4s ease-in-out infinite;
+      }
+      @keyframes card-glow {
+        50% {
+          border-color: rgba(85, 230, 181, 0.65);
+          box-shadow:
+            0 0 0 1px rgba(85, 230, 181, 0.2),
+            0 0 44px rgba(85, 230, 181, 0.32),
+            0 34px 90px rgba(0, 0, 0, 0.38);
+        }
+      }
+      .window-bar {
+        height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 7px 0 3px;
+        color: #bdc9d6;
+        font-size: 12px;
+      }
+      .dots {
+        display: flex;
+        gap: 7px;
+      }
+      .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.26);
+      }
+      .memory-panel {
+        background: #0a1728;
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        border-radius: 20px;
+        overflow: hidden;
+      }
+      .memory-toolbar {
+        padding: 16px 18px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+      }
+      .memory-toolbar strong {
+        font-size: 14px;
+        font-weight: 600;
+      }
+      .live {
+        color: var(--mint);
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        white-space: nowrap;
+      }
+      .live:before {
+        content: "";
+        display: inline-block;
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--mint);
+        margin-right: 7px;
+        box-shadow: 0 0 0 5px #55e6b51a;
+        animation: live 2.4s ease-in-out infinite;
+      }
+      @keyframes live {
+        50% {
+          box-shadow: 0 0 0 8px #55e6b500;
+        }
+      }
+      .factory-map {
+        padding: 22px;
+        display: grid;
+        grid-template-columns: 1fr 0.8fr;
+        gap: 14px;
+      }
+      .map-canvas {
+        min-height: 328px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 15px;
+        background:
+          linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px), #0d1b2d;
+        background-size: 32px 32px;
+        position: relative;
+        overflow: hidden;
+      }
+      .node {
+        position: absolute;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        background: #12243a;
+        border-radius: 10px;
+        padding: 10px;
+        color: #d4deea;
+        font-size: 10px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+      }
+      .node strong {
+        display: block;
+        font-size: 11px;
+        color: #fff;
+        margin-bottom: 4px;
+      }
+      .signal {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--mint);
+        display: inline-block;
+        margin-right: 5px;
+      }
+      .n1 {
+        left: 8%;
+        top: 12%;
+        width: 37%;
+      }
+      .n2 {
+        right: 8%;
+        top: 18%;
+        width: 33%;
+      }
+      .n3 {
+        left: 16%;
+        bottom: 13%;
+        width: 36%;
+      }
+      .n4 {
+        right: 7%;
+        bottom: 9%;
+        width: 32%;
+      }
+      .route {
+        position: absolute;
+        height: 2px;
+        transform-origin: left center;
+        background: linear-gradient(90deg, #55e6b52e, #55e6b5e6);
+        box-shadow: 0 0 12px #55e6b566;
+      }
+      .r1 {
+        width: 38%;
+        left: 39%;
+        top: 29%;
+        transform: rotate(8deg);
+      }
+      .r2 {
+        width: 35%;
+        left: 34%;
+        top: 49%;
+        transform: rotate(56deg);
+      }
+      .r3 {
+        width: 34%;
+        left: 50%;
+        bottom: 28%;
+        transform: rotate(-8deg);
+      }
+      .side-stream {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        min-width: 0;
+      }
+      .stream-item {
+        padding: 12px;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        border-radius: 12px;
+      }
+      .stream-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        margin-bottom: 6px;
+      }
+      .stream-top strong {
+        font-size: 11px;
+        color: #fff;
+      }
+      .time {
+        font-size: 9px;
+        color: #7e8fa3;
+      }
+      .stream-item p {
+        margin: 0;
+        color: #a8b7c7;
+        font-size: 10px;
+        line-height: 1.4;
+      }
+      .tag {
+        display: inline-block;
+        margin-top: 8px;
+        font-size: 9px;
+        padding: 4px 7px;
+        border-radius: 99px;
+        color: var(--mint);
+        background: rgba(85, 230, 181, 0.09);
+      }
+      .memory-footer {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      .metric {
+        padding: 15px 17px;
+        border-right: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      .metric:last-child {
+        border-right: 0;
+      }
+      .metric span {
+        display: block;
+        color: #7e8fa3;
+        font-size: 9px;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+      }
+      .metric strong {
+        display: block;
+        font-size: 17px;
+        margin-top: 4px;
+        color: #fff;
+        font-variant-numeric: tabular-nums;
+      }
+      .signal-ticker {
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+        overflow: hidden;
+        padding: 15px 0;
+        background: #fff;
+      }
+      .ticker-track {
+        display: flex;
+        width: max-content;
+        animation: ticker 55s linear infinite;
+      }
+      .ticker-track > span {
+        font: 11px/1.5 var(--mono);
+        letter-spacing: 0.12em;
+        color: #526174;
+        white-space: nowrap;
+        padding-right: 30px;
+      }
+      .ticker-track i {
+        font-style: normal;
+        color: var(--green);
+        margin: 0 35px;
+      }
+      @keyframes ticker {
+        to {
+          transform: translateX(-50%);
+        }
+      }
+      /* Sections */
+      /* Navy sections: re-point the colour tokens so text, borders and accents read on #07111f */
+      .faq.section {
+        padding-top: 83px;
+      }
+      .hero.navy {
+        background:
+          radial-gradient(circle at 72% 18%, rgba(85, 230, 181, 0.14), transparent 32%),
+          radial-gradient(circle at 18% 62%, rgba(117, 169, 255, 0.1), transparent 28%),
+          linear-gradient(180deg, #07111f, #081626 72%, #0a1a2c);
+        position: relative;
+        overflow: hidden;
+      }
+      .hero:after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background-image:
+          linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+        background-size: 62px 62px;
+        mask-image: linear-gradient(to bottom, black 20%, transparent 90%);
+      }
+      .hero > * {
+        position: relative;
+        z-index: 1;
+      }
+      .intro {
+        display: grid;
+        grid-template-columns: 1.15fr 1fr;
+        align-items: start;
+        gap: 10%;
+        margin-bottom: 55px;
+      }
+      .intro h2 {
+        font-size: clamp(40px, 4vw, 62px);
+        line-height: 1.06;
+        letter-spacing: -0.04em;
+        text-wrap: balance;
+      }
+      .intro h2 .serif {
+        color: var(--green);
+      }
+      .intro > p {
+        padding-top: 9px;
+        font-size: 15px;
+        color: var(--muted);
+        line-height: 1.8;
+        max-width: 440px;
+      }
+      .ciqm {
+        --ciqm-border: #e4eaed;
+        --ciqm-link: #087a56;
+        --ciqm-mint-light: #47e5b7;
+        --ciqm-panel: linear-gradient(120deg, #0b1b2e 0%, #102a3b 100%);
+      }
+      .ciqm-stack {
+        display: grid;
+        grid-template-columns: 42.5% 57.5%;
+        border: 1px solid var(--ciqm-border);
+        border-radius: 22px;
+        overflow: hidden;
+        background: #fff;
+      }
+      .ciqm-story {
+        background: var(--ciqm-panel);
+        color: #fff;
+        padding: 37px 34px 42px;
+        min-height: 356px;
+      }
+      .ciqm-eyebrow {
+        display: block;
+        font: 600 9px/1.6 var(--mono);
+        letter-spacing: 0.065em;
+        color: var(--ciqm-mint-light);
+      }
+      .ciqm-story-title {
+        font: 400 clamp(25px, 2.1vw, 34px)/1.15 var(--sans);
+        letter-spacing: -0.047em;
+        margin-top: 34px;
+        color: #fff;
+      }
+      .ciqm-story-title em {
+        display: block;
+        font-family: var(--serif);
+        font-style: normal;
+        color: var(--ciqm-mint-light);
+      }
+      .ciqm-story-copy {
+        font-size: 13px;
+        line-height: 1.85;
+        color: #bbc7d3;
+        max-width: 570px;
+        margin-top: 24px;
+      }
+      .ciqm-accordion {
+        padding: 11px 28px 12px;
+        min-width: 0;
+      }
+      .ciqm-row {
+        border-bottom: 1px solid var(--ciqm-border);
+      }
+      .ciqm-row:last-child {
+        border-bottom: 0;
+      }
+      .ciqm-summary {
+        list-style: none;
+        display: grid;
+        grid-template-columns: 30px 1.15fr 1.25fr 17px;
+        gap: 16px;
+        align-items: center;
+        padding: 20px 0;
+        min-height: 64px;
+        cursor: pointer;
+        color: var(--ink);
+        font-size: 15px;
+      }
+      .ciqm-summary::-webkit-details-marker {
+        display: none;
+      }
+      .ciqm-summary::marker {
+        content: "";
+      }
+      .ciqm-number {
+        font: 9px/1.5 var(--mono);
+        letter-spacing: 0.05em;
+        color: #63768b;
+      }
+      .ciqm-layer {
+        font-size: 10px;
+        color: var(--muted);
+      }
+      .ciqm-toggle {
+        width: 17px;
+        height: 17px;
+        display: grid;
+        place-items: center;
+        position: relative;
+      }
+      .ciqm-toggle:before,
+      .ciqm-toggle:after {
+        content: "";
+        width: 8px;
+        height: 1px;
+        background: currentColor;
+        position: absolute;
+      }
+      .ciqm-toggle:after {
+        transform: rotate(90deg);
+        transition: transform 0.15s ease;
+      }
+      .ciqm-row[open] .ciqm-toggle:after {
+        transform: rotate(0deg);
+      }
+      .ciqm-row[open] .ciqm-name,
+      .ciqm-row[open] .ciqm-toggle,
+      .ciqm-summary:hover .ciqm-name {
+        color: var(--ciqm-link);
+      }
+      .ciqm-description {
+        padding: 0 22px 23px 46px;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.8;
+      }
+      .ciqm-inline-actions {
+        margin-top: 12px;
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+      .ciqm-inline-actions a {
+        color: var(--ciqm-link);
+        text-decoration: underline;
+        text-underline-offset: 4px;
+        font-size: 12px;
+      }
+      .ciqm-bridge {
+        margin-top: 32px;
+      }
+      .ciqm-bridge-label {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        font: 500 9px/1.6 var(--mono);
+        letter-spacing: 0.13em;
+        color: var(--muted);
+        text-align: center;
+        margin-bottom: 22px;
+      }
+      .ciqm-bridge-label:before,
+      .ciqm-bridge-label:after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: var(--ciqm-border);
+      }
+      .ciqm-choices {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+      }
+      .ciqm-choice {
+        display: grid;
+        grid-template-columns: 64px minmax(0, 1fr) 25px;
+        gap: 22px;
+        align-items: start;
+        color: var(--ink);
+        background: #fff;
+        border: 1px solid var(--ciqm-border);
+        border-radius: 14px;
+        padding: 23px 25px;
+        min-width: 0;
+        transition:
+          border-color 0.18s,
+          box-shadow 0.18s,
+          transform 0.18s;
+      }
+      .ciqm-choice:hover {
+        border-color: #a8cabc;
+        transform: translateY(-3px);
+        box-shadow: 0 9px 28px rgba(16, 42, 59, 0.06);
+      }
+      .ciqm-choice-title {
+        display: block;
+        font-size: 19px;
+        line-height: 1.25;
+        font-weight: 500;
+        letter-spacing: -0.025em;
+        margin-top: 3px;
+      }
+      .ciqm-choice-copy {
+        display: block;
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.7;
+        margin-top: 8px;
+        max-width: 445px;
+      }
+      .ciqm-choice-path {
+        display: block;
+        font: 9px/1.8 var(--mono);
+        color: var(--ciqm-link);
+        margin-top: 13px;
+      }
+      .ciqm-icon {
+        width: 64px;
+        height: 64px;
+        display: grid;
+        place-items: center;
+        background: var(--ciqm-panel);
+        color: var(--ciqm-mint-light);
+        border-radius: 50%;
+      }
+      .ciqm-icon svg {
+        display: block;
+        width: 34px;
+        height: 34px;
+      }
+      .ciqm-arrow {
+        width: 23px;
+        height: 23px;
+        margin-top: 5px;
+        transition: transform 0.18s;
+      }
+      .ciqm-choice:hover .ciqm-arrow {
+        transform: translateX(4px);
+      }
+      /* Platform tabs + workflow view */
+      .app-tabs {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+        margin: -10px 0 44px;
+      }
+      .app-tabs [role="tablist"] {
+        display: flex;
+        gap: 6px;
+      }
+      .app-tab {
+        border: 0;
+        background: none;
+        padding: 16px 10px 14px;
+        font-size: 14px;
+        color: var(--ink);
+        border-bottom: 2px solid transparent;
+        margin-bottom: -1px;
+      }
+      .app-tab:hover {
+        color: var(--green-text);
+      }
+      .app-tab[aria-selected="true"] {
+        color: var(--green-text);
+        border-bottom-color: var(--green);
+      }
+      .app-tabs > .mono {
+        font-size: 10px;
+        color: var(--green-text);
+        letter-spacing: 0.12em;
+      }
+      .workflow-head {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+      .workflow-head h3 {
+        font: 400 clamp(34px, 3.4vw, 48px)/1.1 var(--serif);
+        letter-spacing: -0.03em;
+      }
+      .workflow-head h3 span {
+        color: var(--green);
+      }
+      .workflow-head p {
+        margin-top: 12px;
+        color: var(--muted);
+        font-size: 15px;
+      }
+      .workflow-grid {
+        display: grid;
+        grid-template-columns: 1fr 210px 1fr;
+        gap: 14px;
+        align-items: stretch;
+      }
+      .wf-card {
+        border-radius: 22px;
+        padding: 28px 18px 22px;
+        display: flex;
+        flex-direction: column;
+        transition:
+          box-shadow 0.25s,
+          border-color 0.25s;
+      }
+      .wf-card.tracking {
+        background: #f3f8fd;
+        border: 1px solid #d8e5f2;
+      }
+      .wf-card.quality {
+        background: #f1fbf7;
+        border: 1px solid #cdeedf;
+      }
+      .wf-card.focus.tracking {
+        border-color: #2f6fcf;
+        box-shadow:
+          0 0 0 1px #2f6fcf,
+          0 18px 45px rgba(47, 111, 207, 0.12);
+      }
+      .wf-card.focus.quality {
+        border-color: var(--green);
+        box-shadow:
+          0 0 0 1px var(--green),
+          0 18px 45px rgba(33, 201, 143, 0.14);
+      }
+      .wf-top {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 0 18px;
+      }
+      .wf-label {
+        font: 600 12px/1.4 var(--mono);
+        letter-spacing: 0.12em;
+      }
+      .tracking .wf-label {
+        color: #2f6fcf;
+      }
+      .quality .wf-label {
+        color: var(--green-text);
+      }
+      .wf-top h3 {
+        font: 400 clamp(24px, 2.3vw, 33px)/1.15 var(--serif);
+        letter-spacing: -0.02em;
+        margin: 8px 0 10px;
+      }
+      .wf-top p {
+        font: 16px/1.5 var(--serif);
+        color: var(--muted);
+      }
+      .wf-icon {
+        width: 64px;
+        height: 64px;
+        flex: none;
+        border-radius: 14px;
+        display: grid;
+        place-items: center;
+      }
+      .tracking .wf-icon {
+        background: #dce9f8;
+      }
+      .quality .wf-icon {
+        background: #d5f3e7;
+      }
+      .wf-body {
+        background: #fff;
+        border-radius: 16px;
+        padding: 18px 16px 14px;
+        margin: 22px 0 20px;
+        box-shadow: 0 2px 10px rgba(7, 17, 31, 0.04);
+      }
+      .wf-body > .mono {
+        font-size: 10px;
+        color: var(--muted);
+        letter-spacing: 0.12em;
+        padding-left: 6px;
+      }
+      .wf-steps {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        margin-top: 12px;
+      }
+      .wf-step {
+        position: relative;
+        padding: 12px 10px 14px;
+        border-radius: 12px;
+        font-size: 12px;
+        color: var(--muted);
+        line-height: 1.45;
+      }
+      .tracking .wf-step {
+        background: #f6f9fd;
+      }
+      .quality .wf-step {
+        background: #f3fbf7;
+      }
+      .wf-step strong {
+        display: block;
+        color: var(--ink);
+        font-size: 13px;
+        margin: 6px 0 10px;
+        line-height: 1.3;
+      }
+      .wf-step:not(:last-child):after {
+        content: "→";
+        position: absolute;
+        right: -11px;
+        top: 24px;
+        font-size: 16px;
+        z-index: 1;
+      }
+      .tracking .wf-step:not(:last-child):after {
+        color: #2f6fcf;
+      }
+      .quality .wf-step:not(:last-child):after {
+        color: var(--green-text);
+      }
+      .wf-num {
+        display: inline-grid;
+        place-items: center;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: #2f6fcf;
+        color: #fff;
+        font-size: 10px;
+        font-weight: 700;
+      }
+      .wf-tier {
+        font-size: 12px;
+        color: var(--green-text);
+      }
+      .wf-note {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-top: 12px;
+        padding: 12px 14px;
+        border-radius: 12px;
+        font-size: 12px;
+        line-height: 1.55;
+        color: var(--ink);
+      }
+      .tracking .wf-note {
+        background: #f3f7fc;
+      }
+      .quality .wf-note {
+        background: #eaf8f1;
+      }
+      .wf-note svg {
+        flex: none;
+      }
+      .wf-actions {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        margin-top: auto;
+      }
+      .wf-actions a:not(.button) {
+        font-size: 14px;
+        text-decoration: underline;
+        text-underline-offset: 4px;
+        font-weight: 500;
+      }
+      .tracking .wf-actions a:not(.button) {
+        color: #2f6fcf;
+      }
+      .quality .wf-actions a:not(.button) {
+        color: var(--green-text);
+      }
+      .wf-center {
+        display: flex;
+        flex-direction: column;
+      }
+      .wf-flow {
+        position: relative;
+        height: 150px;
+        margin-top: 40px;
+      }
+      .wf-flow svg {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        overflow: visible;
+      }
+      .wf-flow span {
+        position: absolute;
+        top: 0;
+        font-size: 13px;
+        font-weight: 600;
+        line-height: 1.3;
+      }
+      .wf-flow .l {
+        left: 10px;
+        color: #2f6fcf;
+      }
+      .wf-flow .r {
+        right: 10px;
+        text-align: right;
+        color: var(--green-text);
+      }
+      .wf-memory {
+        background: linear-gradient(160deg, #0b1a2d, #102b3c);
+        color: #c1cfdd;
+        border-radius: 20px;
+        padding: 24px 20px 26px;
+        text-align: center;
+        box-shadow: 0 18px 40px rgba(7, 17, 31, 0.25);
+      }
+      .wf-memory .mono {
+        display: block;
+        color: #fff;
+        letter-spacing: 0.18em;
+        margin: 10px 0 6px;
+      }
+      .wf-memory h4 {
+        font-size: 22px;
+        line-height: 1.2;
+        color: #fff;
+        font-weight: 500;
+        margin: 0 0 10px;
+      }
+      .wf-memory p {
+        font-size: 14px;
+        line-height: 1.5;
+      }
+      .partner-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+      }
+      .partner-grid article {
+        padding: 29px 30px 32px 0;
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        border-right: 1px solid var(--line);
+      }
+      .partner-grid article:not(:first-child) {
+        padding-left: 30px;
+      }
+      .partner-grid article:last-child {
+        border-right: 0;
+      }
+      .partner-number {
+        color: var(--green);
+        font-size: 58px;
+        line-height: 1;
+        margin-bottom: 30px;
+      }
+      .partner-grid .eyebrow {
+        font-size: 9px;
+        color: var(--muted);
+      }
+      .partner-grid h3 {
+        font-size: 23px;
+        margin: 12px 0;
+      }
+      .partner-grid p {
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.8;
+        max-width: 315px;
+      }
+      .price-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+      }
+      .price-grid article {
+        --ink: #07111f;
+        --text: #07111f;
+        --muted: #526174;
+        --line: #e0e7ea;
+        --green: #21c98f;
+        --green-text: #087a56;
+        color: var(--text);
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        padding: 27px 28px;
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+      }
+      .price-grid .featured {
+        border-color: var(--ink);
+        box-shadow: 0 18px 45px rgba(7, 17, 31, 0.12);
+      }
+      .price-grid .eyebrow {
+        color: var(--muted);
+        font-size: 9px;
+      }
+      .price-grid h3 {
+        font-size: 23px;
+        margin: 22px 0 16px;
+      }
+      .price-main {
+        font: 34px/1.3 var(--serif);
+        color: var(--ink);
+        margin-bottom: 18px;
+      }
+      .price-grid article > p:not(.price-main) {
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.8;
+        margin-bottom: 23px;
+        flex: 1;
+      }
+      .price-feature {
+        padding: 11px 0;
+        border-top: 1px solid var(--line);
+        width: 100%;
+        font-size: 11px;
+        color: #536174;
+      }
+      .price-grid .button {
+        margin-top: 26px;
+        width: 100%;
+      }
+      /* WIP starter kit + reader calculator */
+      .partners.navy {
+        background: linear-gradient(135deg, #0b1a2d, #102b3c);
+      }
+      .plan-grid {
+        --ink: #07111f;
+        --text: #07111f;
+        --muted: #526174;
+        --line: #e0e7ea;
+        --green: #21c98f;
+        --green-text: #087a56;
+        color: var(--text);
+        display: grid;
+        grid-template-columns: 0.85fr 1.15fr;
+        border: 1px solid var(--line);
+        border-radius: 22px;
+        overflow: hidden;
+        background: #fff;
+      }
+      .kit {
+        padding: 32px;
+        border-right: 1px solid var(--line);
+        display: flex;
+        flex-direction: column;
+      }
+      .kit h3,
+      .calculator h3 {
+        font-size: 31px;
+        line-height: 1.1;
+        margin-top: 13px;
+      }
+      .kit h3 .serif {
+        color: var(--green);
+      }
+      .kit > p {
+        font-size: 13px;
+        line-height: 1.75;
+        color: var(--muted);
+        margin: 17px 0;
+      }
+      .kit-graphic {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin: 4px 0 20px;
+        padding: 18px 20px;
+        background: var(--paper);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+      }
+      .kit-device {
+        width: 52px;
+        height: 64px;
+        flex: none;
+        border: 1px solid #c6eddc;
+        border-radius: 12px;
+        display: grid;
+        place-items: center;
+        font-size: 29px;
+        background: var(--green-light);
+        color: var(--green-text);
+      }
+      .kit-graphic strong {
+        font-size: 14px;
+        font-weight: 500;
+        display: block;
+      }
+      .kit-graphic small {
+        font-size: 10px;
+        color: var(--muted);
+      }
+      .feature {
+        padding: 10px 0;
+        border-top: 1px solid var(--line);
+        display: flex;
+        gap: 12px;
+        align-items: baseline;
+        font-size: 12px;
+      }
+      .feature i {
+        font-style: normal;
+        color: var(--green-text);
+      }
+      .kit .bottom {
+        margin-top: auto;
+        padding-top: 23px;
+      }
+      .calculator {
+        padding: 32px;
+        background: #f8fafb;
+      }
+      .calc-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 20px;
+      }
+      .badge {
+        display: inline-flex;
+        background: rgba(85, 230, 181, 0.13);
+        border: 1px solid rgba(85, 230, 181, 0.28);
+        border-radius: 999px;
+        color: var(--green-text);
+        padding: 5px 10px;
+        font: 9px/1.4 var(--mono);
+        letter-spacing: 0.04em;
+        white-space: nowrap;
+      }
+      .countrow {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        margin: 24px 0 8px;
+      }
+      .countrow label {
+        font-size: 13px;
+        font-weight: 500;
+      }
+      .fine {
+        font-size: 10px;
+        line-height: 1.65;
+        color: var(--muted);
+      }
+      .stepper {
+        display: flex;
+        border: 1px solid #ccd7dd;
+        border-radius: 11px;
+        overflow: hidden;
+        background: #fff;
+        flex: none;
+      }
+      .stepper button {
+        border: 0;
+        background: #fff;
+        width: 34px;
+        height: 44px;
+        font-size: 19px;
+      }
+      .stepper button:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+      }
+      .stepper input {
+        width: 52px;
+        text-align: center;
+        border: 0;
+        font-size: 17px;
+        font-variant-numeric: tabular-nums;
+        -moz-appearance: textfield;
+        appearance: textfield;
+      }
+      .stepper input::-webkit-inner-spin-button {
+        appearance: none;
+      }
+      .reader-count {
+        display: flex;
+        align-items: center;
+        gap: 13px;
+        margin: 15px 0 8px;
+      }
+      .reader-count strong {
+        font-size: 68px;
+        line-height: 1;
+        font-weight: 500;
+        letter-spacing: -0.065em;
+        font-variant-numeric: tabular-nums;
+        color: var(--ink);
+      }
+      .reader-count span {
+        font-size: 21px;
+      }
+      .presets {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 7px;
+        margin: 18px 0 22px;
+      }
+      .presets button {
+        background: #fff;
+        border: 1px solid #dbe3e7;
+        border-radius: 10px;
+        padding: 9px 5px;
+        font-size: 12px;
+      }
+      .presets button[aria-pressed="true"] {
+        border-color: var(--green);
+        color: var(--green-text);
+        background: var(--green-light);
+      }
+      .price-display {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: 16px;
+        background: var(--green-light);
+        border-radius: 14px;
+        padding: 19px 17px;
+        margin-bottom: 16px;
+      }
+      .price-caption {
+        display: block;
+        margin-bottom: 8px;
+        font: 8px var(--mono);
+        letter-spacing: 0.08em;
+        color: var(--muted);
+      }
+      .big-price {
+        font-size: 50px;
+        letter-spacing: -0.06em;
+        line-height: 1.1;
+        display: block;
+        font-variant-numeric: tabular-nums;
+        color: var(--ink);
+      }
+      .unit {
+        font-size: 11px;
+        color: var(--muted);
+        display: block;
+        margin-top: 5px;
+      }
+      .total {
+        text-align: right;
+      }
+      .total strong {
+        font-size: 26px;
+        display: block;
+        letter-spacing: -0.03em;
+        font-weight: 500;
+        font-variant-numeric: tabular-nums;
+        color: var(--ink);
+      }
+      .excluded {
+        font-size: 10px;
+        background: #fff;
+        border: 1px solid #dfe7ea;
+        border-radius: 12px;
+        padding: 11px 12px;
+        color: var(--muted);
+        line-height: 1.65;
+        margin: 16px 0;
+      }
+      .faq {
+        display: grid;
+        grid-template-columns: 0.85fr 1.3fr;
+        gap: 10%;
+        padding-top: 10px;
+      }
+      .faq h2 {
+        font-size: 50px;
+        line-height: 1.05;
+        margin-top: 25px;
+        letter-spacing: -0.04em;
+      }
+      .faq h2 .serif {
+        color: var(--green);
+      }
+      .faq details {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 0 18px;
+        font-size: 14px;
+      }
+      .faq > div:last-child {
+        display: grid;
+        gap: 12px;
+        align-content: start;
+      }
+      .faq summary {
+        list-style: none;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+        padding: 22px 0;
+        cursor: pointer;
+        color: var(--ink);
+      }
+      .faq summary::-webkit-details-marker {
+        display: none;
+      }
+      .faq summary span {
+        font-size: 22px;
+        color: var(--green-text);
+        transition: transform 0.2s;
+      }
+      .faq details[open] summary span {
+        transform: rotate(45deg);
+      }
+      .faq details p {
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.8;
+        padding-bottom: 23px;
+        max-width: 520px;
+      }
+      .closing {
+        background: linear-gradient(135deg, #0b1a2d, #102b3c);
+        text-align: center;
+        padding-top: 60px;
+        padding-bottom: 63px;
+      }
+      .closing .eyebrow {
+        color: var(--mint);
+      }
+      .closing h2 {
+        font-size: clamp(38px, 4.3vw, 66px);
+        line-height: 1.07;
+        letter-spacing: -0.035em;
+        margin: 30px 0;
+      }
+      .closing h2 .serif {
+        color: var(--green);
+      }
+      .closing > div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+        flex-wrap: wrap;
+      }
+      /* Contact dialog */
+      dialog {
+        padding: 0;
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        max-width: 560px;
+        width: calc(100% - 32px);
+        box-shadow: 0 30px 100px rgba(7, 17, 31, 0.25);
+      }
+      dialog::backdrop {
+        background: rgba(7, 17, 31, 0.55);
+        backdrop-filter: blur(3px);
+      }
+      .dialog-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 22px 26px;
+        border-bottom: 1px solid var(--line);
+      }
+      .dialog-head h2 {
+        font-size: 21px;
+      }
+      .dialog-close {
+        border: 0;
+        background: none;
+        font-size: 24px;
+        color: var(--muted);
+      }
+      .dialog-body {
+        padding: 24px 26px;
+      }
+      .dialog-body > p {
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.8;
+        margin-bottom: 18px;
+      }
+      .field {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        margin-bottom: 14px;
+      }
+      .field label {
+        font-size: 11px;
+        color: #435164;
+        font-weight: 700;
+      }
+      .field input,
+      .field textarea {
+        border: 1px solid #ccd7dd;
+        border-radius: 11px;
+        padding: 11px 12px;
+        font-size: 13px;
+        background: #fff;
+        min-width: 0;
+      }
+      .field textarea {
+        min-height: 90px;
+        resize: vertical;
+      }
+      .form-note {
+        font-size: 11px;
+        color: var(--muted);
+        margin: 4px 0 16px;
+      }
+      .form-error {
+        color: #9e3a2c;
+        font-size: 12px;
+        min-height: 16px;
+      }
+      @media (max-width: 1180px) {
+        .hero h1 {
+          font-size: clamp(64px, 8.2vw, 100px);
+        }
+        .hero-layout {
+          min-height: 560px;
+        }
+        .factory-map {
+          grid-template-columns: 1fr;
+        }
+      }
+      @media (max-width: 980px) {
+        .ciqm-story {
+          padding: 28px 25px;
+        }
+        .ciqm-accordion {
+          padding: 7px 22px;
+        }
+        .ciqm-summary {
+          grid-template-columns: 22px 1.1fr 1fr 14px;
+          gap: 10px;
+        }
+        .ciqm-name {
+          font-size: 13px;
+        }
+        .ciqm-description {
+          padding-left: 32px;
+          font-size: 11px;
+        }
+        .ciqm-choice {
+          grid-template-columns: 49px minmax(0, 1fr) 18px;
+          gap: 15px;
+          padding: 22px 18px;
+        }
+        .ciqm-icon {
+          width: 49px;
+          height: 49px;
+        }
+        .ciqm-choices {
+          gap: 17px;
+        }
+        .workflow-grid {
+          grid-template-columns: 1fr;
+        }
+        .wf-flow {
+          display: none;
+        }
+        .wf-center {
+          order: 3;
+        }
+        .hero-edition {
+          display: none;
+        }
+        .hero-layout {
+          grid-template-columns: 1fr 1fr;
+        }
+        .hero-buttons {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 18px;
+        }
+        .intro {
+          gap: 6%;
+        }
+        .intro h2 {
+          font-size: 40px;
+        }
+      }
+      @media (max-width: 760px) {
+        .ciqm-stack {
+          grid-template-columns: 1fr;
+          border-radius: 18px;
+        }
+        .ciqm-story {
+          min-height: 0;
+        }
+        .ciqm-accordion {
+          padding: 5px 20px;
+        }
+        .ciqm-choices {
+          grid-template-columns: 1fr;
+          gap: 14px;
+        }
+        .ciqm-bridge-label {
+          font-size: 8px;
+          gap: 12px;
+        }
+        .wf-steps {
+          grid-template-columns: 1fr 1fr;
+        }
+        .wf-step:nth-child(2):after {
+          display: none;
+        }
+        .wf-top {
+          padding: 0 4px;
+        }
+        .wf-icon {
+          width: 52px;
+          height: 52px;
+        }
+        .wf-actions {
+          flex-wrap: wrap;
+          gap: 16px;
+        }
+        .app-tab {
+          padding: 14px 6px 12px;
+        }
+        .app-tabs > .mono {
+          display: none;
+        }
+        .hero {
+          padding: 93px 18px 32px;
+        }
+        .hero-layout {
+          grid-template-columns: 1fr;
+          gap: 24px;
+          min-height: 0;
+        }
+        .hero h1 {
+          font-size: clamp(58px, 16vw, 100px);
+        }
+        .hero-buttons {
+          flex-direction: row;
+          align-items: center;
+        }
+        .side-stream {
+          display: none;
+        }
+        .hero-card {
+          padding: 12px;
+        }
+        .factory-map {
+          padding: 14px;
+        }
+        .faq.section {
+          padding-top: 49px;
+        }
+        .intro {
+          grid-template-columns: 1fr;
+          gap: 20px;
+          margin-bottom: 32px;
+        }
+        .app-display,
+        .plan-grid,
+        .faq {
+          grid-template-columns: 1fr;
+        }
+        .partner-grid,
+        .price-grid {
+          grid-template-columns: 1fr;
+        }
+        .partner-grid article {
+          border-right: 0;
+          border-bottom: 1px solid var(--line);
+          padding: 25px 0 !important;
+        }
+        .partner-grid article:last-child {
+          border-bottom: 0;
+        }
+        .price-grid {
+          gap: 15px;
+        }
+        .price-grid article {
+          border: 1px solid var(--line) !important;
+        }
+        .price-grid .featured {
+          border-color: var(--ink) !important;
+        }
+        .kit {
+          border-right: 0;
+          border-bottom: 1px solid var(--line);
+          padding: 25px 22px;
+        }
+        .calculator {
+          padding: 25px 22px;
+        }
+        .presets {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .big-price {
+          font-size: 40px;
+        }
+        .faq {
+          gap: 28px;
+        }
+        .faq h2 {
+          font-size: 40px;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .ciqm-choice,
+        .ciqm-arrow,
+        .ciqm-toggle:after {
+          transition: none;
+        }
+        *:before,
+        *:after {
+          animation: none !important;
+          transition: none !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="scroll-progress" aria-hidden="true"></div>
 
-.button{display:inline-flex;align-items:center;justify-content:space-between;gap:30px;padding:15px 21px;min-height:52px;border:1px solid transparent;border-radius:12px;font-size:13px;font-weight:700;line-height:1.4;transition:background .2s,transform .2s}
-.button span{font-size:18px;line-height:1}
-.button:hover{transform:translateY(-2px)}
-.button.ink{background:var(--ink);color:#fff}
-.button.ink:hover{background:#13263d}
-.button.leaf{background:var(--mint);color:var(--ink)}
-.button.leaf:hover{background:var(--green)}
-.button.paper{background:var(--paper);color:var(--ink)}
-.button.outline{background:transparent;border-color:var(--line);color:var(--ink)}
-.button.outline:hover{background:var(--green-light)}
-.button.small{padding:11px 15px;min-height:42px;font-size:12px;gap:18px}
-.text-link{border:0;background:none;padding:0;display:inline-flex;align-items:center;gap:22px;font-size:13px;font-weight:500;color:var(--ink)}
-.text-link span{transition:transform .2s}
-.text-link:hover span{transform:translate(3px,-2px)}
-
-.scroll-progress{height:2px;background:var(--green);position:fixed;inset:0 auto auto 0;z-index:99;width:0;pointer-events:none}
-
-/* Header */
-.site-header{position:sticky;top:0;z-index:40;background:rgba(7,17,31,.7);-webkit-backdrop-filter:blur(16px) saturate(160%);backdrop-filter:blur(16px) saturate(160%);height:84px;margin-bottom:-84px;border-bottom:1px solid var(--line);padding:0 3.4%;display:flex;justify-content:space-between;align-items:center;gap:28px}
-.brand{display:flex;align-items:center;width:220px;flex-shrink:0}
-.brand img{display:block;width:100%;height:auto}
-.desktop-nav{display:flex;gap:28px;font-size:12px}
-.desktop-nav a{padding:10px 0;position:relative}
-.desktop-nav a:after{content:'';position:absolute;bottom:1px;left:0;right:0;height:1px;background:var(--green);transform:scaleX(0);transform-origin:left;transition:transform .2s}
-.desktop-nav a:hover:after{transform:scaleX(1)}
-.nav-actions{display:flex;align-items:center;gap:20px}
-.menu-toggle{display:none;background:none;border:0;width:36px;height:42px;padding:7px}
-.menu-toggle span{display:block;height:1px;background:var(--ink);margin:7px 0}
-.mobile-nav{position:absolute;top:100%;left:0;right:0;background:rgba(7,17,31,.96);border-bottom:1px solid var(--line);padding:15px 6% 25px}
-.mobile-nav a{display:block;padding:15px 0;border-bottom:1px solid var(--line)}
-
-/* Hero */
-.hero{padding:115px 3.4% 40px}
-.hero-overline{display:flex;justify-content:space-between;gap:20px;margin-bottom:30px;align-items:center;color:var(--ink)}
-.hero-edition{color:var(--muted)}
-.hero-layout{display:grid;grid-template-columns:1.08fr 1fr;gap:32px;min-height:640px}
-.hero-copy{padding:15px 0 30px}
-.hero h1{font-size:clamp(64px,7.6vw,126px);line-height:.94;letter-spacing:-.065em}
-.hero h1 .serif{display:block;margin-top:3px;color:var(--green)}
-.hero-copy>p{font-size:17px;max-width:385px;margin:29px 0 25px;color:#c6d1de}
-.hero-buttons{display:flex;align-items:center;gap:27px;flex-wrap:wrap}
-.hero-footnote{color:var(--muted);display:flex;align-items:center;gap:11px;margin-top:33px}
-.tiny-cross{font:20px/1 var(--mono);color:var(--green-text)}
-/* Hero dashboard card (from the wireframe), on its own dark panel */
-.hero-card{background:rgba(255,255,255,.055);padding:18px;color:#fff;align-self:center;border-radius:28px;border:1px solid rgba(85,230,181,.35);backdrop-filter:blur(15px);box-shadow:0 0 0 1px rgba(85,230,181,.10),0 0 28px rgba(85,230,181,.18),0 34px 90px rgba(0,0,0,.38);animation:card-glow 4s ease-in-out infinite}
-@keyframes card-glow{50%{border-color:rgba(85,230,181,.65);box-shadow:0 0 0 1px rgba(85,230,181,.20),0 0 44px rgba(85,230,181,.32),0 34px 90px rgba(0,0,0,.38)}}
-.window-bar{height:44px;display:flex;align-items:center;justify-content:space-between;padding:0 7px 0 3px;color:#bdc9d6;font-size:12px}
-.dots{display:flex;gap:7px}
-.dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.26)}
-.memory-panel{background:#0a1728;border:1px solid rgba(255,255,255,.07);border-radius:20px;overflow:hidden}
-.memory-toolbar{padding:16px 18px;border-bottom:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between;align-items:center;gap:12px}
-.memory-toolbar strong{font-size:14px;font-weight:600}
-.live{color:var(--mint);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;white-space:nowrap}
-.live:before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--mint);margin-right:7px;box-shadow:0 0 0 5px #55e6b51a;animation:live 2.4s ease-in-out infinite}
-@keyframes live{50%{box-shadow:0 0 0 8px #55e6b500}}
-.factory-map{padding:22px;display:grid;grid-template-columns:1fr .8fr;gap:14px}
-.map-canvas{min-height:328px;border:1px solid rgba(255,255,255,.08);border-radius:15px;background:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px),#0d1b2d;background-size:32px 32px;position:relative;overflow:hidden}
-.node{position:absolute;border:1px solid rgba(255,255,255,.15);background:#12243a;border-radius:10px;padding:10px;color:#d4deea;font-size:10px;box-shadow:0 8px 20px rgba(0,0,0,.25)}
-.node strong{display:block;font-size:11px;color:#fff;margin-bottom:4px}
-.signal{width:6px;height:6px;border-radius:50%;background:var(--mint);display:inline-block;margin-right:5px}
-.n1{left:8%;top:12%;width:37%}.n2{right:8%;top:18%;width:33%}.n3{left:16%;bottom:13%;width:36%}.n4{right:7%;bottom:9%;width:32%}
-.route{position:absolute;height:2px;transform-origin:left center;background:linear-gradient(90deg,#55e6b52e,#55e6b5e6);box-shadow:0 0 12px #55e6b566}
-.r1{width:38%;left:39%;top:29%;transform:rotate(8deg)}
-.r2{width:35%;left:34%;top:49%;transform:rotate(56deg)}
-.r3{width:34%;left:50%;bottom:28%;transform:rotate(-8deg)}
-.side-stream{display:flex;flex-direction:column;gap:10px;min-width:0}
-.stream-item{padding:12px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:12px}
-.stream-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:6px}
-.stream-top strong{font-size:11px;color:#fff}
-.time{font-size:9px;color:#7e8fa3}
-.stream-item p{margin:0;color:#a8b7c7;font-size:10px;line-height:1.4}
-.tag{display:inline-block;margin-top:8px;font-size:9px;padding:4px 7px;border-radius:99px;color:var(--mint);background:rgba(85,230,181,.09)}
-.memory-footer{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid rgba(255,255,255,.08)}
-.metric{padding:15px 17px;border-right:1px solid rgba(255,255,255,.08)}
-.metric:last-child{border-right:0}
-.metric span{display:block;color:#7e8fa3;font-size:9px;text-transform:uppercase;letter-spacing:.12em}
-.metric strong{display:block;font-size:17px;margin-top:4px;color:#fff;font-variant-numeric:tabular-nums}
-
-.signal-ticker{border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;padding:15px 0;background:#fff}
-.ticker-track{display:flex;width:max-content;animation:ticker 55s linear infinite}
-.ticker-track>span{font:11px/1.5 var(--mono);letter-spacing:.12em;color:#526174;white-space:nowrap;padding-right:30px}
-.ticker-track i{font-style:normal;color:var(--green);margin:0 35px}
-@keyframes ticker{to{transform:translateX(-50%)}}
-
-/* Sections */
-.section{padding:83px 5.8%}
-/* Navy sections: re-point the colour tokens so text, borders and accents read on #07111f */
-.navy{background:var(--navy);--ink:#fff;--text:#dbe4ee;--muted:#aebccc;--line:rgba(255,255,255,.12);--green:#55e6b5;--green-text:#55e6b5;color:var(--text)}
-.faq.section{padding-top:83px}
-.navy .button.ink{background:var(--green);color:#07111f}
-.navy .button.ink:hover{background:var(--mint)}
-.hero.navy{background:radial-gradient(circle at 72% 18%,rgba(85,230,181,.14),transparent 32%),radial-gradient(circle at 18% 62%,rgba(117,169,255,.10),transparent 28%),linear-gradient(180deg,#07111f,#081626 72%,#0a1a2c);position:relative;overflow:hidden}
-.site-header.navy{background:rgba(7,17,31,.7)}
-.hero:after{content:"";position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:62px 62px;mask-image:linear-gradient(to bottom,black 20%,transparent 90%)}
-.hero>*{position:relative;z-index:1}
-.section-top{display:flex;justify-content:space-between;gap:20px;align-items:center;border-top:1px solid var(--line);padding-top:17px;margin-bottom:42px;color:var(--ink)}
-.section-top>.mono{font-size:9px;color:var(--muted)}
-.intro{display:grid;grid-template-columns:1.15fr 1fr;align-items:start;gap:10%;margin-bottom:55px}
-.intro h2{font-size:clamp(40px,4vw,62px);line-height:1.06;letter-spacing:-.04em;text-wrap:balance}
-.intro h2 .serif{color:var(--green)}
-.intro>p{padding-top:9px;font-size:15px;color:var(--muted);line-height:1.8;max-width:440px}
-
-.ciqm{--ciqm-border:#e4eaed;--ciqm-link:#087a56;--ciqm-mint-light:#47e5b7;--ciqm-panel:linear-gradient(120deg,#0b1b2e 0%,#102a3b 100%)}
-.ciqm-stack{display:grid;grid-template-columns:42.5% 57.5%;border:1px solid var(--ciqm-border);border-radius:22px;overflow:hidden;background:#fff}
-.ciqm-story{background:var(--ciqm-panel);color:#fff;padding:37px 34px 42px;min-height:356px}
-.ciqm-eyebrow{display:block;font:600 9px/1.6 var(--mono);letter-spacing:.065em;color:var(--ciqm-mint-light)}
-.ciqm-story-title{font:400 clamp(25px,2.1vw,34px)/1.15 var(--sans);letter-spacing:-.047em;margin-top:34px;color:#fff}
-.ciqm-story-title em{display:block;font-family:var(--serif);font-style:normal;color:var(--ciqm-mint-light)}
-.ciqm-story-copy{font-size:13px;line-height:1.85;color:#bbc7d3;max-width:570px;margin-top:24px}
-.ciqm-accordion{padding:11px 28px 12px;min-width:0}
-.ciqm-row{border-bottom:1px solid var(--ciqm-border)}
-.ciqm-row:last-child{border-bottom:0}
-.ciqm-summary{list-style:none;display:grid;grid-template-columns:30px 1.15fr 1.25fr 17px;gap:16px;align-items:center;padding:20px 0;min-height:64px;cursor:pointer;color:var(--ink);font-size:15px}
-.ciqm-summary::-webkit-details-marker{display:none}
-.ciqm-summary::marker{content:''}
-.ciqm-number{font:9px/1.5 var(--mono);letter-spacing:.05em;color:#63768b}
-.ciqm-layer{font-size:10px;color:var(--muted)}
-.ciqm-toggle{width:17px;height:17px;display:grid;place-items:center;position:relative}
-.ciqm-toggle:before,.ciqm-toggle:after{content:'';width:8px;height:1px;background:currentColor;position:absolute}
-.ciqm-toggle:after{transform:rotate(90deg);transition:transform .15s ease}
-.ciqm-row[open] .ciqm-toggle:after{transform:rotate(0deg)}
-.ciqm-row[open] .ciqm-name,.ciqm-row[open] .ciqm-toggle,.ciqm-summary:hover .ciqm-name{color:var(--ciqm-link)}
-.ciqm-description{padding:0 22px 23px 46px;color:var(--muted);font-size:12px;line-height:1.8}
-.ciqm-inline-actions{margin-top:12px;display:flex;gap:20px;flex-wrap:wrap}
-.ciqm-inline-actions a{color:var(--ciqm-link);text-decoration:underline;text-underline-offset:4px;font-size:12px}
-.ciqm-bridge{margin-top:32px}
-.ciqm-bridge-label{display:flex;align-items:center;justify-content:center;gap:20px;font:500 9px/1.6 var(--mono);letter-spacing:.13em;color:var(--muted);text-align:center;margin-bottom:22px}
-.ciqm-bridge-label:before,.ciqm-bridge-label:after{content:'';flex:1;height:1px;background:var(--ciqm-border)}
-.ciqm-choices{display:grid;grid-template-columns:1fr 1fr;gap:24px}
-.ciqm-choice{display:grid;grid-template-columns:64px minmax(0,1fr) 25px;gap:22px;align-items:start;color:var(--ink);background:#fff;border:1px solid var(--ciqm-border);border-radius:14px;padding:23px 25px;min-width:0;transition:border-color .18s,box-shadow .18s,transform .18s}
-.ciqm-choice:hover{border-color:#a8cabc;transform:translateY(-3px);box-shadow:0 9px 28px rgba(16,42,59,.06)}
-.ciqm-choice-title{display:block;font-size:19px;line-height:1.25;font-weight:500;letter-spacing:-.025em;margin-top:3px}
-.ciqm-choice-copy{display:block;font-size:13px;color:var(--muted);line-height:1.7;margin-top:8px;max-width:445px}
-.ciqm-choice-path{display:block;font:9px/1.8 var(--mono);color:var(--ciqm-link);margin-top:13px}
-.ciqm-icon{width:64px;height:64px;display:grid;place-items:center;background:var(--ciqm-panel);color:var(--ciqm-mint-light);border-radius:50%}
-.ciqm-icon svg{display:block;width:34px;height:34px}
-.ciqm-arrow{width:23px;height:23px;margin-top:5px;transition:transform .18s}
-.ciqm-choice:hover .ciqm-arrow{transform:translateX(4px)}
-/* Platform tabs + workflow view */
-.app-tabs{display:flex;justify-content:space-between;align-items:center;gap:20px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:-10px 0 44px}
-.app-tabs [role=tablist]{display:flex;gap:6px}
-.app-tab{border:0;background:none;padding:16px 10px 14px;font-size:14px;color:var(--ink);border-bottom:2px solid transparent;margin-bottom:-1px}
-.app-tab:hover{color:var(--green-text)}
-.app-tab[aria-selected=true]{color:var(--green-text);border-bottom-color:var(--green)}
-.app-tabs>.mono{font-size:10px;color:var(--green-text);letter-spacing:.12em}
-.workflow-head{text-align:center;margin-bottom:30px}
-.workflow-head h3{font:400 clamp(34px,3.4vw,48px)/1.1 var(--serif);letter-spacing:-.03em}
-.workflow-head h3 span{color:var(--green)}
-.workflow-head p{margin-top:12px;color:var(--muted);font-size:15px}
-.workflow-grid{display:grid;grid-template-columns:1fr 210px 1fr;gap:14px;align-items:stretch}
-.wf-card{border-radius:22px;padding:28px 18px 22px;display:flex;flex-direction:column;transition:box-shadow .25s,border-color .25s}
-.wf-card.tracking{background:#f3f8fd;border:1px solid #d8e5f2}
-.wf-card.quality{background:#f1fbf7;border:1px solid #cdeedf}
-.wf-card.focus.tracking{border-color:#2f6fcf;box-shadow:0 0 0 1px #2f6fcf,0 18px 45px rgba(47,111,207,.12)}
-.wf-card.focus.quality{border-color:var(--green);box-shadow:0 0 0 1px var(--green),0 18px 45px rgba(33,201,143,.14)}
-.wf-top{display:flex;justify-content:space-between;gap:16px;padding:0 18px}
-.wf-label{font:600 12px/1.4 var(--mono);letter-spacing:.12em}
-.tracking .wf-label{color:#2f6fcf}.quality .wf-label{color:var(--green-text)}
-.wf-top h3{font:400 clamp(24px,2.3vw,33px)/1.15 var(--serif);letter-spacing:-.02em;margin:8px 0 10px}
-.wf-top p{font:16px/1.5 var(--serif);color:var(--muted)}
-.wf-icon{width:64px;height:64px;flex:none;border-radius:14px;display:grid;place-items:center}
-.tracking .wf-icon{background:#dce9f8}.quality .wf-icon{background:#d5f3e7}
-.wf-body{background:#fff;border-radius:16px;padding:18px 16px 14px;margin:22px 0 20px;box-shadow:0 2px 10px rgba(7,17,31,.04)}
-.wf-body>.mono{font-size:10px;color:var(--muted);letter-spacing:.12em;padding-left:6px}
-.wf-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px}
-.wf-step{position:relative;padding:12px 10px 14px;border-radius:12px;font-size:12px;color:var(--muted);line-height:1.45}
-.tracking .wf-step{background:#f6f9fd}.quality .wf-step{background:#f3fbf7}
-.wf-step strong{display:block;color:var(--ink);font-size:13px;margin:6px 0 10px;line-height:1.3}
-.wf-step:not(:last-child):after{content:'→';position:absolute;right:-11px;top:24px;font-size:16px;z-index:1}
-.tracking .wf-step:not(:last-child):after{color:#2f6fcf}.quality .wf-step:not(:last-child):after{color:var(--green-text)}
-.wf-num{display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;background:#2f6fcf;color:#fff;font-size:10px;font-weight:700}
-.wf-tier{font-size:12px;color:var(--green-text)}
-.wf-note{display:flex;align-items:center;gap:12px;margin-top:12px;padding:12px 14px;border-radius:12px;font-size:12px;line-height:1.55;color:var(--ink)}
-.tracking .wf-note{background:#f3f7fc}.quality .wf-note{background:#eaf8f1}
-.wf-note svg{flex:none}
-.wf-actions{display:flex;align-items:center;gap:30px;margin-top:auto}
-.wf-actions a:not(.button){font-size:14px;text-decoration:underline;text-underline-offset:4px;font-weight:500}
-.tracking .wf-actions a:not(.button){color:#2f6fcf}.quality .wf-actions a:not(.button){color:var(--green-text)}
-.button.forest{background:#0f7a5a;color:#fff}.button.forest:hover{background:#0b6248}
-.wf-center{display:flex;flex-direction:column}
-.wf-flow{position:relative;height:150px;margin-top:40px}
-.wf-flow svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
-.wf-flow span{position:absolute;top:0;font-size:13px;font-weight:600;line-height:1.3}
-.wf-flow .l{left:10px;color:#2f6fcf}.wf-flow .r{right:10px;text-align:right;color:var(--green-text)}
-.wf-memory{background:linear-gradient(160deg,#0b1a2d,#102b3c);color:#c1cfdd;border-radius:20px;padding:24px 20px 26px;text-align:center;box-shadow:0 18px 40px rgba(7,17,31,.25)}
-.wf-memory .mono{display:block;color:#fff;letter-spacing:.18em;margin:10px 0 6px}
-.wf-memory h4{font-size:22px;line-height:1.2;color:#fff;font-weight:500;margin:0 0 10px}
-.wf-memory p{font-size:14px;line-height:1.5}
-
-
-
-.partner-grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.partner-grid article{padding:29px 30px 32px 0;display:flex;flex-direction:column;align-items:start;border-right:1px solid var(--line)}
-.partner-grid article:not(:first-child){padding-left:30px}
-.partner-grid article:last-child{border-right:0}
-.partner-number{color:var(--green);font-size:58px;line-height:1;margin-bottom:30px}
-.partner-grid .eyebrow{font-size:9px;color:var(--muted)}
-.partner-grid h3{font-size:23px;margin:12px 0}
-.partner-grid p{font-size:13px;color:var(--muted);line-height:1.8;max-width:315px}
-
-.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.price-grid article{--ink:#07111f;--text:#07111f;--muted:#526174;--line:#e0e7ea;--green:#21c98f;--green-text:#087a56;color:var(--text);background:#fff;border:1px solid var(--line);border-radius:20px;padding:27px 28px;display:flex;flex-direction:column;align-items:start}
-.price-grid .featured{border-color:var(--ink);box-shadow:0 18px 45px rgba(7,17,31,.12)}
-.price-grid .eyebrow{color:var(--muted);font-size:9px}
-.price-grid h3{font-size:23px;margin:22px 0 16px}
-.price-main{font:34px/1.3 var(--serif);color:var(--ink);margin-bottom:18px}
-.price-grid article>p:not(.price-main){font-size:13px;color:var(--muted);line-height:1.8;margin-bottom:23px;flex:1}
-.price-feature{padding:11px 0;border-top:1px solid var(--line);width:100%;font-size:11px;color:#536174}
-.price-grid .button{margin-top:26px;width:100%}
-
-/* WIP starter kit + reader calculator */
-.partners.navy{background:linear-gradient(135deg,#0b1a2d,#102b3c)}
-.plan-grid{--ink:#07111f;--text:#07111f;--muted:#526174;--line:#e0e7ea;--green:#21c98f;--green-text:#087a56;color:var(--text);display:grid;grid-template-columns:.85fr 1.15fr;border:1px solid var(--line);border-radius:22px;overflow:hidden;background:#fff}
-.kit{padding:32px;border-right:1px solid var(--line);display:flex;flex-direction:column}
-.kit h3,.calculator h3{font-size:31px;line-height:1.1;margin-top:13px}
-.kit h3 .serif{color:var(--green)}
-.kit>p{font-size:13px;line-height:1.75;color:var(--muted);margin:17px 0}
-.kit-graphic{display:flex;align-items:center;gap:16px;margin:4px 0 20px;padding:18px 20px;background:var(--paper);border:1px solid var(--line);border-radius:14px}
-.kit-device{width:52px;height:64px;flex:none;border:1px solid #c6eddc;border-radius:12px;display:grid;place-items:center;font-size:29px;background:var(--green-light);color:var(--green-text)}
-.kit-graphic strong{font-size:14px;font-weight:500;display:block}
-.kit-graphic small{font-size:10px;color:var(--muted)}
-.feature{padding:10px 0;border-top:1px solid var(--line);display:flex;gap:12px;align-items:baseline;font-size:12px}
-.feature i{font-style:normal;color:var(--green-text)}
-.kit .bottom{margin-top:auto;padding-top:23px}
-.calculator{padding:32px;background:#f8fafb}
-.calc-top{display:flex;justify-content:space-between;align-items:flex-start;gap:20px}
-.badge{display:inline-flex;background:rgba(85,230,181,.13);border:1px solid rgba(85,230,181,.28);border-radius:999px;color:var(--green-text);padding:5px 10px;font:9px/1.4 var(--mono);letter-spacing:.04em;white-space:nowrap}
-.countrow{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:24px 0 8px}
-.countrow label{font-size:13px;font-weight:500}
-.fine{font-size:10px;line-height:1.65;color:var(--muted)}
-.stepper{display:flex;border:1px solid #ccd7dd;border-radius:11px;overflow:hidden;background:#fff;flex:none}
-.stepper button{border:0;background:#fff;width:34px;height:44px;font-size:19px}
-.stepper button:disabled{opacity:.4;cursor:not-allowed}
-.stepper input{width:52px;text-align:center;border:0;font-size:17px;font-variant-numeric:tabular-nums;-moz-appearance:textfield;appearance:textfield}
-.stepper input::-webkit-inner-spin-button{appearance:none}
-.reader-count{display:flex;align-items:center;gap:13px;margin:15px 0 8px}
-.reader-count strong{font-size:68px;line-height:1;font-weight:500;letter-spacing:-.065em;font-variant-numeric:tabular-nums;color:var(--ink)}
-.reader-count span{font-size:21px}
-.presets{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin:18px 0 22px}
-.presets button{background:#fff;border:1px solid #dbe3e7;border-radius:10px;padding:9px 5px;font-size:12px}
-.presets button[aria-pressed=true]{border-color:var(--green);color:var(--green-text);background:var(--green-light)}
-.price-display{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;background:var(--green-light);border-radius:14px;padding:19px 17px;margin-bottom:16px}
-.price-caption{display:block;margin-bottom:8px;font:8px var(--mono);letter-spacing:.08em;color:var(--muted)}
-.big-price{font-size:50px;letter-spacing:-.06em;line-height:1.1;display:block;font-variant-numeric:tabular-nums;color:var(--ink)}
-.unit{font-size:11px;color:var(--muted);display:block;margin-top:5px}
-.total{text-align:right}
-.total strong{font-size:26px;display:block;letter-spacing:-.03em;font-weight:500;font-variant-numeric:tabular-nums;color:var(--ink)}
-.excluded{font-size:10px;background:#fff;border:1px solid #dfe7ea;border-radius:12px;padding:11px 12px;color:var(--muted);line-height:1.65;margin:16px 0}
-
-.faq{display:grid;grid-template-columns:.85fr 1.3fr;gap:10%;padding-top:10px}
-.faq h2{font-size:50px;line-height:1.05;margin-top:25px;letter-spacing:-.04em}
-.faq h2 .serif{color:var(--green)}
-.faq details{background:#fff;border:1px solid var(--line);border-radius:14px;padding:0 18px;font-size:14px}
-.faq>div:last-child{display:grid;gap:12px;align-content:start}
-.faq summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:22px 0;cursor:pointer;color:var(--ink)}
-.faq summary::-webkit-details-marker{display:none}
-.faq summary span{font-size:22px;color:var(--green-text);transition:transform .2s}
-.faq details[open] summary span{transform:rotate(45deg)}
-.faq details p{font-size:13px;color:var(--muted);line-height:1.8;padding-bottom:23px;max-width:520px}
-
-.closing{background:linear-gradient(135deg,#0b1a2d,#102b3c);text-align:center;padding-top:60px;padding-bottom:63px}
-.closing .eyebrow{color:var(--mint)}
-.closing h2{font-size:clamp(38px,4.3vw,66px);line-height:1.07;letter-spacing:-.035em;margin:30px 0}
-.closing h2 .serif{color:var(--green)}
-.closing>div{display:flex;justify-content:center;align-items:center;gap:30px;flex-wrap:wrap}
-
-.site-footer{background:var(--navy);color:#9babbc;padding:43px 5.8% 20px}
-.footer-top{display:grid;grid-template-columns:2.2fr .75fr .75fr;gap:40px;margin-bottom:43px}
-.footer-top p{font:20px/1.35 var(--serif);color:#fff}
-.footer-top>div{display:flex;flex-direction:column;gap:10px;font-size:12px;align-items:flex-start}
-.footer-top button{background:none;border:0;padding:0;font-size:12px}
-.footer-bottom{border-top:1px solid rgba(255,255,255,.12);padding-top:18px;display:flex;justify-content:space-between;gap:20px;font-size:10px;color:#9babbc}
-
-/* Contact dialog */
-dialog{padding:0;border:1px solid var(--line);border-radius:18px;max-width:560px;width:calc(100% - 32px);box-shadow:0 30px 100px rgba(7,17,31,.25)}
-dialog::backdrop{background:rgba(7,17,31,.55);backdrop-filter:blur(3px)}
-.dialog-head{display:flex;justify-content:space-between;align-items:center;padding:22px 26px;border-bottom:1px solid var(--line)}
-.dialog-head h2{font-size:21px}
-.dialog-close{border:0;background:none;font-size:24px;color:var(--muted)}
-.dialog-body{padding:24px 26px}
-.dialog-body>p{font-size:13px;color:var(--muted);line-height:1.8;margin-bottom:18px}
-.field{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
-.field label{font-size:11px;color:#435164;font-weight:700}
-.field input,.field textarea{border:1px solid #ccd7dd;border-radius:11px;padding:11px 12px;font-size:13px;background:#fff;min-width:0}
-.field textarea{min-height:90px;resize:vertical}
-.form-note{font-size:11px;color:var(--muted);margin:4px 0 16px}
-.form-error{color:#9e3a2c;font-size:12px;min-height:16px}
-
-@media(max-width:1180px){.desktop-nav{gap:16px}.hero h1{font-size:clamp(64px,8.2vw,100px)}.hero-layout{min-height:560px}.factory-map{grid-template-columns:1fr}}
-@media(max-width:980px){
-  .ciqm-story{padding:28px 25px}.ciqm-accordion{padding:7px 22px}.ciqm-summary{grid-template-columns:22px 1.1fr 1fr 14px;gap:10px}.ciqm-name{font-size:13px}.ciqm-description{padding-left:32px;font-size:11px}.ciqm-choice{grid-template-columns:49px minmax(0,1fr) 18px;gap:15px;padding:22px 18px}.ciqm-icon{width:49px;height:49px}.ciqm-choices{gap:17px}
-  .workflow-grid{grid-template-columns:1fr}.wf-flow{display:none}.wf-center{order:3}
-  .desktop-nav,.hero-edition{display:none}.menu-toggle{display:block}
-  .hero-layout{grid-template-columns:1fr 1fr}.hero-buttons{flex-direction:column;align-items:flex-start;gap:18px}
-  .section{padding:60px 5%}.intro{gap:6%}.intro h2{font-size:40px}
-  .footer-top{grid-template-columns:1fr 1fr 1fr}.footer-top p{display:none}
-}
-@media(max-width:760px){
-  .ciqm-stack{grid-template-columns:1fr;border-radius:18px}.ciqm-story{min-height:0}.ciqm-accordion{padding:5px 20px}.ciqm-choices{grid-template-columns:1fr;gap:14px}.ciqm-bridge-label{font-size:8px;gap:12px}
-  .wf-steps{grid-template-columns:1fr 1fr}.wf-step:nth-child(2):after{display:none}.wf-top{padding:0 4px}.wf-icon{width:52px;height:52px}.wf-actions{flex-wrap:wrap;gap:16px}.app-tab{padding:14px 6px 12px}.app-tabs>.mono{display:none}
-  .site-header{height:70px;margin-bottom:-70px;padding:0 18px;gap:12px}.site-header .brand{width:180px}.nav-actions>.button{display:none}
-  .hero{padding:93px 18px 32px}.hero-layout{grid-template-columns:1fr;gap:24px;min-height:0}
-  .hero h1{font-size:clamp(58px,16vw,100px)}.hero-buttons{flex-direction:row;align-items:center}
-  .side-stream{display:none}.hero-card{padding:12px}.factory-map{padding:14px}
-  .section{padding:49px 20px}.faq.section{padding-top:49px}.section-top>.mono{display:none}
-  .intro{grid-template-columns:1fr;gap:20px;margin-bottom:32px}
-  .app-display,.plan-grid,.faq{grid-template-columns:1fr}
-  .partner-grid,.price-grid{grid-template-columns:1fr}
-  .partner-grid article{border-right:0;border-bottom:1px solid var(--line);padding:25px 0!important}
-  .partner-grid article:last-child{border-bottom:0}
-  .price-grid{gap:15px}.price-grid article{border:1px solid var(--line)!important}.price-grid .featured{border-color:var(--ink)!important}
-  .kit{border-right:0;border-bottom:1px solid var(--line);padding:25px 22px}.calculator{padding:25px 22px}
-  .presets{grid-template-columns:repeat(2,1fr)}.big-price{font-size:40px}
-  .faq{gap:28px}.faq h2{font-size:40px}
-  .footer-top{grid-template-columns:1fr 1fr}.footer-bottom{flex-direction:column;gap:8px}
-}
-@media(prefers-reduced-motion:reduce){.ciqm-choice,.ciqm-arrow,.ciqm-toggle:after{transition:none}html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}}
-</style>
-</head>
-<body>
-<a class="skip-link" href="#main">Skip to content</a>
-<div class="scroll-progress" aria-hidden="true"></div>
-
-<header class="site-header navy">
-  <a href="#top" class="brand" aria-label="ConnectIQ home"><img src="assets/logo-wordmark-white.png?v=2" alt="ConnectIQ" width="620" height="86"></a>
-  <nav class="desktop-nav" aria-label="Primary">
-    <a href="#memory">The platform</a><a href="#pricing">Get started</a><a href="#wip">WIP readers</a><a href="#partners">Partners</a>
-  </nav>
-  <div class="nav-actions">
-    <a href="https://api.huawei.connectiq.asia/" target="_blank" rel="noopener" class="button ink small">Flash &amp; activate <span>↗</span></a>
-    <button class="menu-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-nav"><span></span><span></span></button>
-  </div>
-  <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile" hidden>
-    <a href="#memory">The platform</a><a href="#pricing">Get started</a><a href="#wip">WIP readers</a><a href="#partners">Partners</a>
-    <a href="https://api.huawei.connectiq.asia/" target="_blank" rel="noopener">Flash &amp; activate ↗</a>
-  </nav>
-</header>
-
-<main id="main">
-  <section class="hero navy" id="top" aria-labelledby="hero-title">
-    <div class="hero-overline"><span class="eyebrow"><i class="square"></i> The infrastructure for a factory that learns.</span><span class="mono hero-edition">CONNECTIQ / MANUFACTURING MEMORY</span></div>
-    <div class="hero-layout">
-      <div class="hero-copy">
-        <h1 id="hero-title">Give every<br>factory<br><span class="serif">a memory.</span></h1>
-        <p>Every part has a story.<br>Connect the movement, measurements and decisions that make it.</p>
-        <div class="hero-buttons"><a href="#memory" class="button ink">Explore the platform <span>↗</span></a></div>
-        <div class="hero-footnote mono"><span class="tiny-cross">+</span> FROM FACTORY SIGNALS TO CONTEXT FOR AI</div>
-      </div>
-      <div class="hero-card" aria-label="Manufacturing memory dashboard preview">
-        <div class="window-bar">
-          <div class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-          <span>Factory Memory / Live Plant</span>
-        </div>
-        <div class="memory-panel">
-          <div class="memory-toolbar">
-            <strong>Manufacturing Memory Stream</strong>
-            <span class="live">Live</span>
-          </div>
-          <div class="factory-map">
-            <div class="map-canvas">
-              <div class="route r1"></div><div class="route r2"></div><div class="route r3"></div>
-              <div class="node n1"><strong><span class="signal"></span>WIP Rack A</strong>Part OP-1248 arrived</div>
-              <div class="node n2"><strong><span class="signal"></span>CNC-05</strong>Cycle 18 completed</div>
-              <div class="node n3"><strong><span class="signal"></span>QC Station 2</strong>Ø42.00 measured 42.013</div>
-              <div class="node n4"><strong><span class="signal"></span>Operator 017</strong>Insert changed at T03</div>
-            </div>
-            <div class="side-stream">
-              <div class="stream-item">
-                <div class="stream-top"><strong>Quality drift detected</strong><span class="time">08:42</span></div>
-                <p>Diameter trend linked to tool episode T03.</p><span class="tag">Feedback created</span>
-              </div>
-              <div class="stream-item">
-                <div class="stream-top"><strong>Queue threshold</strong><span class="time">08:35</span></div>
-                <p>Part waited 46 min before CNC-05.</p><span class="tag">Flow memory</span>
-              </div>
-              <div class="stream-item">
-                <div class="stream-top"><strong>Skill evidence</strong><span class="time">08:31</span></div>
-                <p>Measurement attributed to operator 017.</p><span class="tag">Skill passport</span>
-              </div>
-            </div>
-          </div>
-          <div class="memory-footer">
-            <div class="metric"><span>Events captured</span><strong>12,840</strong></div>
-            <div class="metric"><span>Linked contexts</span><strong>4 layers</strong></div>
-            <div class="metric"><span>Open actions</span><strong>06</strong></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="signal-ticker" aria-label="Factory inputs: RFID, BLE gauges, CNC, metrology, operator actions and quality outcomes"><div class="ticker-track" aria-hidden="true">
-    <span>RFID <i>+</i> BLE GAUGES <i>+</i> CNC <i>+</i> METROLOGY <i>+</i> OPERATOR ACTIONS <i>+</i> QUALITY OUTCOMES <i>+</i></span>
-    <span>RFID <i>+</i> BLE GAUGES <i>+</i> CNC <i>+</i> METROLOGY <i>+</i> OPERATOR ACTIONS <i>+</i> QUALITY OUTCOMES <i>+</i></span>
-  </div></div>
-
-  <section id="memory" class="section">
-    <div class="section-top"><span class="eyebrow">01 / The platform</span><span class="mono">LESS FRAGMENTATION. MORE CONTEXT.</span></div>
-    <div class="intro"><h2>Not just what happened.<br><span class="serif">Why it matters.</span></h2><p>A reading in a spreadsheet is a number. A reading linked to the part, drawing revision, operator and tool episode is manufacturing memory.</p></div>
-    <div class="app-tabs">
-      <div role="tablist" aria-label="Platform views">
-        <button class="app-tab" role="tab" id="tab-platform" aria-controls="panel-platform" aria-selected="true" data-app="platform">Platform</button>
-        <button class="app-tab" role="tab" id="tab-tracking" aria-controls="panel-workflow" aria-selected="false" tabindex="-1" data-app="tracking">Tracking</button>
-        <button class="app-tab" role="tab" id="tab-quality" aria-controls="panel-workflow" aria-selected="false" tabindex="-1" data-app="quality">Quality</button>
-      </div>
-      <span class="mono">APPLICATIONS</span>
-    </div>
-    <div id="panel-workflow" role="tabpanel" aria-labelledby="tab-tracking" hidden>
-      <div class="workflow-head"><h3>Start with a <span>workflow.</span></h3><p>Two applications. One connected system. Both workflows feed Manufacturing Memory.</p></div>
-      <div class="workflow-grid">
-        <article class="wf-card tracking focus">
-          <div class="wf-top"><div><span class="wf-label">FDM TRACKING</span><h3>See the flow. Find the next step.</h3><p>See where every job is, how it moves, and what is waiting.</p></div><span class="wf-icon"><svg width="38" height="38" viewBox="0 0 24 24" aria-hidden="true"><path fill="#2f6fcf" d="M12 2 3 6.6v10.8L12 22l9-4.6V6.6L12 2Zm0 2.2 6.6 3.4L12 11 5.4 7.6 12 4.2ZM5 9.3l6 3.1v7.2l-6-3.1V9.3Zm8 10.3v-7.2l6-3.1v7.2l-6 3.1Z"/></svg></span></div>
-          <div class="wf-body"><span class="mono">YOUR JOURNEY</span>
-            <div class="wf-steps">
-              <div class="wf-step"><span class="wf-num">1</span><strong>Starter Kit</strong>Get set up and ready</div>
-              <div class="wf-step"><span class="wf-num">2</span><strong>1 month self-mapping</strong>Map your process with our guidance</div>
-              <div class="wf-step"><span class="wf-num">3</span><strong>Activate <span style="white-space:nowrap">1–100</span> readers</strong>Go live on your line</div>
-              <div class="wf-step"><span class="wf-num">4</span><strong>Subscribe</strong>Continue and scale</div>
-            </div>
-            <div class="wf-note"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="none" stroke="#2f6fcf" stroke-width="1.6"/><path d="M12 10.5v6M12 7.2v.1" stroke="#2f6fcf" stroke-width="2" stroke-linecap="round"/></svg><span>Base subscription excludes self-mapping renewal, movement histories and advanced analytics — available as add-ons or higher options.</span></div>
-          </div>
-          <div class="wf-actions"><a class="button ink" href="#wip">Explore Tracking <span>→</span></a><a href="#wip">View reader plans</a></div>
-        </article>
-        <div class="wf-center">
-          <div class="wf-flow" aria-hidden="true"><span class="l">Tracking<br>events</span><span class="r">Quality<br>measurements</span>
-            <svg viewBox="0 0 250 150" preserveAspectRatio="none"><path d="M-18 55H65q30 0 30 30v58" fill="none" stroke="#2f6fcf" stroke-width="1.5"/><path d="M88 136l7 8 7-8" fill="none" stroke="#2f6fcf" stroke-width="1.5"/><path d="M268 55H185q-30 0-30 30v58" fill="none" stroke="#17a374" stroke-width="1.5"/><path d="M148 136l7 8 7-8" fill="none" stroke="#17a374" stroke-width="1.5"/></svg>
-          </div>
-          <div class="wf-memory"><svg width="38" height="40" viewBox="0 0 38 40" aria-hidden="true"><g fill="#55e6b5"><ellipse cx="19" cy="7" rx="15" ry="5"/><path d="M4 12c0 2.8 6.7 5 15 5s15-2.2 15-5v6c0 2.8-6.7 5-15 5s-15-2.2-15-5z"/><path d="M4 23c0 2.8 6.7 5 15 5s15-2.2 15-5v6c0 2.8-6.7 5-15 5s-15-2.2-15-5z"/></g></svg><span class="mono">BOTH FEED</span><h4>Manufacturing Memory</h4><p>A single source of context for every part, operation and revision.</p></div>
-        </div>
-        <article class="wf-card quality">
-          <div class="wf-top"><div><span class="wf-label">FDM QUALITY</span><h3>Measure in context. Build trust.</h3><p>Capture in-situ measurements and build digital quality records.</p></div><span class="wf-icon"><svg width="40" height="40" viewBox="0 0 24 24" aria-hidden="true"><path fill="#17a374" d="M12 1.5 22.5 12 12 22.5 1.5 12Z"/><path d="m7.8 12.2 2.8 2.8 5.6-5.8" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
-          <div class="wf-body"><span class="mono">FOUR TIERS. A CLEAR PATH.</span>
-            <div class="wf-steps">
-              <div class="wf-step"><span class="wf-tier">Tier 1</span><strong>Free App</strong>Capture measurements</div>
-              <div class="wf-step"><span class="wf-tier">Tier 2</span><strong>FDM Lite</strong>Team quality reporting</div>
-              <div class="wf-step"><span class="wf-tier">Tier 3</span><strong>FDM Pro</strong>Supervisor access</div>
-              <div class="wf-step"><span class="wf-tier">Tier 4</span><strong>FDM Enterprise</strong>Engineer auto-balloon</div>
-            </div>
-            <div class="wf-note"><svg width="26" height="24" viewBox="0 0 26 24" aria-hidden="true"><rect x="2" y="13" width="5" height="9" rx="1" fill="#17a374"/><rect x="10" y="8" width="5" height="14" rx="1" fill="#17a374"/><rect x="18" y="2" width="5" height="20" rx="1" fill="#17a374"/></svg><span>Progress from basic capture to advanced engineering workflows, with tools that grow with your team.</span></div>
-          </div>
-          <div class="wf-actions"><a class="button forest" href="fdm.html">Explore Quality <span>→</span></a><a href="fdm.html">Compare tiers</a></div>
-        </article>
-      </div>
-    </div>
-    <div class="ciqm" id="panel-platform" role="tabpanel" aria-labelledby="tab-platform">
-      <div class="ciqm-stack">
-        <div class="ciqm-story">
-          <span class="ciqm-eyebrow">THE CONNECTIQ STACK</span>
-          <h3 class="ciqm-story-title">Signals become<em>shared understanding.</em></h3>
-          <p class="ciqm-story-copy">Start at the edge. Connect context in the Factory State Engine. Put Manufacturing Memory to work through FDM and your applications.</p>
-        </div>
-        <div class="ciqm-accordion" aria-label="The five platform layers">
-          <details class="ciqm-row" open>
-            <summary class="ciqm-summary"><span class="ciqm-number" aria-hidden="true">01</span><span class="ciqm-name">Observe</span><span class="ciqm-layer">Factory signals</span><span class="ciqm-toggle" aria-hidden="true"></span></summary>
-            <div class="ciqm-description"><p>RFID reads, gauge measurements, machine states and operator actions. Capture the event together with its source and timestamp.</p></div>
-          </details>
-          <details class="ciqm-row">
-            <summary class="ciqm-summary"><span class="ciqm-number" aria-hidden="true">02</span><span class="ciqm-name">Normalise</span><span class="ciqm-layer">USAL</span><span class="ciqm-toggle" aria-hidden="true"></span></summary>
-            <div class="ciqm-description"><p>USAL adapts supported device protocols into a consistent event structure. Keep source identity, units and signal quality attached.</p></div>
-          </details>
-          <details class="ciqm-row">
-            <summary class="ciqm-summary"><span class="ciqm-number" aria-hidden="true">03</span><span class="ciqm-name">Contextualise</span><span class="ciqm-layer">Factory State Engine</span><span class="ciqm-toggle" aria-hidden="true"></span></summary>
-            <div class="ciqm-description"><p>Link the observation to its part, operation, drawing revision, tool, person and current factory state. Preserve provenance rather than assuming a relationship.</p></div>
-          </details>
-          <details class="ciqm-row">
-            <summary class="ciqm-summary"><span class="ciqm-number" aria-hidden="true">04</span><span class="ciqm-name">Remember</span><span class="ciqm-layer">Manufacturing Memory</span><span class="ciqm-toggle" aria-hidden="true"></span></summary>
-            <div class="ciqm-description"><p>Connect events, evidence and outcomes in their authorised factory context. History access, retention and analytics depend on the subscribed application and plan.</p></div>
-          </details>
-          <details class="ciqm-row">
-            <summary class="ciqm-summary"><span class="ciqm-number" aria-hidden="true">05</span><span class="ciqm-name">Act</span><span class="ciqm-layer">FDM · Skills · AI</span><span class="ciqm-toggle" aria-hidden="true"></span></summary>
-            <div class="ciqm-description"><p>Put the context to work. Start with WIP visibility through FDM Tracking or in-situ measurement and digital reporting through FDM Quality. Capabilities depend on the selected tier.</p><div class="ciqm-inline-actions"><a href="#wip">FDM Tracking →</a><a href="fdm.html">FDM Quality →</a></div></div>
-          </details>
-        </div>
-      </div>
-      <nav class="ciqm-bridge" aria-label="Choose an FDM application">
-        <div class="ciqm-bridge-label"><span>TWO APPLICATIONS. ONE MANUFACTURING MEMORY.</span></div>
-        <div class="ciqm-choices">
-          <a class="ciqm-choice" href="#wip">
-            <span class="ciqm-icon"><svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.35" aria-hidden="true"><path d="m18 3 12 7v15l-12 8-12-8V10Z"/><path d="m6 10 12 8 12-8M18 18v15M12 7l12 7" stroke-linejoin="round"/></svg></span>
-            <span><span class="ciqm-choice-title">Go to FDM Tracking</span><span class="ciqm-choice-copy">See WIP flow. Start with a plug-and-play kit, map your factory and activate your readers.</span><span class="ciqm-choice-path">Starter kit → 1 month self-mapping → 1–100 readers</span></span>
-            <svg class="ciqm-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
-          <a class="ciqm-choice" href="fdm.html">
-            <span class="ciqm-icon"><svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M5 18h5v13H5zM16 7h5v24h-5zM27 13h5v18h-5z" stroke-linejoin="round"/></svg></span>
-            <span><span class="ciqm-choice-title">Go to FDM Quality</span><span class="ciqm-choice-copy">Start with free in-situ measurement. Add digital quality reporting and team access as you grow.</span><span class="ciqm-choice-path">Free App → FDM Lite → FDM Pro → FDM Enterprise</span></span>
-            <svg class="ciqm-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
-        </div>
+    <header class="site-header navy">
+      <a href="#top" class="brand" aria-label="ConnectIQ home"
+        ><img src="assets/logo-wordmark-white.png?v=2" alt="ConnectIQ" width="620" height="86"
+      /></a>
+      <nav class="desktop-nav" aria-label="Primary">
+        <a href="#memory">The platform</a><a href="#pricing">Get started</a><a href="#wip">WIP readers</a
+        ><a href="#partners">Partners</a>
       </nav>
-    </div>
-  </section>
-
-  <section id="pricing" class="section navy">
-    <div class="section-top"><span class="eyebrow">02 / Get started</span><span class="mono">HARDWARE READINESS ≠ SOFTWARE ENTITLEMENT</span></div>
-    <div class="intro"><h2>A clear path<br><span class="serif">from device to value.</span></h2><p>Separate hardware preparation, device activation and ongoing software. Select the applications your factory needs.</p></div>
-    <div class="price-grid">
-      <article><span class="eyebrow">01 / Partner programme</span><h3>ConnectIQ-ready</h3><p class="price-main">By agreement</p><p>Approved hardware profiles, batch onboarding and deployment planning.</p><div class="price-feature">OEM profile registration</div><div class="price-feature">Controlled firmware preparation</div><button class="button outline" data-enquiry="Hardware onboarding">Discuss your hardware <span>↗</span></button></article>
-      <article class="featured"><span class="eyebrow">02 / Device entitlement</span><h3>Activate a device</h3><p class="price-main">Per device</p><p>Associate compatible hardware with its customer site and purchased capabilities.</p><div class="price-feature">Device verification &amp; licensing</div><div class="price-feature">Payment &amp; provisioning flow</div><a href="https://shop.connectiq.asia/products/plug-play-rfid-starter-kit" target="_blank" rel="noopener" class="button leaf">Check device &amp; plans <span>↗</span></a></article>
-      <article><span class="eyebrow">03 / Factory software</span><h3>Build your memory</h3><p class="price-main">Per site / plan</p><p>Choose Manufacturing Memory, WIP Flow and FDM Quality capabilities.</p><div class="price-feature">One-time and recurring fees separated</div><div class="price-feature">Scope and price confirmed in your quote</div><button class="button outline" data-enquiry="Software plan">Discuss a software plan <span>↗</span></button></article>
-    </div>
-  </section>
-
-  <section id="wip" class="section wip">
-    <div class="section-top"><span class="eyebrow">03 / WIP tracking</span><span class="mono">HARDWARE → INCLUDED MONTH → SUBSCRIPTION</span></div>
-    <div class="intro"><h2>Start with one reader.<br><span class="serif">See your factory move.</span></h2><p>Install a compatible starter kit. Map your factory with one month of included self-mapping. Then subscribe for the reader capacity you need.</p></div>
-    <div class="plan-grid">
-      <article class="kit">
-        <span class="eyebrow">01 / Plug-and-play starter kit</span>
-        <h3>Connect your first<br><span class="serif">factory zone.</span></h3>
-        <p>A defined hardware bundle for a compatible installation, with guided setup and a one-month software entitlement.</p>
-        <div class="kit-graphic"><div class="kit-device" aria-hidden="true">▥</div><div><strong>Supported reader + configured kit</strong><small>Exact reader, antennas and tags confirmed with your order.</small></div></div>
-        <div class="feature"><i>✓</i> One month of self-mapping service</div>
-        <div class="feature"><i>✓</i> Current WIP visibility during the included month</div>
-        <div class="feature"><i>✓</i> Keep the approved map for a paid base plan</div>
-        <div class="bottom"><a class="button ink" href="https://shop.connectiq.asia/products/plug-play-rfid-starter-kit" target="_blank" rel="noopener">View the RFID Starter Kit <span>↗</span></a><p class="fine" style="margin-top:12px">No automatic paid conversion. History and analytics are not part of the included month.</p></div>
-      </article>
-      <div class="calculator">
-        <div class="calc-top"><div><span class="eyebrow">02 / WIP Base subscription</span><h3>Choose your readers.</h3></div><span class="badge">1–100 READERS</span></div>
-        <div class="countrow"><div><label for="reader-number">How many readers are you activating?</label><p class="fine">Pick a quick option, use the + and − buttons, or enter an exact count.</p></div>
-          <div class="stepper"><button type="button" data-step="-1" aria-label="Remove one reader">−</button><input id="reader-number" type="number" min="1" max="100" step="1" value="1" inputmode="numeric" aria-label="Exact number of readers"><button type="button" data-step="1" aria-label="Add one reader">+</button></div></div>
-        <div class="reader-count"><strong id="count-label">1</strong><span id="count-word">reader</span></div>
-        <div class="presets" aria-label="Quick reader selections"></div>
-        <div class="price-display" aria-live="polite"><div><span class="price-caption">YOUR RATE</span><strong class="big-price" id="price-rate">S$50</strong><span class="unit">per reader / month · blended rate</span></div><div class="total"><span class="price-caption">SUBSCRIPTION TOTAL</span><strong id="price-total">S$50</strong><span class="unit" id="price-unit">per month for 1 reader</span></div></div>
-        <div class="feature"><i>✓</i> WIP reader licensing and site binding</div><div class="feature"><i>✓</i> Current WIP view on your published map</div><div class="feature"><i>✓</i> Reader connection status</div>
-        <div class="excluded"><strong>Not included:</strong> ongoing self-mapping, WIP movement histories or advanced analytics. Hardware and any separately contracted deployment work are excluded.</div>
-        <button class="button leaf" style="width:100%" data-enquiry="WIP Base subscription">Talk to us about <span id="cta-count">1 reader</span> <span>↗</span></button>
-        <p class="fine" style="margin-top:10px">Proposed pricing in SGD per month, excluding taxes. Intermediate prices require approval.</p>
+      <div class="nav-actions">
+        <a href="https://api.huawei.connectiq.asia/" target="_blank" rel="noopener" class="button ink small"
+          >Flash &amp; activate <span>↗</span></a
+        >
+        <button
+          class="menu-toggle"
+          aria-label="Open navigation"
+          aria-expanded="false"
+          aria-controls="mobile-nav"
+        >
+          <span></span><span></span>
+        </button>
       </div>
-    </div>
-  </section>
+      <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile" hidden>
+        <a href="#memory">The platform</a><a href="#pricing">Get started</a><a href="#wip">WIP readers</a
+        ><a href="#partners">Partners</a>
+        <a href="https://api.huawei.connectiq.asia/" target="_blank" rel="noopener">Flash &amp; activate ↗</a>
+      </nav>
+    </header>
 
-  <section id="partners" class="section partners navy">
-    <div class="section-top"><span class="eyebrow">04 / The ecosystem</span><span class="mono">BUILD TOGETHER. KEEP CONTROL.</span></div>
-    <div class="intro"><h2>Connect at the edge.<br><span class="serif">Scale through partners.</span></h2><p>A place for hardware makers, system integrators and factories. Different roles. One controlled route from compatible device to useful application.</p></div>
-    <div class="partner-grid">
-      <article><span class="partner-number serif">01</span><span class="eyebrow">Hardware OEM</span><h3>Ship ConnectIQ-ready.</h3><p>Register approved hardware profiles and prepare supported devices using controlled firmware channels.</p></article>
-      <article><span class="partner-number serif">02</span><span class="eyebrow">System integrator</span><h3>Deploy. Activate. Repeat.</h3><p>Organise customer sites, activate supported devices and connect operational workflows without rebuilding the platform.</p></article>
-      <article><span class="partner-number serif">03</span><span class="eyebrow">Factory team</span><h3>Make the work visible.</h3><p>Start with a practical WIP or quality use case. Build connected history as your deployment expands.</p></article>
-    </div>
-  </section>
+    <main id="main">
+      <section class="hero navy" id="top" aria-labelledby="hero-title">
+        <div class="hero-overline">
+          <span class="eyebrow"><i class="square"></i> The infrastructure for a factory that learns.</span
+          ><span class="mono hero-edition">CONNECTIQ / MANUFACTURING MEMORY</span>
+        </div>
+        <div class="hero-layout">
+          <div class="hero-copy">
+            <h1 id="hero-title">Give every<br />factory<br /><span class="serif">a memory.</span></h1>
+            <p>Every part has a story.<br />Connect the movement, measurements and decisions that make it.</p>
+            <div class="hero-buttons">
+              <a href="#memory" class="button ink">Explore the platform <span>↗</span></a>
+            </div>
+            <div class="hero-footnote mono">
+              <span class="tiny-cross">+</span> FROM FACTORY SIGNALS TO CONTEXT FOR AI
+            </div>
+          </div>
+          <div class="hero-card" aria-label="Manufacturing memory dashboard preview">
+            <div class="window-bar">
+              <div class="dots">
+                <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+              </div>
+              <span>Factory Memory / Live Plant</span>
+            </div>
+            <div class="memory-panel">
+              <div class="memory-toolbar">
+                <strong>Manufacturing Memory Stream</strong>
+                <span class="live">Live</span>
+              </div>
+              <div class="factory-map">
+                <div class="map-canvas">
+                  <div class="route r1"></div>
+                  <div class="route r2"></div>
+                  <div class="route r3"></div>
+                  <div class="node n1">
+                    <strong><span class="signal"></span>WIP Rack A</strong>Part OP-1248 arrived
+                  </div>
+                  <div class="node n2">
+                    <strong><span class="signal"></span>CNC-05</strong>Cycle 18 completed
+                  </div>
+                  <div class="node n3">
+                    <strong><span class="signal"></span>QC Station 2</strong>Ø42.00 measured 42.013
+                  </div>
+                  <div class="node n4">
+                    <strong><span class="signal"></span>Operator 017</strong>Insert changed at T03
+                  </div>
+                </div>
+                <div class="side-stream">
+                  <div class="stream-item">
+                    <div class="stream-top">
+                      <strong>Quality drift detected</strong><span class="time">08:42</span>
+                    </div>
+                    <p>Diameter trend linked to tool episode T03.</p>
+                    <span class="tag">Feedback created</span>
+                  </div>
+                  <div class="stream-item">
+                    <div class="stream-top">
+                      <strong>Queue threshold</strong><span class="time">08:35</span>
+                    </div>
+                    <p>Part waited 46 min before CNC-05.</p>
+                    <span class="tag">Flow memory</span>
+                  </div>
+                  <div class="stream-item">
+                    <div class="stream-top">
+                      <strong>Skill evidence</strong><span class="time">08:31</span>
+                    </div>
+                    <p>Measurement attributed to operator 017.</p>
+                    <span class="tag">Skill passport</span>
+                  </div>
+                </div>
+              </div>
+              <div class="memory-footer">
+                <div class="metric"><span>Events captured</span><strong>12,840</strong></div>
+                <div class="metric"><span>Linked contexts</span><strong>4 layers</strong></div>
+                <div class="metric"><span>Open actions</span><strong>06</strong></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-  <section class="section faq" id="faq">
-    <div><span class="eyebrow">Questions, answered</span><h2>Clarity<br><span class="serif">before connection.</span></h2></div>
-    <div>
-      <details><summary>Is ConnectIQ another MES?<span>+</span></summary><p>The focus is connected factory context. USAL and the Factory State Engine sit beneath Manufacturing Memory and applications such as FDM. Integrations can complement existing ERP or MES workflows rather than requiring a full replacement.</p></details>
-      <details><summary>Can every reader be flashed in a browser?<span>+</span></summary><p>No. Hardware compatibility depends on the approved profile, bootloader and communication protocol. Browser-based flashing requires a validated device-specific adapter and a supported browser.</p></details>
-      <details><summary>Does payment mean a device is already activated?<span>+</span></summary><p>No. Payment or an approved credit arrangement establishes eligibility. Device verification, compatible firmware provisioning and backend-confirmed attestation are separate steps before activation is complete.</p></details>
-      <details><summary>What happens to factory data and IP?<span>+</span></summary><p>Access should be limited to authorised users and approved integrations. Customer data rights, retention and any use of de-identified data must be specified in the service agreement. Source code and signing keys are not part of a device activation purchase.</p></details>
-    </div>
-  </section>
+      <div
+        class="signal-ticker"
+        aria-label="Factory inputs: RFID, BLE gauges, CNC, metrology, operator actions and quality outcomes"
+      >
+        <div class="ticker-track" aria-hidden="true">
+          <span
+            >RFID <i>+</i> BLE GAUGES <i>+</i> CNC <i>+</i> METROLOGY <i>+</i> OPERATOR ACTIONS
+            <i>+</i> QUALITY OUTCOMES <i>+</i></span
+          >
+          <span
+            >RFID <i>+</i> BLE GAUGES <i>+</i> CNC <i>+</i> METROLOGY <i>+</i> OPERATOR ACTIONS
+            <i>+</i> QUALITY OUTCOMES <i>+</i></span
+          >
+        </div>
+      </div>
 
-  <section class="closing section navy">
-    <span class="eyebrow">Your factory's next chapter</span>
-    <h2>Start with one device.<br><span class="serif">Remember what comes next.</span></h2>
-    <div><a href="https://api.huawei.connectiq.asia/" target="_blank" rel="noopener" class="button ink">Flash &amp; activate <span>↗</span></a></div>
-  </section>
-</main>
+      <section id="memory" class="section">
+        <div class="section-top">
+          <span class="eyebrow">01 / The platform</span
+          ><span class="mono">LESS FRAGMENTATION. MORE CONTEXT.</span>
+        </div>
+        <div class="intro">
+          <h2>Not just what happened.<br /><span class="serif">Why it matters.</span></h2>
+          <p>
+            A reading in a spreadsheet is a number. A reading linked to the part, drawing revision, operator
+            and tool episode is manufacturing memory.
+          </p>
+        </div>
+        <div class="app-tabs">
+          <div role="tablist" aria-label="Platform views">
+            <button
+              class="app-tab"
+              role="tab"
+              id="tab-platform"
+              aria-controls="panel-platform"
+              aria-selected="true"
+              data-app="platform"
+            >
+              Platform
+            </button>
+            <button
+              class="app-tab"
+              role="tab"
+              id="tab-tracking"
+              aria-controls="panel-workflow"
+              aria-selected="false"
+              tabindex="-1"
+              data-app="tracking"
+            >
+              Tracking
+            </button>
+            <button
+              class="app-tab"
+              role="tab"
+              id="tab-quality"
+              aria-controls="panel-workflow"
+              aria-selected="false"
+              tabindex="-1"
+              data-app="quality"
+            >
+              Quality
+            </button>
+          </div>
+          <span class="mono">APPLICATIONS</span>
+        </div>
+        <div id="panel-workflow" role="tabpanel" aria-labelledby="tab-tracking" hidden>
+          <div class="workflow-head">
+            <h3>Start with a <span>workflow.</span></h3>
+            <p>Two applications. One connected system. Both workflows feed Manufacturing Memory.</p>
+          </div>
+          <div class="workflow-grid">
+            <article class="wf-card tracking focus">
+              <div class="wf-top">
+                <div>
+                  <span class="wf-label">FDM TRACKING</span>
+                  <h3>See the flow. Find the next step.</h3>
+                  <p>See where every job is, how it moves, and what is waiting.</p>
+                </div>
+                <span class="wf-icon"
+                  ><svg width="38" height="38" viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      fill="#2f6fcf"
+                      d="M12 2 3 6.6v10.8L12 22l9-4.6V6.6L12 2Zm0 2.2 6.6 3.4L12 11 5.4 7.6 12 4.2ZM5 9.3l6 3.1v7.2l-6-3.1V9.3Zm8 10.3v-7.2l6-3.1v7.2l-6 3.1Z"
+                    /></svg
+                ></span>
+              </div>
+              <div class="wf-body">
+                <span class="mono">YOUR JOURNEY</span>
+                <div class="wf-steps">
+                  <div class="wf-step">
+                    <span class="wf-num">1</span><strong>Starter Kit</strong>Get set up and ready
+                  </div>
+                  <div class="wf-step">
+                    <span class="wf-num">2</span><strong>1 month self-mapping</strong>Map your process with
+                    our guidance
+                  </div>
+                  <div class="wf-step">
+                    <span class="wf-num">3</span
+                    ><strong>Activate <span style="white-space: nowrap">1–100</span> readers</strong>Go live
+                    on your line
+                  </div>
+                  <div class="wf-step">
+                    <span class="wf-num">4</span><strong>Subscribe</strong>Continue and scale
+                  </div>
+                </div>
+                <div class="wf-note">
+                  <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+                    <circle cx="12" cy="12" r="10" fill="none" stroke="#2f6fcf" stroke-width="1.6" />
+                    <path
+                      d="M12 10.5v6M12 7.2v.1"
+                      stroke="#2f6fcf"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                    /></svg
+                  ><span
+                    >Base subscription excludes self-mapping renewal, movement histories and advanced
+                    analytics — available as add-ons or higher options.</span
+                  >
+                </div>
+              </div>
+              <div class="wf-actions">
+                <a class="button ink" href="#wip">Explore Tracking <span>→</span></a
+                ><a href="#wip">View reader plans</a>
+              </div>
+            </article>
+            <div class="wf-center">
+              <div class="wf-flow" aria-hidden="true">
+                <span class="l">Tracking<br />events</span><span class="r">Quality<br />measurements</span>
+                <svg viewBox="0 0 250 150" preserveAspectRatio="none">
+                  <path d="M-18 55H65q30 0 30 30v58" fill="none" stroke="#2f6fcf" stroke-width="1.5" />
+                  <path d="M88 136l7 8 7-8" fill="none" stroke="#2f6fcf" stroke-width="1.5" />
+                  <path d="M268 55H185q-30 0-30 30v58" fill="none" stroke="#17a374" stroke-width="1.5" />
+                  <path d="M148 136l7 8 7-8" fill="none" stroke="#17a374" stroke-width="1.5" />
+                </svg>
+              </div>
+              <div class="wf-memory">
+                <svg width="38" height="40" viewBox="0 0 38 40" aria-hidden="true">
+                  <g fill="#55e6b5">
+                    <ellipse cx="19" cy="7" rx="15" ry="5" />
+                    <path d="M4 12c0 2.8 6.7 5 15 5s15-2.2 15-5v6c0 2.8-6.7 5-15 5s-15-2.2-15-5z" />
+                    <path d="M4 23c0 2.8 6.7 5 15 5s15-2.2 15-5v6c0 2.8-6.7 5-15 5s-15-2.2-15-5z" />
+                  </g></svg
+                ><span class="mono">BOTH FEED</span>
+                <h4>Manufacturing Memory</h4>
+                <p>A single source of context for every part, operation and revision.</p>
+              </div>
+            </div>
+            <article class="wf-card quality">
+              <div class="wf-top">
+                <div>
+                  <span class="wf-label">FDM QUALITY</span>
+                  <h3>Measure in context. Build trust.</h3>
+                  <p>Capture in-situ measurements and build digital quality records.</p>
+                </div>
+                <span class="wf-icon"
+                  ><svg width="40" height="40" viewBox="0 0 24 24" aria-hidden="true">
+                    <path fill="#17a374" d="M12 1.5 22.5 12 12 22.5 1.5 12Z" />
+                    <path
+                      d="m7.8 12.2 2.8 2.8 5.6-5.8"
+                      fill="none"
+                      stroke="#fff"
+                      stroke-width="2.2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    /></svg
+                ></span>
+              </div>
+              <div class="wf-body">
+                <span class="mono">FOUR TIERS. A CLEAR PATH.</span>
+                <div class="wf-steps">
+                  <div class="wf-step">
+                    <span class="wf-tier">Tier 1</span><strong>Free App</strong>Capture measurements
+                  </div>
+                  <div class="wf-step">
+                    <span class="wf-tier">Tier 2</span><strong>FDM Lite</strong>Team quality reporting
+                  </div>
+                  <div class="wf-step">
+                    <span class="wf-tier">Tier 3</span><strong>FDM Pro</strong>Supervisor access
+                  </div>
+                  <div class="wf-step">
+                    <span class="wf-tier">Tier 4</span><strong>FDM Enterprise</strong>Engineer auto-balloon
+                  </div>
+                </div>
+                <div class="wf-note">
+                  <svg width="26" height="24" viewBox="0 0 26 24" aria-hidden="true">
+                    <rect x="2" y="13" width="5" height="9" rx="1" fill="#17a374" />
+                    <rect x="10" y="8" width="5" height="14" rx="1" fill="#17a374" />
+                    <rect x="18" y="2" width="5" height="20" rx="1" fill="#17a374" /></svg
+                  ><span
+                    >Progress from basic capture to advanced engineering workflows, with tools that grow with
+                    your team.</span
+                  >
+                </div>
+              </div>
+              <div class="wf-actions">
+                <a class="button forest" href="fdm.html">Explore Quality <span>→</span></a
+                ><a href="fdm.html">Compare tiers</a>
+              </div>
+            </article>
+          </div>
+        </div>
+        <div class="ciqm" id="panel-platform" role="tabpanel" aria-labelledby="tab-platform">
+          <div class="ciqm-stack">
+            <div class="ciqm-story">
+              <span class="ciqm-eyebrow">THE CONNECTIQ STACK</span>
+              <h3 class="ciqm-story-title">Signals become<em>shared understanding.</em></h3>
+              <p class="ciqm-story-copy">
+                Start at the edge. Connect context in the Factory State Engine. Put Manufacturing Memory to
+                work through FDM and your applications.
+              </p>
+            </div>
+            <div class="ciqm-accordion" aria-label="The five platform layers">
+              <details class="ciqm-row" open>
+                <summary class="ciqm-summary">
+                  <span class="ciqm-number" aria-hidden="true">01</span><span class="ciqm-name">Observe</span
+                  ><span class="ciqm-layer">Factory signals</span
+                  ><span class="ciqm-toggle" aria-hidden="true"></span>
+                </summary>
+                <div class="ciqm-description">
+                  <p>
+                    RFID reads, gauge measurements, machine states and operator actions. Capture the event
+                    together with its source and timestamp.
+                  </p>
+                </div>
+              </details>
+              <details class="ciqm-row">
+                <summary class="ciqm-summary">
+                  <span class="ciqm-number" aria-hidden="true">02</span
+                  ><span class="ciqm-name">Normalise</span><span class="ciqm-layer">USAL</span
+                  ><span class="ciqm-toggle" aria-hidden="true"></span>
+                </summary>
+                <div class="ciqm-description">
+                  <p>
+                    USAL adapts supported device protocols into a consistent event structure. Keep source
+                    identity, units and signal quality attached.
+                  </p>
+                </div>
+              </details>
+              <details class="ciqm-row">
+                <summary class="ciqm-summary">
+                  <span class="ciqm-number" aria-hidden="true">03</span
+                  ><span class="ciqm-name">Contextualise</span
+                  ><span class="ciqm-layer">Factory State Engine</span
+                  ><span class="ciqm-toggle" aria-hidden="true"></span>
+                </summary>
+                <div class="ciqm-description">
+                  <p>
+                    Link the observation to its part, operation, drawing revision, tool, person and current
+                    factory state. Preserve provenance rather than assuming a relationship.
+                  </p>
+                </div>
+              </details>
+              <details class="ciqm-row">
+                <summary class="ciqm-summary">
+                  <span class="ciqm-number" aria-hidden="true">04</span><span class="ciqm-name">Remember</span
+                  ><span class="ciqm-layer">Manufacturing Memory</span
+                  ><span class="ciqm-toggle" aria-hidden="true"></span>
+                </summary>
+                <div class="ciqm-description">
+                  <p>
+                    Connect events, evidence and outcomes in their authorised factory context. History access,
+                    retention and analytics depend on the subscribed application and plan.
+                  </p>
+                </div>
+              </details>
+              <details class="ciqm-row">
+                <summary class="ciqm-summary">
+                  <span class="ciqm-number" aria-hidden="true">05</span><span class="ciqm-name">Act</span
+                  ><span class="ciqm-layer">FDM · Skills · AI</span
+                  ><span class="ciqm-toggle" aria-hidden="true"></span>
+                </summary>
+                <div class="ciqm-description">
+                  <p>
+                    Put the context to work. Start with WIP visibility through FDM Tracking or in-situ
+                    measurement and digital reporting through FDM Quality. Capabilities depend on the selected
+                    tier.
+                  </p>
+                  <div class="ciqm-inline-actions">
+                    <a href="#wip">FDM Tracking →</a><a href="fdm.html">FDM Quality →</a>
+                  </div>
+                </div>
+              </details>
+            </div>
+          </div>
+          <nav class="ciqm-bridge" aria-label="Choose an FDM application">
+            <div class="ciqm-bridge-label"><span>TWO APPLICATIONS. ONE MANUFACTURING MEMORY.</span></div>
+            <div class="ciqm-choices">
+              <a class="ciqm-choice" href="#wip">
+                <span class="ciqm-icon"
+                  ><svg
+                    viewBox="0 0 36 36"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.35"
+                    aria-hidden="true"
+                  >
+                    <path d="m18 3 12 7v15l-12 8-12-8V10Z" />
+                    <path d="m6 10 12 8 12-8M18 18v15M12 7l12 7" stroke-linejoin="round" /></svg
+                ></span>
+                <span
+                  ><span class="ciqm-choice-title">Go to FDM Tracking</span
+                  ><span class="ciqm-choice-copy"
+                    >See WIP flow. Start with a plug-and-play kit, map your factory and activate your
+                    readers.</span
+                  ><span class="ciqm-choice-path"
+                    >Starter kit → 1 month self-mapping → 1–100 readers</span
+                  ></span
+                >
+                <svg
+                  class="ciqm-arrow"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  aria-hidden="true"
+                >
+                  <path d="M4 12h15m-6-6 6 6-6 6" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </a>
+              <a class="ciqm-choice" href="fdm.html">
+                <span class="ciqm-icon"
+                  ><svg
+                    viewBox="0 0 36 36"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.4"
+                    aria-hidden="true"
+                  >
+                    <path d="M5 18h5v13H5zM16 7h5v24h-5zM27 13h5v18h-5z" stroke-linejoin="round" /></svg
+                ></span>
+                <span
+                  ><span class="ciqm-choice-title">Go to FDM Quality</span
+                  ><span class="ciqm-choice-copy"
+                    >Start with free in-situ measurement. Add digital quality reporting and team access as you
+                    grow.</span
+                  ><span class="ciqm-choice-path">Free App → FDM Lite → FDM Pro → FDM Enterprise</span></span
+                >
+                <svg
+                  class="ciqm-arrow"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  aria-hidden="true"
+                >
+                  <path d="M4 12h15m-6-6 6 6-6 6" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </a>
+            </div>
+          </nav>
+        </div>
+      </section>
 
-<footer class="site-footer">
-  <div class="footer-top">
-    <a href="#top" class="brand" aria-label="ConnectIQ home"><img src="assets/logo-wordmark-white.png?v=2" alt="ConnectIQ" width="620" height="86"></a>
-    <div><a href="#memory">The platform</a><a href="#partners">Partners</a></div>
-    <div><a href="https://api.huawei.connectiq.asia/" target="_blank" rel="noopener">Flash &amp; activate ↗</a><a href="#wip">WIP readers</a><button data-enquiry="General enquiry">Contact ↗</button></div>
-  </div>
-  <div class="footer-bottom"><span>© <span id="year">2026</span> ConnectIQ. All rights reserved.</span><span class="mono">FACTORY SIGNALS. CONNECTED CONTEXT.</span></div>
-</footer>
+      <section id="pricing" class="section navy">
+        <div class="section-top">
+          <span class="eyebrow">02 / Get started</span
+          ><span class="mono">HARDWARE READINESS ≠ SOFTWARE ENTITLEMENT</span>
+        </div>
+        <div class="intro">
+          <h2>A clear path<br /><span class="serif">from device to value.</span></h2>
+          <p>
+            Separate hardware preparation, device activation and ongoing software. Select the applications
+            your factory needs.
+          </p>
+        </div>
+        <div class="price-grid">
+          <article>
+            <span class="eyebrow">01 / Partner programme</span>
+            <h3>ConnectIQ-ready</h3>
+            <p class="price-main">By agreement</p>
+            <p>Approved hardware profiles, batch onboarding and deployment planning.</p>
+            <div class="price-feature">OEM profile registration</div>
+            <div class="price-feature">Controlled firmware preparation</div>
+            <button class="button outline" data-enquiry="Hardware onboarding">
+              Discuss your hardware <span>↗</span>
+            </button>
+          </article>
+          <article class="featured">
+            <span class="eyebrow">02 / Device entitlement</span>
+            <h3>Activate a device</h3>
+            <p class="price-main">Per device</p>
+            <p>Associate compatible hardware with its customer site and purchased capabilities.</p>
+            <div class="price-feature">Device verification &amp; licensing</div>
+            <div class="price-feature">Payment &amp; provisioning flow</div>
+            <a
+              href="https://shop.connectiq.asia/products/plug-play-rfid-starter-kit"
+              target="_blank"
+              rel="noopener"
+              class="button leaf"
+              >Check device &amp; plans <span>↗</span></a
+            >
+          </article>
+          <article>
+            <span class="eyebrow">03 / Factory software</span>
+            <h3>Build your memory</h3>
+            <p class="price-main">Per site / plan</p>
+            <p>Choose Manufacturing Memory, WIP Flow and FDM Quality capabilities.</p>
+            <div class="price-feature">One-time and recurring fees separated</div>
+            <div class="price-feature">Scope and price confirmed in your quote</div>
+            <button class="button outline" data-enquiry="Software plan">
+              Discuss a software plan <span>↗</span>
+            </button>
+          </article>
+        </div>
+      </section>
 
-<dialog id="contact-dialog" aria-labelledby="contact-title">
-  <div class="dialog-head"><h2 id="contact-title">Start a conversation.</h2><button class="dialog-close" aria-label="Close" data-close>×</button></div>
-  <div class="dialog-body" id="contact-body"></div>
-</dialog>
+      <section id="wip" class="section wip">
+        <div class="section-top">
+          <span class="eyebrow">03 / WIP tracking</span
+          ><span class="mono">HARDWARE → INCLUDED MONTH → SUBSCRIPTION</span>
+        </div>
+        <div class="intro">
+          <h2>Start with one reader.<br /><span class="serif">See your factory move.</span></h2>
+          <p>
+            Install a compatible starter kit. Map your factory with one month of included self-mapping. Then
+            subscribe for the reader capacity you need.
+          </p>
+        </div>
+        <div class="plan-grid">
+          <article class="kit">
+            <span class="eyebrow">01 / Plug-and-play starter kit</span>
+            <h3>Connect your first<br /><span class="serif">factory zone.</span></h3>
+            <p>
+              A defined hardware bundle for a compatible installation, with guided setup and a one-month
+              software entitlement.
+            </p>
+            <div class="kit-graphic">
+              <div class="kit-device" aria-hidden="true">▥</div>
+              <div>
+                <strong>Supported reader + configured kit</strong
+                ><small>Exact reader, antennas and tags confirmed with your order.</small>
+              </div>
+            </div>
+            <div class="feature"><i>✓</i> One month of self-mapping service</div>
+            <div class="feature"><i>✓</i> Current WIP visibility during the included month</div>
+            <div class="feature"><i>✓</i> Keep the approved map for a paid base plan</div>
+            <div class="bottom">
+              <a
+                class="button ink"
+                href="https://shop.connectiq.asia/products/plug-play-rfid-starter-kit"
+                target="_blank"
+                rel="noopener"
+                >View the RFID Starter Kit <span>↗</span></a
+              >
+              <p class="fine" style="margin-top: 12px">
+                No automatic paid conversion. History and analytics are not part of the included month.
+              </p>
+            </div>
+          </article>
+          <div class="calculator">
+            <div class="calc-top">
+              <div>
+                <span class="eyebrow">02 / WIP Base subscription</span>
+                <h3>Choose your readers.</h3>
+              </div>
+              <span class="badge">1–100 READERS</span>
+            </div>
+            <div class="countrow">
+              <div>
+                <label for="reader-number">How many readers are you activating?</label>
+                <p class="fine">Pick a quick option, use the + and − buttons, or enter an exact count.</p>
+              </div>
+              <div class="stepper">
+                <button type="button" data-step="-1" aria-label="Remove one reader">−</button
+                ><input
+                  id="reader-number"
+                  type="number"
+                  min="1"
+                  max="100"
+                  step="1"
+                  value="1"
+                  inputmode="numeric"
+                  aria-label="Exact number of readers"
+                /><button type="button" data-step="1" aria-label="Add one reader">+</button>
+              </div>
+            </div>
+            <div class="reader-count">
+              <strong id="count-label">1</strong><span id="count-word">reader</span>
+            </div>
+            <div class="presets" aria-label="Quick reader selections"></div>
+            <div class="price-display" aria-live="polite">
+              <div>
+                <span class="price-caption">YOUR RATE</span
+                ><strong class="big-price" id="price-rate">S$50</strong
+                ><span class="unit">per reader / month · blended rate</span>
+              </div>
+              <div class="total">
+                <span class="price-caption">SUBSCRIPTION TOTAL</span><strong id="price-total">S$50</strong
+                ><span class="unit" id="price-unit">per month for 1 reader</span>
+              </div>
+            </div>
+            <div class="feature"><i>✓</i> WIP reader licensing and site binding</div>
+            <div class="feature"><i>✓</i> Current WIP view on your published map</div>
+            <div class="feature"><i>✓</i> Reader connection status</div>
+            <div class="excluded">
+              <strong>Not included:</strong> ongoing self-mapping, WIP movement histories or advanced
+              analytics. Hardware and any separately contracted deployment work are excluded.
+            </div>
+            <button class="button leaf" style="width: 100%" data-enquiry="WIP Base subscription">
+              Talk to us about <span id="cta-count">1 reader</span> <span>↗</span>
+            </button>
+            <p class="fine" style="margin-top: 10px">
+              Proposed pricing in SGD per month, excluding taxes. Intermediate prices require approval.
+            </p>
+          </div>
+        </div>
+      </section>
 
-<script>
-(() => {
-  const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
-  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      <section id="partners" class="section partners navy">
+        <div class="section-top">
+          <span class="eyebrow">04 / The ecosystem</span
+          ><span class="mono">BUILD TOGETHER. KEEP CONTROL.</span>
+        </div>
+        <div class="intro">
+          <h2>Connect at the edge.<br /><span class="serif">Scale through partners.</span></h2>
+          <p>
+            A place for hardware makers, system integrators and factories. Different roles. One controlled
+            route from compatible device to useful application.
+          </p>
+        </div>
+        <div class="partner-grid">
+          <article>
+            <span class="partner-number serif">01</span><span class="eyebrow">Hardware OEM</span>
+            <h3>Ship ConnectIQ-ready.</h3>
+            <p>
+              Register approved hardware profiles and prepare supported devices using controlled firmware
+              channels.
+            </p>
+          </article>
+          <article>
+            <span class="partner-number serif">02</span><span class="eyebrow">System integrator</span>
+            <h3>Deploy. Activate. Repeat.</h3>
+            <p>
+              Organise customer sites, activate supported devices and connect operational workflows without
+              rebuilding the platform.
+            </p>
+          </article>
+          <article>
+            <span class="partner-number serif">03</span><span class="eyebrow">Factory team</span>
+            <h3>Make the work visible.</h3>
+            <p>
+              Start with a practical WIP or quality use case. Build connected history as your deployment
+              expands.
+            </p>
+          </article>
+        </div>
+      </section>
 
-  /* In-page links: scroll to the section without adding #section to the address bar */
-  document.addEventListener('click', e => {
-    const link = e.target.closest('a[href^="#"]');
-    if (!link) return;
-    const target = document.getElementById(link.getAttribute('href').slice(1));
-    if (!target) return;
-    e.preventDefault();
-    target.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
-  });
-  if (location.hash) history.replaceState(null, '', location.pathname + location.search);
+      <section class="section faq" id="faq">
+        <div>
+          <span class="eyebrow">Questions, answered</span>
+          <h2>Clarity<br /><span class="serif">before connection.</span></h2>
+        </div>
+        <div>
+          <details>
+            <summary>Is ConnectIQ another MES?<span>+</span></summary>
+            <p>
+              The focus is connected factory context. USAL and the Factory State Engine sit beneath
+              Manufacturing Memory and applications such as FDM. Integrations can complement existing ERP or
+              MES workflows rather than requiring a full replacement.
+            </p>
+          </details>
+          <details>
+            <summary>Can every reader be flashed in a browser?<span>+</span></summary>
+            <p>
+              No. Hardware compatibility depends on the approved profile, bootloader and communication
+              protocol. Browser-based flashing requires a validated device-specific adapter and a supported
+              browser.
+            </p>
+          </details>
+          <details>
+            <summary>Does payment mean a device is already activated?<span>+</span></summary>
+            <p>
+              No. Payment or an approved credit arrangement establishes eligibility. Device verification,
+              compatible firmware provisioning and backend-confirmed attestation are separate steps before
+              activation is complete.
+            </p>
+          </details>
+          <details>
+            <summary>What happens to factory data and IP?<span>+</span></summary>
+            <p>
+              Access should be limited to authorised users and approved integrations. Customer data rights,
+              retention and any use of de-identified data must be specified in the service agreement. Source
+              code and signing keys are not part of a device activation purchase.
+            </p>
+          </details>
+        </div>
+      </section>
 
-  /* Mobile nav */
-  const toggle = $('.menu-toggle'), mobileNav = $('#mobile-nav');
-  toggle.addEventListener('click', () => { mobileNav.hidden = !mobileNav.hidden; toggle.setAttribute('aria-expanded', String(!mobileNav.hidden)); });
-  mobileNav.addEventListener('click', e => { if (e.target.closest('a')) { mobileNav.hidden = true; toggle.setAttribute('aria-expanded', 'false'); } });
+      <section class="closing section navy">
+        <span class="eyebrow">Your factory's next chapter</span>
+        <h2>Start with one device.<br /><span class="serif">Remember what comes next.</span></h2>
+        <div>
+          <a href="https://api.huawei.connectiq.asia/" target="_blank" rel="noopener" class="button ink"
+            >Flash &amp; activate <span>↗</span></a
+          >
+        </div>
+      </section>
+    </main>
 
-  /* Scroll progress */
-  const bar = $('.scroll-progress');
-  const onScroll = () => { const h = document.documentElement.scrollHeight - innerHeight; bar.style.width = (h > 0 ? scrollY / h * 100 : 0) + '%'; };
-  addEventListener('scroll', onScroll, { passive: true }); onScroll();
+    <footer class="site-footer">
+      <div class="footer-top">
+        <a href="#top" class="brand" aria-label="ConnectIQ home"
+          ><img src="assets/logo-wordmark-white.png?v=2" alt="ConnectIQ" width="620" height="86"
+        /></a>
+        <div><a href="#memory">The platform</a><a href="#partners">Partners</a></div>
+        <div>
+          <a href="https://api.huawei.connectiq.asia/" target="_blank" rel="noopener"
+            >Flash &amp; activate ↗</a
+          ><a href="#wip">WIP readers</a><button data-enquiry="General enquiry">Contact ↗</button>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span id="year">2026</span> ConnectIQ. All rights reserved.</span
+        ><span class="mono">FACTORY SIGNALS. CONNECTED CONTEXT.</span>
+      </div>
+    </footer>
 
-  /* Platform tabs: Platform shows the stack; Tracking / Quality show the workflow view with that card in focus */
-  const appTabs = $$('[data-app]');
-  const showApp = (tab, focus) => {
-    const name = tab.dataset.app;
-    appTabs.forEach(t => { const on = t === tab; t.setAttribute('aria-selected', String(on)); t.tabIndex = on ? 0 : -1; });
-    $('#panel-platform').hidden = name !== 'platform';
-    $('#panel-workflow').hidden = name === 'platform';
-    $('#panel-workflow').setAttribute('aria-labelledby', tab.id);
-    $$('.wf-card').forEach(c => c.classList.toggle('focus', c.classList.contains(name)));
-    if (focus) tab.focus();
-  };
-  appTabs.forEach((tab, i) => {
-    tab.addEventListener('click', () => showApp(tab));
-    tab.addEventListener('keydown', e => {
-      const step = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
-      if (step) { e.preventDefault(); showApp(appTabs[(i + step + appTabs.length) % appTabs.length], true); }
-    });
-  });
-  const layerRows = $$('.ciqm-row');
-  layerRows.forEach(row => row.addEventListener('toggle', () => { if (row.open) layerRows.forEach(o => { if (o !== row) o.open = false; }); }));
+    <dialog id="contact-dialog" aria-labelledby="contact-title">
+      <div class="dialog-head">
+        <h2 id="contact-title">Start a conversation.</h2>
+        <button class="dialog-close" aria-label="Close" data-close>×</button>
+      </div>
+      <div class="dialog-body" id="contact-body"></div>
+    </dialog>
 
-  /* Reader pricing calculator: totals are interpolated between anchor points (SGD cents). */
-  const anchors = [[1, 5000], [5, 15000], [10, 22000], [25, 40000], [50, 60000], [100, 80000]];
-  const money = (cents, digits = 0) => 'S$' + (cents / 100).toLocaleString('en-SG', { minimumFractionDigits: digits, maximumFractionDigits: digits });
-  const totalFor = n => {
-    let lo = anchors[0], hi = anchors[anchors.length - 1];
-    for (const a of anchors) { if (a[0] <= n) lo = a; if (a[0] >= n) { hi = a; break; } }
-    return lo[0] === hi[0] ? lo[1] : Math.round(lo[1] + (hi[1] - lo[1]) * (n - lo[0]) / (hi[0] - lo[0]));
-  };
-  const number = $('#reader-number'), presets = $('.presets');
-  presets.innerHTML = [5, 10, 50, 100].map(n => `<button type="button" data-preset="${n}" aria-pressed="false">${n}</button>`).join('');
-  const setReaders = n => {
-    n = Math.min(100, Math.max(1, Math.round(Number(n) || 1)));
-    const total = totalFor(n), rate = total / n, word = n === 1 ? 'reader' : 'readers';
-    number.value = n;
-    $('#count-label').textContent = n; $('#count-word').textContent = word;
-    $('#price-rate').textContent = money(rate, Number.isInteger(rate / 100) ? 0 : 2);
-    $('#price-total').textContent = money(total, total % 100 ? 2 : 0);
-    $('#price-unit').textContent = `per month for ${n} ${word}`;
-    $('#cta-count').textContent = `${n} ${word}`;
-    $$('[data-step]').forEach(b => b.disabled = (b.dataset.step === '-1' && n === 1) || (b.dataset.step === '1' && n === 100));
-    $$('[data-preset]').forEach(b => b.setAttribute('aria-pressed', String(Number(b.dataset.preset) === n)));
-  };
-  number.addEventListener('change', () => setReaders(number.value));
-  $$('[data-step]').forEach(b => b.addEventListener('click', () => setReaders(Number(number.value) + Number(b.dataset.step))));
-  presets.addEventListener('click', e => { const b = e.target.closest('[data-preset]'); if (b) setReaders(b.dataset.preset); });
-  setReaders(1);
+    <script src="assets/js/global.js?v=1"></script>
+    <script>
+      (() => {
+        const $ = (s) => document.querySelector(s),
+          $$ = (s) => [...document.querySelectorAll(s)];
+        const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  /* Contact dialog: validates locally only. No backend is connected, so nothing is sent. */
-  const dialog = $('#contact-dialog'), body = $('#contact-body');
-  const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
-  document.addEventListener('click', e => {
-    const trigger = e.target.closest('[data-enquiry]');
-    if (trigger) {
-      body.innerHTML = `<p>Tell us where you want to start. Your first use case can be practical; the memory builds from there.</p>
+        /* Platform tabs: Platform shows the stack; Tracking / Quality show the workflow view with that card in focus */
+        const appTabs = $$("[data-app]");
+        const showApp = (tab, focus) => {
+          const name = tab.dataset.app;
+          appTabs.forEach((t) => {
+            const on = t === tab;
+            t.setAttribute("aria-selected", String(on));
+            t.tabIndex = on ? 0 : -1;
+          });
+          $("#panel-platform").hidden = name !== "platform";
+          $("#panel-workflow").hidden = name === "platform";
+          $("#panel-workflow").setAttribute("aria-labelledby", tab.id);
+          $$(".wf-card").forEach((c) => c.classList.toggle("focus", c.classList.contains(name)));
+          if (focus) tab.focus();
+        };
+        appTabs.forEach((tab, i) => {
+          tab.addEventListener("click", () => showApp(tab));
+          tab.addEventListener("keydown", (e) => {
+            const step = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : 0;
+            if (step) {
+              e.preventDefault();
+              showApp(appTabs[(i + step + appTabs.length) % appTabs.length], true);
+            }
+          });
+        });
+        const layerRows = $$(".ciqm-row");
+        layerRows.forEach((row) =>
+          row.addEventListener("toggle", () => {
+            if (row.open)
+              layerRows.forEach((o) => {
+                if (o !== row) o.open = false;
+              });
+          }),
+        );
+
+        /* Reader pricing calculator: totals are interpolated between anchor points (SGD cents). */
+        const anchors = [
+          [1, 5000],
+          [5, 15000],
+          [10, 22000],
+          [25, 40000],
+          [50, 60000],
+          [100, 80000],
+        ];
+        const money = (cents, digits = 0) =>
+          "S$" +
+          (cents / 100).toLocaleString("en-SG", {
+            minimumFractionDigits: digits,
+            maximumFractionDigits: digits,
+          });
+        const totalFor = (n) => {
+          let lo = anchors[0],
+            hi = anchors[anchors.length - 1];
+          for (const a of anchors) {
+            if (a[0] <= n) lo = a;
+            if (a[0] >= n) {
+              hi = a;
+              break;
+            }
+          }
+          return lo[0] === hi[0]
+            ? lo[1]
+            : Math.round(lo[1] + ((hi[1] - lo[1]) * (n - lo[0])) / (hi[0] - lo[0]));
+        };
+        const number = $("#reader-number"),
+          presets = $(".presets");
+        presets.innerHTML = [5, 10, 50, 100]
+          .map((n) => `<button type="button" data-preset="${n}" aria-pressed="false">${n}</button>`)
+          .join("");
+        const setReaders = (n) => {
+          n = Math.min(100, Math.max(1, Math.round(Number(n) || 1)));
+          const total = totalFor(n),
+            rate = total / n,
+            word = n === 1 ? "reader" : "readers";
+          number.value = n;
+          $("#count-label").textContent = n;
+          $("#count-word").textContent = word;
+          $("#price-rate").textContent = money(rate, Number.isInteger(rate / 100) ? 0 : 2);
+          $("#price-total").textContent = money(total, total % 100 ? 2 : 0);
+          $("#price-unit").textContent = `per month for ${n} ${word}`;
+          $("#cta-count").textContent = `${n} ${word}`;
+          $$("[data-step]").forEach(
+            (b) =>
+              (b.disabled = (b.dataset.step === "-1" && n === 1) || (b.dataset.step === "1" && n === 100)),
+          );
+          $$("[data-preset]").forEach((b) =>
+            b.setAttribute("aria-pressed", String(Number(b.dataset.preset) === n)),
+          );
+        };
+        number.addEventListener("change", () => setReaders(number.value));
+        $$("[data-step]").forEach((b) =>
+          b.addEventListener("click", () => setReaders(Number(number.value) + Number(b.dataset.step))),
+        );
+        presets.addEventListener("click", (e) => {
+          const b = e.target.closest("[data-preset]");
+          if (b) setReaders(b.dataset.preset);
+        });
+        setReaders(1);
+
+        /* Contact dialog: validates locally only. No backend is connected, so nothing is sent. */
+        const dialog = $("#contact-dialog"),
+          body = $("#contact-body");
+        const esc = (s) =>
+          String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+        document.addEventListener("click", (e) => {
+          const trigger = e.target.closest("[data-enquiry]");
+          if (trigger) {
+            body.innerHTML = `<p>Tell us where you want to start. Your first use case can be practical; the memory builds from there.</p>
         <form id="contact-form" novalidate>
           <div class="field"><label for="c-name">Name</label><input id="c-name" name="name" required maxlength="100" autocomplete="name"></div>
           <div class="field"><label for="c-company">Company</label><input id="c-company" name="company" required maxlength="150" autocomplete="organization"></div>
@@ -698,21 +2453,27 @@ dialog::backdrop{background:rgba(7,17,31,.55);backdrop-filter:blur(3px)}
           <p class="form-error" role="alert"></p>
           <button type="submit" class="button ink small">Check enquiry <span>↗</span></button>
         </form>`;
-      dialog.showModal();
-      return;
-    }
-    if (e.target.closest('[data-close]')) dialog.close();
-  });
-  dialog.addEventListener('submit', e => {
-    e.preventDefault();
-    const f = e.target, err = f.querySelector('.form-error');
-    if (!f.name.value.trim() || !f.company.value.trim()) { err.textContent = 'Enter your name and company.'; return; }
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.email.value)) { err.textContent = 'Enter a valid work email address.'; return; }
-    body.innerHTML = '<p>Your enquiry looks complete. This preview isn’t connected to an inbox yet, so nothing was sent.</p><button class="button ink small" data-close>Close</button>';
-  });
-
-  $('#year').textContent = new Date().getFullYear();
-})();
-</script>
-</body>
+            dialog.showModal();
+            return;
+          }
+          if (e.target.closest("[data-close]")) dialog.close();
+        });
+        dialog.addEventListener("submit", (e) => {
+          e.preventDefault();
+          const f = e.target,
+            err = f.querySelector(".form-error");
+          if (!f.name.value.trim() || !f.company.value.trim()) {
+            err.textContent = "Enter your name and company.";
+            return;
+          }
+          if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.email.value)) {
+            err.textContent = "Enter a valid work email address.";
+            return;
+          }
+          body.innerHTML =
+            '<p>Your enquiry looks complete. This preview isn’t connected to an inbox yet, so nothing was sent.</p><button class="button ink small" data-close>Close</button>';
+        });
+      })();
+    </script>
+  </body>
 </html>
