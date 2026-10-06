@@ -1303,43 +1303,6 @@
   flex-wrap: wrap;
 }
 /* Contact dialog */
-dialog {
-  padding: 0;
-  border: 1px solid var(--line);
-  border-radius: 18px;
-  max-width: 560px;
-  width: calc(100% - 32px);
-  box-shadow: 0 30px 100px rgba(7, 17, 31, 0.25);
-}
-dialog::backdrop {
-  background: rgba(7, 17, 31, 0.55);
-  backdrop-filter: blur(3px);
-}
-.dialog-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 22px 26px;
-  border-bottom: 1px solid var(--line);
-}
-.dialog-head h2 {
-  font-size: 21px;
-}
-.dialog-close {
-  border: 0;
-  background: none;
-  font-size: 24px;
-  color: var(--muted);
-}
-.dialog-body {
-  padding: 24px 26px;
-}
-.dialog-body > p {
-  font-size: 13px;
-  color: var(--muted);
-  line-height: 1.8;
-  margin-bottom: 18px;
-}
 .field {
   display: flex;
   flex-direction: column;

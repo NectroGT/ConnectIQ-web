@@ -60,4 +60,43 @@
   /* Footer year */
   const year = document.getElementById("year");
   if (year) year.textContent = new Date().getFullYear();
+  /* Flash & activate: any link marked data-flash asks which portal to use */
+  const PORTALS = [
+    { name: "International", url: "https://usal.connectiq.asia/", host: "usal.connectiq.asia" },
+    { name: "China", url: "https://api.huawei.connectiq.asia/", host: "api.huawei.connectiq.asia" },
+  ];
+  let regionDialog;
+  const openRegionChooser = () => {
+    if (!regionDialog) {
+      regionDialog = document.createElement("dialog");
+      regionDialog.setAttribute("aria-labelledby", "region-title");
+      regionDialog.innerHTML = `
+        <div class="dialog-head">
+          <h2 id="region-title">Flash &amp; activate a device</h2>
+          <button class="dialog-close" aria-label="Close">×</button>
+        </div>
+        <div class="dialog-body">
+          <p>Choose the portal for your region.</p>
+          <div class="region-options">
+            ${PORTALS.map(
+              (p) => `<a class="region-option" href="${p.url}" target="_blank" rel="noopener">
+                <strong>${p.name} <span aria-hidden="true">↗</span></strong><small>${p.host}</small>
+              </a>`,
+            ).join("")}
+          </div>
+        </div>`;
+      document.body.append(regionDialog);
+      regionDialog.querySelector(".dialog-close").addEventListener("click", () => regionDialog.close());
+      // Close after a portal is picked, or when clicking the dimmed area outside the box
+      regionDialog.addEventListener("click", (e) => {
+        if (e.target.closest(".region-option") || e.target === regionDialog) regionDialog.close();
+      });
+    }
+    regionDialog.showModal();
+  };
+  document.addEventListener("click", (e) => {
+    if (!e.target.closest("[data-flash]")) return;
+    e.preventDefault();
+    openRegionChooser();
+  });
 })();

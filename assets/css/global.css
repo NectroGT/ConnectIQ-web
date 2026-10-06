@@ -435,3 +435,83 @@ noscript {
   padding: 30px;
   font: 16px Arial;
 }
+
+/* Pop-up dialogs (contact form on the homepage, Flash & activate region chooser on both pages) */
+dialog {
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  max-width: 560px;
+  width: calc(100% - 32px);
+  box-shadow: 0 30px 100px rgba(7, 17, 31, 0.25);
+}
+dialog::backdrop {
+  background: rgba(7, 17, 31, 0.55);
+  backdrop-filter: blur(3px);
+}
+.dialog-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 22px 26px;
+  border-bottom: 1px solid var(--line);
+}
+.dialog-head h2 {
+  font-size: 21px;
+}
+.dialog-close {
+  border: 0;
+  background: none;
+  font-size: 24px;
+  color: var(--muted);
+}
+.dialog-body {
+  padding: 24px 26px;
+}
+.dialog-body > p {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.8;
+  margin-bottom: 18px;
+}
+
+/* Flash & activate: choose International or China */
+.region-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.region-option {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  color: var(--ink);
+  transition:
+    border-color 0.2s,
+    background 0.2s,
+    transform 0.2s;
+}
+.region-option:hover {
+  border-color: var(--green);
+  background: var(--green-pale);
+  transform: translateY(-2px);
+}
+.region-option strong {
+  font-size: 16px;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+}
+.region-option small {
+  font: 10px/1.5 var(--mono);
+  color: var(--muted);
+  letter-spacing: 0.04em;
+}
+@media (max-width: 760px) {
+  .region-options {
+    grid-template-columns: 1fr;
+  }
+}
