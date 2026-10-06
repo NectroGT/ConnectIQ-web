@@ -165,7 +165,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible{o
 .partner-grid p{font-size:13px;color:var(--muted);line-height:1.8;max-width:315px}
 
 .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.price-grid article{background:#fff;border:1px solid var(--line);border-radius:20px;padding:27px 28px;display:flex;flex-direction:column;align-items:start}
+.price-grid article{--ink:#07111f;--text:#07111f;--muted:#526174;--line:#e0e7ea;--green:#21c98f;--green-text:#087a56;color:var(--text);background:#fff;border:1px solid var(--line);border-radius:20px;padding:27px 28px;display:flex;flex-direction:column;align-items:start}
 .price-grid .featured{border-color:var(--ink);box-shadow:0 18px 45px rgba(7,17,31,.12)}
 .price-grid .eyebrow{color:var(--muted);font-size:9px}
 .price-grid h3{font-size:23px;margin:22px 0 16px}
@@ -288,14 +288,14 @@ dialog::backdrop{background:rgba(7,17,31,.55);backdrop-filter:blur(3px)}
 <header class="site-header navy">
   <a href="#top" class="brand" aria-label="ConnectIQ home"><img src="assets/logo-wordmark-white.png?v=2" alt="ConnectIQ" width="620" height="86"></a>
   <nav class="desktop-nav" aria-label="Primary">
-    <a href="#memory">The platform</a><a href="#pricing">Get started</a><a href="#wip">WIP readers</a><a href="#partners">Partners</a><a href="fdm.html">FDM Quality</a>
+    <a href="#memory">The platform</a><a href="#pricing">Get started</a><a href="#partners">Partners</a><a href="#wip">WIP readers</a><a href="fdm.html">FDM Quality</a>
   </nav>
   <div class="nav-actions">
     <a href="https://api.huawei.connectiq.asia/" target="_blank" rel="noopener" class="button ink small">Flash &amp; activate <span>↗</span></a>
     <button class="menu-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-nav"><span></span><span></span></button>
   </div>
   <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile" hidden>
-    <a href="#memory">The platform</a><a href="#pricing">Get started</a><a href="#wip">WIP readers</a><a href="#partners">Partners</a><a href="fdm.html">FDM Quality</a>
+    <a href="#memory">The platform</a><a href="#pricing">Get started</a><a href="#partners">Partners</a><a href="#wip">WIP readers</a><a href="fdm.html">FDM Quality</a>
     <a href="https://api.huawei.connectiq.asia/" target="_blank" rel="noopener">Flash &amp; activate ↗</a>
   </nav>
 </header>
@@ -373,7 +373,7 @@ dialog::backdrop{background:rgba(7,17,31,.55);backdrop-filter:blur(3px)}
     </div>
   </section>
 
-  <section id="pricing" class="section">
+  <section id="pricing" class="section navy">
     <div class="section-top"><span class="eyebrow">02 / Get started</span><span class="mono">HARDWARE READINESS ≠ SOFTWARE ENTITLEMENT</span></div>
     <div class="intro"><h2>A clear path<br><span class="serif">from device to value.</span></h2><p>Separate hardware preparation, device activation and ongoing software. Select the applications your factory needs.</p></div>
     <div class="price-grid">
@@ -383,8 +383,18 @@ dialog::backdrop{background:rgba(7,17,31,.55);backdrop-filter:blur(3px)}
     </div>
   </section>
 
+  <section id="partners" class="section">
+    <div class="section-top"><span class="eyebrow">03 / The ecosystem</span><span class="mono">BUILD TOGETHER. KEEP CONTROL.</span></div>
+    <div class="intro"><h2>Connect at the edge.<br><span class="serif">Scale through partners.</span></h2><p>A place for hardware makers, system integrators and factories. Different roles. One controlled route from compatible device to useful application.</p></div>
+    <div class="partner-grid">
+      <article><span class="partner-number serif">01</span><span class="eyebrow">Hardware OEM</span><h3>Ship ConnectIQ-ready.</h3><p>Register approved hardware profiles and prepare supported devices using controlled firmware channels.</p></article>
+      <article><span class="partner-number serif">02</span><span class="eyebrow">System integrator</span><h3>Deploy. Activate. Repeat.</h3><p>Organise customer sites, activate supported devices and connect operational workflows without rebuilding the platform.</p></article>
+      <article><span class="partner-number serif">03</span><span class="eyebrow">Factory team</span><h3>Make the work visible.</h3><p>Start with a practical WIP or quality use case. Build connected history as your deployment expands.</p></article>
+    </div>
+  </section>
+
   <section id="wip" class="section wip navy">
-    <div class="section-top"><span class="eyebrow">03 / WIP tracking</span><span class="mono">HARDWARE → INCLUDED MONTH → SUBSCRIPTION</span></div>
+    <div class="section-top"><span class="eyebrow">04 / WIP tracking</span><span class="mono">HARDWARE → INCLUDED MONTH → SUBSCRIPTION</span></div>
     <div class="intro"><h2>Start with one reader.<br><span class="serif">See your factory move.</span></h2><p>Install a compatible starter kit. Map your factory with one month of included self-mapping. Then subscribe for the reader capacity you need.</p></div>
     <div class="plan-grid">
       <article class="kit">
@@ -419,16 +429,6 @@ dialog::backdrop{background:rgba(7,17,31,.55);backdrop-filter:blur(3px)}
       <details><summary>Can every reader be flashed in a browser?<span>+</span></summary><p>No. Hardware compatibility depends on the approved profile, bootloader and communication protocol. Browser-based flashing requires a validated device-specific adapter and a supported browser.</p></details>
       <details><summary>Does payment mean a device is already activated?<span>+</span></summary><p>No. Payment or an approved credit arrangement establishes eligibility. Device verification, compatible firmware provisioning and backend-confirmed attestation are separate steps before activation is complete.</p></details>
       <details><summary>What happens to factory data and IP?<span>+</span></summary><p>Access should be limited to authorised users and approved integrations. Customer data rights, retention and any use of de-identified data must be specified in the service agreement. Source code and signing keys are not part of a device activation purchase.</p></details>
-    </div>
-  </section>
-
-  <section id="partners" class="section">
-    <div class="section-top"><span class="eyebrow">04 / The ecosystem</span><span class="mono">BUILD TOGETHER. KEEP CONTROL.</span></div>
-    <div class="intro"><h2>Connect at the edge.<br><span class="serif">Scale through partners.</span></h2><p>A place for hardware makers, system integrators and factories. Different roles. One controlled route from compatible device to useful application.</p></div>
-    <div class="partner-grid">
-      <article><span class="partner-number serif">01</span><span class="eyebrow">Hardware OEM</span><h3>Ship ConnectIQ-ready.</h3><p>Register approved hardware profiles and prepare supported devices using controlled firmware channels.</p></article>
-      <article><span class="partner-number serif">02</span><span class="eyebrow">System integrator</span><h3>Deploy. Activate. Repeat.</h3><p>Organise customer sites, activate supported devices and connect operational workflows without rebuilding the platform.</p></article>
-      <article><span class="partner-number serif">03</span><span class="eyebrow">Factory team</span><h3>Make the work visible.</h3><p>Start with a practical WIP or quality use case. Build connected history as your deployment expands.</p></article>
     </div>
   </section>
 
