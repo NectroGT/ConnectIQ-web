@@ -202,9 +202,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible{o
 .reader-count{display:flex;align-items:center;gap:13px;margin:15px 0 8px}
 .reader-count strong{font-size:68px;line-height:1;font-weight:500;letter-spacing:-.065em;font-variant-numeric:tabular-nums;color:var(--ink)}
 .reader-count span{font-size:21px}
-input[type=range]{width:100%;accent-color:var(--green);height:30px;cursor:ew-resize}
-.range-labels{display:flex;justify-content:space-between;font:9px var(--mono);color:var(--muted);margin:2px 0 18px}
-.presets{display:grid;grid-template-columns:repeat(6,1fr);gap:7px;margin-bottom:22px}
+.presets{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin:18px 0 22px}
 .presets button{background:#fff;border:1px solid #dbe3e7;border-radius:10px;padding:9px 5px;font-size:12px}
 .presets button[aria-pressed=true]{border-color:var(--green);color:var(--green-text);background:var(--green-light)}
 .price-display{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;background:var(--green-light);border-radius:14px;padding:19px 17px;margin-bottom:16px}
@@ -276,7 +274,7 @@ dialog::backdrop{background:rgba(7,17,31,.55);backdrop-filter:blur(3px)}
   .partner-grid article:last-child{border-bottom:0}
   .price-grid{gap:15px}.price-grid article{border:1px solid var(--line)!important}.price-grid .featured{border-color:var(--ink)!important}
   .kit{border-right:0;border-bottom:1px solid var(--line);padding:25px 22px}.calculator{padding:25px 22px}
-  .presets{grid-template-columns:repeat(3,1fr)}.big-price{font-size:40px}
+  .presets{grid-template-columns:repeat(2,1fr)}.big-price{font-size:40px}
   .faq{gap:28px}.faq h2{font-size:40px}
   .footer-top{grid-template-columns:1fr 1fr}.footer-bottom{flex-direction:column;gap:8px}
 }
@@ -410,12 +408,10 @@ dialog::backdrop{background:rgba(7,17,31,.55);backdrop-filter:blur(3px)}
         <div class="bottom"><a class="button ink" href="https://shop.connectiq.asia/products/plug-play-rfid-starter-kit" target="_blank" rel="noopener">View the RFID Starter Kit <span>↗</span></a><p class="fine" style="margin-top:12px">No automatic paid conversion. History and analytics are not part of the included month.</p></div>
       </article>
       <div class="calculator">
-        <div class="calc-top"><div><span class="eyebrow">02 / WIP Base subscription</span><h3>Slide to activate.</h3></div><span class="badge">1–100 READERS</span></div>
-        <div class="countrow"><div><label for="reader-slider">How many readers are you activating?</label><p class="fine">Drag the bar, use the arrow keys, or enter an exact count.</p></div>
+        <div class="calc-top"><div><span class="eyebrow">02 / WIP Base subscription</span><h3>Choose your readers.</h3></div><span class="badge">1–100 READERS</span></div>
+        <div class="countrow"><div><label for="reader-number">How many readers are you activating?</label><p class="fine">Pick a quick option, use the + and − buttons, or enter an exact count.</p></div>
           <div class="stepper"><button type="button" data-step="-1" aria-label="Remove one reader">−</button><input id="reader-number" type="number" min="1" max="100" step="1" value="1" inputmode="numeric" aria-label="Exact number of readers"><button type="button" data-step="1" aria-label="Add one reader">+</button></div></div>
         <div class="reader-count"><strong id="count-label">1</strong><span id="count-word">reader</span></div>
-        <input type="range" id="reader-slider" min="1" max="100" step="1" value="1">
-        <div class="range-labels" aria-hidden="true"><span>1</span><span>25</span><span>50</span><span>75</span><span>100</span></div>
         <div class="presets" aria-label="Quick reader selections"></div>
         <div class="price-display" aria-live="polite"><div><span class="price-caption">YOUR RATE</span><strong class="big-price" id="price-rate">S$50</strong><span class="unit">per reader / month · blended rate</span></div><div class="total"><span class="price-caption">SUBSCRIPTION TOTAL</span><strong id="price-total">S$50</strong><span class="unit" id="price-unit">per month for 1 reader</span></div></div>
         <div class="feature"><i>✓</i> WIP reader licensing and site binding</div><div class="feature"><i>✓</i> Current WIP view on your published map</div><div class="feature"><i>✓</i> Reader connection status</div>
@@ -497,13 +493,12 @@ dialog::backdrop{background:rgba(7,17,31,.55);backdrop-filter:blur(3px)}
     for (const a of anchors) { if (a[0] <= n) lo = a; if (a[0] >= n) { hi = a; break; } }
     return lo[0] === hi[0] ? lo[1] : Math.round(lo[1] + (hi[1] - lo[1]) * (n - lo[0]) / (hi[0] - lo[0]));
   };
-  const slider = $('#reader-slider'), number = $('#reader-number'), presets = $('.presets');
-  presets.innerHTML = anchors.map(([n]) => `<button type="button" data-preset="${n}" aria-pressed="false">${n}</button>`).join('');
+  const number = $('#reader-number'), presets = $('.presets');
+  presets.innerHTML = [5, 10, 50, 100].map(n => `<button type="button" data-preset="${n}" aria-pressed="false">${n}</button>`).join('');
   const setReaders = n => {
     n = Math.min(100, Math.max(1, Math.round(Number(n) || 1)));
     const total = totalFor(n), rate = total / n, word = n === 1 ? 'reader' : 'readers';
-    slider.value = n; number.value = n;
-    slider.setAttribute('aria-valuetext', `${n} ${word}; ${money(rate, 2)} per reader per month; ${money(total, 2)} total per month`);
+    number.value = n;
     $('#count-label').textContent = n; $('#count-word').textContent = word;
     $('#price-rate').textContent = money(rate, Number.isInteger(rate / 100) ? 0 : 2);
     $('#price-total').textContent = money(total, total % 100 ? 2 : 0);
@@ -512,7 +507,6 @@ dialog::backdrop{background:rgba(7,17,31,.55);backdrop-filter:blur(3px)}
     $$('[data-step]').forEach(b => b.disabled = (b.dataset.step === '-1' && n === 1) || (b.dataset.step === '1' && n === 100));
     $$('[data-preset]').forEach(b => b.setAttribute('aria-pressed', String(Number(b.dataset.preset) === n)));
   };
-  slider.addEventListener('input', () => setReaders(slider.value));
   number.addEventListener('change', () => setReaders(number.value));
   $$('[data-step]').forEach(b => b.addEventListener('click', () => setReaders(Number(number.value) + Number(b.dataset.step))));
   presets.addEventListener('click', e => { const b = e.target.closest('[data-preset]'); if (b) setReaders(b.dataset.preset); });
