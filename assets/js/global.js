@@ -69,6 +69,7 @@
   const openRegionChooser = () => {
     if (!regionDialog) {
       regionDialog = document.createElement("dialog");
+      regionDialog.className = "region-dialog navy";
       regionDialog.setAttribute("aria-labelledby", "region-title");
       regionDialog.innerHTML = `
         <div class="dialog-head">

@@ -476,6 +476,15 @@ dialog::backdrop {
 }
 
 /* Flash & activate: choose International or China */
+.region-dialog {
+  border-color: rgba(255, 255, 255, 0.12);
+}
+.region-dialog h2 {
+  color: var(--mint);
+}
+.region-dialog .region-option:hover {
+  background: rgba(85, 230, 181, 0.08);
+}
 .region-options {
   display: grid;
   grid-template-columns: 1fr 1fr;
