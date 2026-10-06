@@ -428,3 +428,10 @@ input:focus-visible {
     transition: none !important;
   }
 }
+
+/* Message shown when JavaScript is off (FDM page) */
+noscript {
+  display: block;
+  padding: 30px;
+  font: 16px Arial;
+}
