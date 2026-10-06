@@ -152,6 +152,56 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible{o
 .stack-row i{font-style:normal;font-size:17px}
 .stack-row.active strong,.stack-row.active i{color:var(--green-text)}
 .stack-desc{font-size:12px;line-height:1.7;color:var(--muted);padding:0 20px 22px 49px}
+/* Platform tabs + workflow view */
+.app-tabs{display:flex;justify-content:space-between;align-items:center;gap:20px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:-10px 0 44px}
+.app-tabs [role=tablist]{display:flex;gap:6px}
+.app-tab{border:0;background:none;padding:16px 10px 14px;font-size:14px;color:var(--ink);border-bottom:2px solid transparent;margin-bottom:-1px}
+.app-tab:hover{color:var(--green-text)}
+.app-tab[aria-selected=true]{color:var(--green-text);border-bottom-color:var(--green)}
+.app-tabs>.mono{font-size:10px;color:var(--green-text);letter-spacing:.12em}
+.workflow-head{text-align:center;margin-bottom:30px}
+.workflow-head h3{font:400 clamp(34px,3.4vw,48px)/1.1 var(--serif);letter-spacing:-.03em}
+.workflow-head h3 span{color:var(--green)}
+.workflow-head p{margin-top:12px;color:var(--muted);font-size:15px}
+.workflow-grid{display:grid;grid-template-columns:1fr 210px 1fr;gap:14px;align-items:stretch}
+.wf-card{border-radius:22px;padding:28px 18px 22px;display:flex;flex-direction:column;transition:box-shadow .25s,border-color .25s}
+.wf-card.tracking{background:#f3f8fd;border:1px solid #d8e5f2}
+.wf-card.quality{background:#f1fbf7;border:1px solid #cdeedf}
+.wf-card.focus.tracking{border-color:#2f6fcf;box-shadow:0 0 0 1px #2f6fcf,0 18px 45px rgba(47,111,207,.12)}
+.wf-card.focus.quality{border-color:var(--green);box-shadow:0 0 0 1px var(--green),0 18px 45px rgba(33,201,143,.14)}
+.wf-top{display:flex;justify-content:space-between;gap:16px;padding:0 18px}
+.wf-label{font:600 12px/1.4 var(--mono);letter-spacing:.12em}
+.tracking .wf-label{color:#2f6fcf}.quality .wf-label{color:var(--green-text)}
+.wf-top h3{font:400 clamp(24px,2.3vw,33px)/1.15 var(--serif);letter-spacing:-.02em;margin:8px 0 10px}
+.wf-top p{font:16px/1.5 var(--serif);color:var(--muted)}
+.wf-icon{width:64px;height:64px;flex:none;border-radius:14px;display:grid;place-items:center}
+.tracking .wf-icon{background:#dce9f8}.quality .wf-icon{background:#d5f3e7}
+.wf-body{background:#fff;border-radius:16px;padding:18px 16px 14px;margin:22px 0 20px;box-shadow:0 2px 10px rgba(7,17,31,.04)}
+.wf-body>.mono{font-size:10px;color:var(--muted);letter-spacing:.12em;padding-left:6px}
+.wf-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px}
+.wf-step{position:relative;padding:12px 10px 14px;border-radius:12px;font-size:12px;color:var(--muted);line-height:1.45}
+.tracking .wf-step{background:#f6f9fd}.quality .wf-step{background:#f3fbf7}
+.wf-step strong{display:block;color:var(--ink);font-size:13px;margin:6px 0 10px;line-height:1.3}
+.wf-step:not(:last-child):after{content:'→';position:absolute;right:-11px;top:24px;font-size:16px;z-index:1}
+.tracking .wf-step:not(:last-child):after{color:#2f6fcf}.quality .wf-step:not(:last-child):after{color:var(--green-text)}
+.wf-num{display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;background:#2f6fcf;color:#fff;font-size:10px;font-weight:700}
+.wf-tier{font-size:12px;color:var(--green-text)}
+.wf-note{display:flex;align-items:center;gap:12px;margin-top:12px;padding:12px 14px;border-radius:12px;font-size:12px;line-height:1.55;color:var(--ink)}
+.tracking .wf-note{background:#f3f7fc}.quality .wf-note{background:#eaf8f1}
+.wf-note svg{flex:none}
+.wf-actions{display:flex;align-items:center;gap:30px;margin-top:auto}
+.wf-actions a:not(.button){font-size:14px;text-decoration:underline;text-underline-offset:4px;font-weight:500}
+.tracking .wf-actions a:not(.button){color:#2f6fcf}.quality .wf-actions a:not(.button){color:var(--green-text)}
+.button.forest{background:#0f7a5a;color:#fff}.button.forest:hover{background:#0b6248}
+.wf-center{display:flex;flex-direction:column}
+.wf-flow{position:relative;height:150px;margin-top:40px}
+.wf-flow svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.wf-flow span{position:absolute;top:0;font-size:13px;font-weight:600;line-height:1.3}
+.wf-flow .l{left:10px;color:#2f6fcf}.wf-flow .r{right:10px;text-align:right;color:var(--green-text)}
+.wf-memory{background:linear-gradient(160deg,#0b1a2d,#102b3c);color:#c1cfdd;border-radius:20px;padding:24px 20px 26px;text-align:center;box-shadow:0 18px 40px rgba(7,17,31,.25)}
+.wf-memory .mono{display:block;color:#fff;letter-spacing:.18em;margin:10px 0 6px}
+.wf-memory h4{font-size:22px;line-height:1.2;color:#fff;font-weight:500;margin:0 0 10px}
+.wf-memory p{font-size:14px;line-height:1.5}
 
 
 
@@ -254,6 +304,7 @@ dialog::backdrop{background:rgba(7,17,31,.55);backdrop-filter:blur(3px)}
 
 @media(max-width:1180px){.desktop-nav{gap:16px}.hero h1{font-size:clamp(64px,8.2vw,100px)}.hero-layout{min-height:560px}.factory-map{grid-template-columns:1fr}}
 @media(max-width:980px){
+  .workflow-grid{grid-template-columns:1fr}.wf-flow{display:none}.wf-center{order:3}
   .desktop-nav,.hero-edition{display:none}.menu-toggle{display:block}
   .hero-layout{grid-template-columns:1fr 1fr}.hero-buttons{flex-direction:column;align-items:flex-start;gap:18px}
   .section{padding:60px 5%}.intro{gap:6%}.intro h2{font-size:40px}
@@ -261,6 +312,7 @@ dialog::backdrop{background:rgba(7,17,31,.55);backdrop-filter:blur(3px)}
   .footer-top{grid-template-columns:1fr 1fr 1fr}.footer-top p{display:none}
 }
 @media(max-width:760px){
+  .wf-steps{grid-template-columns:1fr 1fr}.wf-step:nth-child(2):after{display:none}.wf-top{padding:0 4px}.wf-icon{width:52px;height:52px}.wf-actions{flex-wrap:wrap;gap:16px}.app-tab{padding:14px 6px 12px}.app-tabs>.mono{display:none}
   .site-header{height:70px;margin-bottom:-70px;padding:0 18px;gap:12px}.site-header .brand{width:180px}.nav-actions>.button{display:none}
   .hero{padding:93px 18px 32px}.hero-layout{grid-template-columns:1fr;gap:24px;min-height:0}
   .hero h1{font-size:clamp(58px,16vw,100px)}.hero-buttons{flex-direction:row;align-items:center}
@@ -361,7 +413,52 @@ dialog::backdrop{background:rgba(7,17,31,.55);backdrop-filter:blur(3px)}
   <section id="memory" class="section">
     <div class="section-top"><span class="eyebrow">01 / The platform</span><span class="mono">LESS FRAGMENTATION. MORE CONTEXT.</span></div>
     <div class="intro"><h2>Not just what happened.<br><span class="serif">Why it matters.</span></h2><p>A reading in a spreadsheet is a number. A reading linked to the part, drawing revision, operator and tool episode is manufacturing memory.</p></div>
-    <div class="memory-explainer">
+    <div class="app-tabs">
+      <div role="tablist" aria-label="Platform views">
+        <button class="app-tab" role="tab" id="tab-platform" aria-controls="panel-platform" aria-selected="false" tabindex="-1" data-app="platform">Platform</button>
+        <button class="app-tab" role="tab" id="tab-tracking" aria-controls="panel-workflow" aria-selected="true" data-app="tracking">Tracking</button>
+        <button class="app-tab" role="tab" id="tab-quality" aria-controls="panel-workflow" aria-selected="false" tabindex="-1" data-app="quality">Quality</button>
+      </div>
+      <span class="mono">APPLICATIONS</span>
+    </div>
+    <div id="panel-workflow" role="tabpanel" aria-labelledby="tab-tracking">
+      <div class="workflow-head"><h3>Start with a <span>workflow.</span></h3><p>Two applications. One connected system. Both workflows feed Manufacturing Memory.</p></div>
+      <div class="workflow-grid">
+        <article class="wf-card tracking focus">
+          <div class="wf-top"><div><span class="wf-label">FDM TRACKING</span><h3>See the flow. Find the next step.</h3><p>See where every job is, how it moves, and what is waiting.</p></div><span class="wf-icon"><svg width="38" height="38" viewBox="0 0 24 24" aria-hidden="true"><path fill="#2f6fcf" d="M12 2 3 6.6v10.8L12 22l9-4.6V6.6L12 2Zm0 2.2 6.6 3.4L12 11 5.4 7.6 12 4.2ZM5 9.3l6 3.1v7.2l-6-3.1V9.3Zm8 10.3v-7.2l6-3.1v7.2l-6 3.1Z"/></svg></span></div>
+          <div class="wf-body"><span class="mono">YOUR JOURNEY</span>
+            <div class="wf-steps">
+              <div class="wf-step"><span class="wf-num">1</span><strong>Starter Kit</strong>Get set up and ready</div>
+              <div class="wf-step"><span class="wf-num">2</span><strong>1 month self-mapping</strong>Map your process with our guidance</div>
+              <div class="wf-step"><span class="wf-num">3</span><strong>Activate <span style="white-space:nowrap">1–100</span> readers</strong>Go live on your line</div>
+              <div class="wf-step"><span class="wf-num">4</span><strong>Subscribe</strong>Continue and scale</div>
+            </div>
+            <div class="wf-note"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="none" stroke="#2f6fcf" stroke-width="1.6"/><path d="M12 10.5v6M12 7.2v.1" stroke="#2f6fcf" stroke-width="2" stroke-linecap="round"/></svg><span>Base subscription excludes self-mapping renewal, movement histories and advanced analytics — available as add-ons or higher options.</span></div>
+          </div>
+          <div class="wf-actions"><a class="button ink" href="#wip">Explore Tracking <span>→</span></a><a href="#wip">View reader plans</a></div>
+        </article>
+        <div class="wf-center">
+          <div class="wf-flow" aria-hidden="true"><span class="l">Tracking<br>events</span><span class="r">Quality<br>measurements</span>
+            <svg viewBox="0 0 250 150" preserveAspectRatio="none"><path d="M-18 55H90q30 0 30 30v58" fill="none" stroke="#2f6fcf" stroke-width="1.5"/><path d="M113 136l7 8 7-8" fill="none" stroke="#2f6fcf" stroke-width="1.5"/><path d="M268 55H160q-30 0-30 30v58" fill="none" stroke="#17a374" stroke-width="1.5"/><path d="M123 136l7 8 7-8" fill="none" stroke="#17a374" stroke-width="1.5"/></svg>
+          </div>
+          <div class="wf-memory"><svg width="38" height="40" viewBox="0 0 38 40" aria-hidden="true"><g fill="#55e6b5"><ellipse cx="19" cy="7" rx="15" ry="5"/><path d="M4 12c0 2.8 6.7 5 15 5s15-2.2 15-5v6c0 2.8-6.7 5-15 5s-15-2.2-15-5z"/><path d="M4 23c0 2.8 6.7 5 15 5s15-2.2 15-5v6c0 2.8-6.7 5-15 5s-15-2.2-15-5z"/></g></svg><span class="mono">BOTH FEED</span><h4>Manufacturing Memory</h4><p>A single source of context for every part, operation and revision.</p></div>
+        </div>
+        <article class="wf-card quality">
+          <div class="wf-top"><div><span class="wf-label">FDM QUALITY</span><h3>Measure in context. Build trust.</h3><p>Capture in-situ measurements and build digital quality records.</p></div><span class="wf-icon"><svg width="40" height="40" viewBox="0 0 24 24" aria-hidden="true"><path fill="#17a374" d="M12 1.5 22.5 12 12 22.5 1.5 12Z"/><path d="m7.8 12.2 2.8 2.8 5.6-5.8" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+          <div class="wf-body"><span class="mono">FOUR TIERS. A CLEAR PATH.</span>
+            <div class="wf-steps">
+              <div class="wf-step"><span class="wf-tier">Tier 1</span><strong>Free App</strong>Capture measurements</div>
+              <div class="wf-step"><span class="wf-tier">Tier 2</span><strong>FDM Lite</strong>Team quality reporting</div>
+              <div class="wf-step"><span class="wf-tier">Tier 3</span><strong>FDM Pro</strong>Supervisor access</div>
+              <div class="wf-step"><span class="wf-tier">Tier 4</span><strong>FDM Enterprise</strong>Engineer auto-balloon</div>
+            </div>
+            <div class="wf-note"><svg width="26" height="24" viewBox="0 0 26 24" aria-hidden="true"><rect x="2" y="13" width="5" height="9" rx="1" fill="#17a374"/><rect x="10" y="8" width="5" height="14" rx="1" fill="#17a374"/><rect x="18" y="2" width="5" height="20" rx="1" fill="#17a374"/></svg><span>Progress from basic capture to advanced engineering workflows, with tools that grow with your team.</span></div>
+          </div>
+          <div class="wf-actions"><a class="button forest" href="fdm.html">Explore Quality <span>→</span></a><a href="fdm.html">Compare tiers</a></div>
+        </article>
+      </div>
+    </div>
+    <div class="memory-explainer" id="panel-platform" role="tabpanel" aria-labelledby="tab-platform" hidden>
       <div class="memory-chapter"><span class="eyebrow">The ConnectIQ stack</span><h3>Signals become<br><span class="serif">shared understanding.</span></h3><p>Start at the edge. Connect context in the Factory State Engine. Put Manufacturing Memory to work through FDM and your applications.</p></div>
       <div class="stack-list">
         <button class="stack-row active" data-stack="0" aria-expanded="true"><span class="mono">01</span><strong>Observe</strong><span>Factory signals</span><i>−</i></button><div class="stack-desc" id="stack-0">RFID reads, gauge measurements, machine states and operator actions. Capture the event together with its source and timestamp.</div>
@@ -480,6 +577,24 @@ dialog::backdrop{background:rgba(7,17,31,.55);backdrop-filter:blur(3px)}
   addEventListener('scroll', onScroll, { passive: true }); onScroll();
 
   /* Stack accordion */
+  /* Platform tabs: Platform shows the stack; Tracking / Quality show the workflow view with that card in focus */
+  const appTabs = $$('[data-app]');
+  const showApp = (tab, focus) => {
+    const name = tab.dataset.app;
+    appTabs.forEach(t => { const on = t === tab; t.setAttribute('aria-selected', String(on)); t.tabIndex = on ? 0 : -1; });
+    $('#panel-platform').hidden = name !== 'platform';
+    $('#panel-workflow').hidden = name === 'platform';
+    $('#panel-workflow').setAttribute('aria-labelledby', tab.id);
+    $$('.wf-card').forEach(c => c.classList.toggle('focus', c.classList.contains(name)));
+    if (focus) tab.focus();
+  };
+  appTabs.forEach((tab, i) => {
+    tab.addEventListener('click', () => showApp(tab));
+    tab.addEventListener('keydown', e => {
+      const step = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+      if (step) { e.preventDefault(); showApp(appTabs[(i + step + appTabs.length) % appTabs.length], true); }
+    });
+  });
   $$('[data-stack]').forEach(btn => btn.addEventListener('click', () => {
     $$('[data-stack]').forEach(row => { const on = row === btn; row.classList.toggle('active', on); row.setAttribute('aria-expanded', String(on)); row.querySelector('i').textContent = on ? '−' : '+'; $('#stack-' + row.dataset.stack).hidden = !on; });
   }));
