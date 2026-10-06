@@ -123,7 +123,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible{o
 .section{padding:83px 5.8%}
 /* Navy sections: re-point the colour tokens so text, borders and accents read on #07111f */
 .navy{background:var(--navy);--ink:#fff;--text:#dbe4ee;--muted:#aebccc;--line:rgba(255,255,255,.12);--green:#55e6b5;--green-text:#55e6b5;color:var(--text)}
-.faq.navy{padding-top:83px}
+.faq.section{padding-top:83px}
 .navy .button.ink{background:var(--green);color:#07111f}
 .navy .button.ink:hover{background:var(--mint)}
 .hero.navy{background:radial-gradient(circle at 72% 18%,rgba(85,230,181,.14),transparent 32%),radial-gradient(circle at 18% 62%,rgba(117,169,255,.10),transparent 28%),linear-gradient(180deg,#07111f,#081626 72%,#0a1a2c);position:relative;overflow:hidden}
@@ -287,7 +287,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible{o
 .faq{display:grid;grid-template-columns:.85fr 1.3fr;gap:10%;padding-top:10px}
 .faq h2{font-size:50px;line-height:1.05;margin-top:25px;letter-spacing:-.04em}
 .faq h2 .serif{color:var(--green)}
-.faq details{background:rgba(255,255,255,.045);border:1px solid var(--line);border-radius:14px;padding:0 18px;font-size:14px}
+.faq details{background:#fff;border:1px solid var(--line);border-radius:14px;padding:0 18px;font-size:14px}
 .faq>div:last-child{display:grid;gap:12px;align-content:start}
 .faq summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:22px 0;cursor:pointer;color:var(--ink)}
 .faq summary::-webkit-details-marker{display:none}
@@ -339,7 +339,7 @@ dialog::backdrop{background:rgba(7,17,31,.55);backdrop-filter:blur(3px)}
   .hero{padding:93px 18px 32px}.hero-layout{grid-template-columns:1fr;gap:24px;min-height:0}
   .hero h1{font-size:clamp(58px,16vw,100px)}.hero-buttons{flex-direction:row;align-items:center}
   .side-stream{display:none}.hero-card{padding:12px}.factory-map{padding:14px}
-  .section{padding:49px 20px}.faq.navy{padding-top:49px}.section-top>.mono{display:none}
+  .section{padding:49px 20px}.faq.section{padding-top:49px}.section-top>.mono{display:none}
   .intro{grid-template-columns:1fr;gap:20px;margin-bottom:32px}
   .app-display,.plan-grid,.faq{grid-template-columns:1fr}
   .partner-grid,.price-grid{grid-template-columns:1fr}
@@ -576,7 +576,7 @@ dialog::backdrop{background:rgba(7,17,31,.55);backdrop-filter:blur(3px)}
     </div>
   </section>
 
-  <section class="section faq navy" id="faq">
+  <section class="section faq" id="faq">
     <div><span class="eyebrow">Questions, answered</span><h2>Clarity<br><span class="serif">before connection.</span></h2></div>
     <div>
       <details><summary>Is ConnectIQ another MES?<span>+</span></summary><p>The focus is connected factory context. USAL and the Factory State Engine sit beneath Manufacturing Memory and applications such as FDM. Integrations can complement existing ERP or MES workflows rather than requiring a full replacement.</p></details>
