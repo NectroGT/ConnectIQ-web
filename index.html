@@ -436,13 +436,13 @@ dialog::backdrop{background:rgba(7,17,31,.55);backdrop-filter:blur(3px)}
     <div class="intro"><h2>Not just what happened.<br><span class="serif">Why it matters.</span></h2><p>A reading in a spreadsheet is a number. A reading linked to the part, drawing revision, operator and tool episode is manufacturing memory.</p></div>
     <div class="app-tabs">
       <div role="tablist" aria-label="Platform views">
-        <button class="app-tab" role="tab" id="tab-platform" aria-controls="panel-platform" aria-selected="false" tabindex="-1" data-app="platform">Platform</button>
-        <button class="app-tab" role="tab" id="tab-tracking" aria-controls="panel-workflow" aria-selected="true" data-app="tracking">Tracking</button>
+        <button class="app-tab" role="tab" id="tab-platform" aria-controls="panel-platform" aria-selected="true" data-app="platform">Platform</button>
+        <button class="app-tab" role="tab" id="tab-tracking" aria-controls="panel-workflow" aria-selected="false" tabindex="-1" data-app="tracking">Tracking</button>
         <button class="app-tab" role="tab" id="tab-quality" aria-controls="panel-workflow" aria-selected="false" tabindex="-1" data-app="quality">Quality</button>
       </div>
       <span class="mono">APPLICATIONS</span>
     </div>
-    <div id="panel-workflow" role="tabpanel" aria-labelledby="tab-tracking">
+    <div id="panel-workflow" role="tabpanel" aria-labelledby="tab-tracking" hidden>
       <div class="workflow-head"><h3>Start with a <span>workflow.</span></h3><p>Two applications. One connected system. Both workflows feed Manufacturing Memory.</p></div>
       <div class="workflow-grid">
         <article class="wf-card tracking focus">
@@ -479,7 +479,7 @@ dialog::backdrop{background:rgba(7,17,31,.55);backdrop-filter:blur(3px)}
         </article>
       </div>
     </div>
-    <div class="ciqm" id="panel-platform" role="tabpanel" aria-labelledby="tab-platform" hidden>
+    <div class="ciqm" id="panel-platform" role="tabpanel" aria-labelledby="tab-platform">
       <div class="ciqm-stack">
         <div class="ciqm-story">
           <span class="ciqm-eyebrow">THE CONNECTIQ STACK</span>
