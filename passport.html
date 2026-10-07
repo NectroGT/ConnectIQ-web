@@ -8,7 +8,7 @@
     <link rel="icon" href="assets/logo.png" />
     <title>ConnectIQ · WeChat Skill Passport + FDM Quality</title>
     <link rel="stylesheet" href="assets/css/global.css?v=4" />
-    <link rel="stylesheet" href="assets/css/passport.css?v=2" />
+    <link rel="stylesheet" href="assets/css/passport.css?v=3" />
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -73,7 +73,9 @@
           <nav class="tabs" aria-label="Prototype sections">
             <button class="tab active" data-view="workflow" aria-selected="true">
               <span class="tab-num">01</span
-              ><span class="tab-text"><b>Onboarding flow</b><small>From a WeChat scan to verified work</small></span>
+              ><span class="tab-text"
+                ><b>Onboarding flow</b><small>From a WeChat scan to verified work</small></span
+              >
             </button>
             <button class="tab" data-view="security" aria-selected="false">
               <span class="tab-num">02</span
@@ -108,7 +110,11 @@
                 authenticity, inspection disposition and skill authorization remain separate.
               </div>
               <div class="gap"></div>
-              <button class="btn secondary small" id="resetFlow">↺ &nbsp; Reset walkthrough</button>
+              <div class="auto-controls">
+                <button class="btn small" id="autoDemo" aria-pressed="false">▶ &nbsp; Play auto demo</button>
+                <button class="btn secondary small" id="resetFlow">↺ &nbsp; Reset walkthrough</button>
+              </div>
+              <p class="auto-status" id="autoStatus" aria-live="polite"></p>
             </aside>
             <div class="phone-wrap">
               <div class="phone-caption">
@@ -589,7 +595,7 @@ A protected factory device—not this browser—must own the signing key in prod
     </footer>
     <div id="modalRoot"></div>
     <div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
-    <script src="assets/js/passport.js?v=1"></script>
+    <script src="assets/js/passport.js?v=2"></script>
     <script src="assets/js/global.js?v=3"></script>
   </body>
 </html>

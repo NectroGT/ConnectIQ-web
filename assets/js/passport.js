@@ -582,3 +582,115 @@ document.addEventListener("click", (e) => {
     document.querySelector(".tabsbar").scrollIntoView({ behavior: "smooth", block: "start" });
   }
 });
+
+/* Auto demo: presses the walkthrough buttons by itself so visitors can just watch.
+   Starts when the onboarding section comes into view, loops, and stops as soon as the visitor
+   clicks or types anywhere in the walkthrough. */
+const AUTO_SCRIPT = [
+  // [what to press, pause before the next press in ms]
+  ["#consent", 900],
+  ['[data-action="login"]', 1600],
+  ['[data-action="claim"]', 1600],
+  ['#screen [data-action="review-membership"]', 1700],
+  ['[data-action="approve-membership"]', 1800],
+  ['[data-action="start"]', 1700],
+  ['[data-action="measure"]', 1500],
+  ['[data-action="vision"]', 1700],
+  ['[data-action="evidence"]', 1800],
+  ['#screen [data-action="review-quality"]', 1700],
+  ['[data-action="approve-quality"]', 1800],
+  ['[data-action="request-skill"]', 1700],
+  ['[data-action="approve-skill"]', 2400],
+];
+const auto = { on: false, timer: null, index: 0, userStopped: false };
+const autoButton = $("autoDemo"),
+  autoStatus = $("autoStatus");
+const wait = (ms) => new Promise((done) => (auto.timer = setTimeout(done, ms)));
+
+function setAutoUI() {
+  autoButton.innerHTML = auto.on ? "❚❚ &nbsp; Pause auto demo" : "▶ &nbsp; Play auto demo";
+  autoButton.setAttribute("aria-pressed", String(auto.on));
+  autoStatus.textContent = auto.on ? "Auto demo running · click anywhere in the demo to take over." : "";
+}
+// Scroll inside the phone (not the page) so the next button is visible
+function revealInPhone(el) {
+  const body = $("phonebody");
+  if (!body.contains(el)) return;
+  const r = el.getBoundingClientRect(),
+    b = body.getBoundingClientRect();
+  if (r.top < b.top || r.bottom > b.bottom) body.scrollTop += r.top - b.top - b.height / 2 + r.height / 2;
+}
+async function runAuto() {
+  while (auto.on) {
+    if (auto.index === 0) {
+      closeModal();
+      $("route").value = "invite";
+      reset("invite");
+      await wait(1200);
+    }
+    const [selector, pause] = AUTO_SCRIPT[auto.index];
+    const el = document.querySelector(selector);
+    if (!auto.on) return;
+    if (el && !el.disabled) {
+      revealInPhone(el);
+      el.classList.add("auto-click");
+      await wait(850);
+      if (!auto.on) return el.classList.remove("auto-click");
+      el.classList.remove("auto-click");
+      el.click();
+    }
+    await wait(pause);
+    auto.index = (auto.index + 1) % AUTO_SCRIPT.length;
+    if (auto.index === 0) {
+      closeModal();
+      await wait(3500); // let the finished passport sit on screen before looping
+    }
+  }
+}
+function startAuto() {
+  if (auto.on) return;
+  auto.on = true;
+  setAutoUI();
+  runAuto();
+}
+function stopAuto() {
+  auto.on = false;
+  clearTimeout(auto.timer);
+  document.querySelectorAll(".auto-click").forEach((el) => el.classList.remove("auto-click"));
+  setAutoUI();
+}
+autoButton.addEventListener("click", () => {
+  if (auto.on) {
+    auto.userStopped = true;
+    stopAuto();
+  } else {
+    auto.userStopped = false;
+    if (auto.index === 0 || state.step === 0) auto.index = 0;
+    startAuto();
+  }
+});
+// A real click or key press inside the walkthrough hands control back to the visitor
+["pointerdown", "keydown"].forEach((type) =>
+  document.addEventListener(type, (e) => {
+    if (!auto.on || !e.isTrusted || e.target.closest("#autoDemo")) return;
+    if (e.target.closest("#workflow") || e.target.closest("#modalRoot")) {
+      auto.userStopped = true;
+      auto.index = 0;
+      stopAuto();
+    }
+  }),
+);
+// Start automatically the first time the onboarding section is on screen
+if ("IntersectionObserver" in window && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && !auto.userStopped && $("workflow").classList.contains("active"))
+          startAuto();
+        if (!entry.isIntersecting && auto.on) stopAuto();
+      });
+    },
+    { threshold: 0.35 },
+  ).observe($("workflow"));
+}
+setAutoUI();

@@ -227,7 +227,10 @@ svg {
   border-radius: 11px;
   display: grid;
   place-items: center;
-  font: 600 12px/1 "SFMono-Regular", Consolas, monospace;
+  font:
+    600 12px/1 "SFMono-Regular",
+    Consolas,
+    monospace;
   background: var(--mint);
   color: var(--green);
 }
@@ -1546,5 +1549,41 @@ h3 {
   }
   .tabs-note {
     text-align: left;
+  }
+}
+
+/* Auto demo: controls, and the pulse shown on a button just before it is "pressed" */
+.auto-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.auto-status {
+  font-size: 10px;
+  color: var(--muted);
+  margin-top: 10px;
+  max-width: 250px;
+  min-height: 15px;
+}
+.auto-click {
+  position: relative;
+  animation: auto-press 0.9s ease;
+  box-shadow:
+    0 0 0 3px #55e6b5,
+    0 0 18px rgba(85, 230, 181, 0.6) !important;
+}
+@keyframes auto-press {
+  0% {
+    box-shadow: 0 0 0 0 rgba(85, 230, 181, 0.9);
+  }
+  60% {
+    box-shadow:
+      0 0 0 6px rgba(85, 230, 181, 0.35),
+      0 0 18px rgba(85, 230, 181, 0.6);
+  }
+  100% {
+    box-shadow:
+      0 0 0 3px #55e6b5,
+      0 0 18px rgba(85, 230, 181, 0.6);
   }
 }
