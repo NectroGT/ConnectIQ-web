@@ -1941,3 +1941,15 @@ h3 {
     grid-template-columns: 1fr;
   }
 }
+
+/* ConnectIQ logo on the phone's first screen */
+.icon-tile.logo-tile {
+  background: #fff;
+  border: 1px solid var(--line);
+  box-shadow: 0 6px 18px rgba(7, 17, 31, 0.08);
+}
+.icon-tile.logo-tile img {
+  width: 40px;
+  height: 40px;
+  display: block;
+}
