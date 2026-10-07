@@ -584,7 +584,7 @@ document.addEventListener("click", (e) => {
 });
 
 /* Auto demo: presses the walkthrough buttons by itself so visitors can just watch.
-   Starts when the onboarding section comes into view, loops, and stops as soon as the visitor
+   Starts when the onboarding section comes into view, plays once, and stops as soon as the visitor
    clicks or types anywhere in the walkthrough. */
 const AUTO_SCRIPT = [
   // [what to press, pause before the next press in ms]
@@ -642,8 +642,11 @@ async function runAuto() {
     await wait(pause);
     auto.index = (auto.index + 1) % AUTO_SCRIPT.length;
     if (auto.index === 0) {
-      closeModal();
-      await wait(3500); // let the finished passport sit on screen before looping
+      // Finished: stay on the completed passport. Play the demo again only if the visitor presses Play.
+      auto.userStopped = true;
+      stopAuto();
+      autoStatus.textContent = "Demo complete · press Play auto demo to watch it again.";
+      return;
     }
   }
 }
