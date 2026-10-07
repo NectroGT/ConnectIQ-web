@@ -1953,3 +1953,235 @@ h3 {
   height: 40px;
   display: block;
 }
+
+/* ---- Secure vision ---- */
+.node-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  background: var(--mint);
+  color: var(--green);
+  margin-bottom: 12px;
+}
+.node.core .node-icon {
+  background: rgba(85, 230, 181, 0.15);
+  color: #55e6b5;
+}
+.node.core {
+  background: linear-gradient(160deg, #0b1a2d, #102b3c);
+  box-shadow:
+    0 0 0 1px rgba(85, 230, 181, 0.3),
+    0 14px 30px rgba(7, 17, 31, 0.18);
+}
+.node {
+  transition:
+    transform 0.2s,
+    border-color 0.2s;
+}
+.node:hover {
+  transform: translateY(-3px);
+}
+.lab-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.lab-steps {
+  list-style: none;
+  display: flex;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+}
+.lab-steps li {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 4px 10px 4px 4px;
+  transition:
+    background 0.2s,
+    color 0.2s,
+    border-color 0.2s;
+}
+.lab-steps li span {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #eef3f6;
+  font-size: 9px;
+}
+.lab-steps li.done {
+  background: #e9f7f2;
+  border-color: #21c98f;
+  color: #087a56;
+}
+.lab-steps li.done span {
+  background: #21c98f;
+  color: #fff;
+}
+.lab-steps li.bad {
+  background: #fff0ed;
+  border-color: #e9a59d;
+  color: #aa3d37;
+}
+.lab-steps li.bad span {
+  background: #aa3d37;
+  color: #fff;
+}
+.lab-steps li.warn {
+  background: #fff2d9;
+  border-color: #e7c27c;
+  color: #8b5707;
+}
+.lab-steps li.warn span {
+  background: #8b5707;
+  color: #fff;
+}
+.console {
+  border-radius: 12px;
+  overflow: hidden;
+  background: #07111f;
+  border: 1px solid #13263d;
+  margin-bottom: 12px;
+}
+.console-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 12px;
+  background: #0d1b2d;
+  border-bottom: 1px solid #13263d;
+}
+.console-bar span {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #2a3b50;
+}
+.console-bar span:first-child {
+  background: #ff6b5f;
+}
+.console-bar span:nth-child(2) {
+  background: #ffc457;
+}
+.console-bar span:nth-child(3) {
+  background: #55e6b5;
+}
+.console-bar label {
+  margin-left: 8px;
+  font:
+    10px/1 "SFMono-Regular",
+    Consolas,
+    monospace;
+  color: #98a6b8;
+}
+.console .code {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  color: #9ff5d4;
+  min-height: 230px;
+  display: block;
+}
+.lab-note {
+  font-size: 10px !important;
+}
+.attack {
+  padding: 13px 0;
+  border-bottom: 1px solid var(--line);
+}
+.attack:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+.attack-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.attack-line b {
+  font-size: 12px;
+}
+.attack-tag {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #aa3d37;
+  background: #fff0ed;
+  border-radius: 6px;
+  padding: 3px 7px;
+}
+.defence-line {
+  display: flex;
+  gap: 7px;
+  align-items: flex-start;
+  margin-top: 7px;
+  font-size: 11px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+.defence-line svg {
+  flex: none;
+  color: #21c98f;
+  margin-top: 2px;
+}
+.sv-card .journey-icon {
+  margin-bottom: 12px;
+}
+.sv-list {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0 0;
+}
+.sv-list li {
+  position: relative;
+  padding: 6px 0 6px 22px;
+  font-size: 12px;
+  color: var(--muted);
+  border-top: 1px solid var(--line);
+}
+.sv-list li:first-child {
+  border-top: 0;
+}
+.sv-list li::before {
+  content: "✓";
+  position: absolute;
+  left: 2px;
+  color: #21c98f;
+  font-weight: 700;
+}
+.references {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 14px 18px;
+}
+@media (max-width: 1180px) {
+  .architecture {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .node:nth-child(3n):after {
+    display: none;
+  }
+}
+@media (max-width: 690px) {
+  .architecture {
+    grid-template-columns: 1fr 1fr;
+  }
+  .node:after {
+    display: none;
+  }
+}

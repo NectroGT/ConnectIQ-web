@@ -8,7 +8,7 @@
     <link rel="icon" href="assets/logo.png" />
     <title>ConnectIQ · WeChat Skill Passport + FDM Quality</title>
     <link rel="stylesheet" href="assets/css/global.css?v=4" />
-    <link rel="stylesheet" href="assets/css/passport.css?v=6" />
+    <link rel="stylesheet" href="assets/css/passport.css?v=7" />
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -132,61 +132,158 @@
         <section id="security" class="view" aria-label="Secure camera inspection architecture">
           <div class="sectiontitle">
             <div>
-              <div class="eyebrow muted">Trust belongs behind the interface</div>
-              <h2>Camera → verified evidence → passport.</h2>
+              <div class="eyebrow muted">Secure vision · how a camera result earns trust</div>
+              <h2>From camera to passport, with nothing taken on trust.</h2>
               <p>
-                Send original inspection evidence to a controlled backend—not to a WeChat chat. The Mini
-                Program receives only the authorized result and evidence reference.
+                Original inspection evidence goes to a controlled backend, never through a WeChat chat. The
+                Mini Program only ever receives the approved result and a reference to the evidence.
               </p>
             </div>
             <span class="tag">Tamper-evident, not tamper-proof</span>
           </div>
+
           <div class="architecture">
             <div class="node">
-              <div class="n">01 / CONTEXT</div>
+              <span class="node-icon"
+                ><svg
+                  viewBox="0 0 24 24"
+                  width="18"
+                  height="18"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.7"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <circle cx="12" cy="8" r="4" />
+                  <path d="M4 21c1-4 4-6 8-6s7 2 8 6" /></svg
+              ></span>
+              <div class="n">01 · Context</div>
               <h3>Operator + task</h3>
-              <p>
-                Employer-bound identity. Server-issued job / station session. Specific part and operation.
-              </p>
+              <p>Verified employee, a server-issued station session and the exact part and operation.</p>
             </div>
             <div class="node">
-              <div class="n">02 / CAPTURE</div>
+              <span class="node-icon"
+                ><svg
+                  viewBox="0 0 24 24"
+                  width="18"
+                  height="18"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.7"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <rect x="3" y="6" width="18" height="14" rx="2" />
+                  <path d="M8 6l2-3h4l2 3" />
+                  <circle cx="12" cy="13" r="4" /></svg
+              ></span>
+              <div class="n">02 · Capture</div>
               <h3>Camera + edge</h3>
-              <p>Original image hash + structured result. Sign using a protected device or gateway key.</p>
+              <p>Hash the original image, add the result and sign it with a protected device key.</p>
             </div>
             <div class="node core">
-              <div class="n">03 / VERIFY</div>
+              <span class="node-icon"
+                ><svg
+                  viewBox="0 0 24 24"
+                  width="18"
+                  height="18"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.7"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M12 3l8 3v6c0 5-8 9-8 9s-8-4-8-9V6l8-3z" />
+                  <path d="M8.5 12l2.5 2.5 4.5-5" /></svg
+              ></span>
+              <div class="n">03 · Verify</div>
               <h3>Evidence gateway</h3>
-              <p>Check signer, hash, session, scope, freshness and duplicates. Quarantine failures.</p>
+              <p>Check signer, hash, session, freshness and duplicates. Failures go to quarantine.</p>
             </div>
             <div class="node">
-              <div class="n">04 / PRESERVE</div>
+              <span class="node-icon"
+                ><svg
+                  viewBox="0 0 24 24"
+                  width="18"
+                  height="18"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.7"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <rect x="3" y="4" width="18" height="16" rx="2" />
+                  <circle cx="12" cy="12" r="3.5" />
+                  <path d="M12 8.5V7M12 17v-1.5M15.5 12H17M7 12h1.5" /></svg
+              ></span>
+              <div class="n">04 · Preserve</div>
               <h3>Evidence vault</h3>
-              <p>
-                Version-bound original objects. Locked retention. Append-only events and external digests.
-              </p>
+              <p>Originals locked for the retention period. Events are only ever appended.</p>
             </div>
             <div class="node core">
-              <div class="n">05 / DECIDE</div>
+              <span class="node-icon"
+                ><svg
+                  viewBox="0 0 24 24"
+                  width="18"
+                  height="18"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.7"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M9 11l3 3 8-8" />
+                  <path d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h9" /></svg
+              ></span>
+              <div class="n">05 · Decide</div>
               <h3>FDM Quality</h3>
-              <p>
-                Inspection disposition, final QC, deviations and assessor decisions. No silent overwrites.
-              </p>
+              <p>Inspection, final QC and assessor decisions. Nothing is silently overwritten.</p>
             </div>
             <div class="node">
-              <div class="n">06 / DISPLAY</div>
+              <span class="node-icon"
+                ><svg
+                  viewBox="0 0 24 24"
+                  width="18"
+                  height="18"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.7"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <rect x="5" y="3" width="14" height="18" rx="2" />
+                  <circle cx="12" cy="10" r="3" />
+                  <path d="M8 17h8" /></svg
+              ></span>
+              <div class="n">06 · Display</div>
               <h3>Skill Passport</h3>
-              <p>Skill evidence + employer-issued status. Scoped API view; raw data stays controlled.</p>
+              <p>Shows skill evidence and employer-issued status. Raw data stays controlled.</p>
             </div>
           </div>
+
           <div class="twocol">
-            <div class="module">
-              <div class="eyebrow muted">Live local cryptographic demonstration</div>
-              <h3>Change the result. Break the signature.</h3>
+            <div class="module lab">
+              <div class="lab-head">
+                <div>
+                  <div class="eyebrow muted">Try it · real cryptography in your browser</div>
+                  <h3>Change the result. Break the signature.</h3>
+                </div>
+                <ol class="lab-steps" id="labSteps">
+                  <li data-lab-step="sign"><span>1</span>Sign</li>
+                  <li data-lab-step="tamper"><span>2</span>Tamper</li>
+                  <li data-lab-step="verify"><span>3</span>Verify</li>
+                </ol>
+              </div>
               <p>
-                This lab really signs sample bytes with Web Crypto (ECDSA P-256 / SHA-256). It is not the
-                simulated verification used in the phone. Keys and replay tracking exist only in this page;
-                there is no production trust anchor.
+                This lab genuinely signs a sample record (ECDSA P-256 / SHA-256), unlike the simulated phone
+                demo. Keys live only in this page, so nothing here is a production trust anchor.
               </p>
               <div class="testactions">
                 <button class="btn small" id="signEvent">1 · Sign sample</button
@@ -194,106 +291,256 @@
                 ><button class="btn green small" id="verifyEvent" disabled>3 · Verify / ingest</button
                 ><button class="btn secondary small" id="restoreEvent" disabled>Restore signed bytes</button>
               </div>
-              <label for="eventJson" class="fieldlabel">Signed payload · editable after signing</label
-              ><textarea
-                class="code"
-                id="eventJson"
-                spellcheck="false"
-                readonly
-                aria-label="Sample signed evidence payload"
-              >
+              <div class="console">
+                <div class="console-bar">
+                  <span></span><span></span><span></span><label for="eventJson">signed-payload.json</label>
+                </div>
+                <textarea
+                  class="code"
+                  id="eventJson"
+                  spellcheck="false"
+                  readonly
+                  aria-label="Sample signed evidence payload"
+                >
 Press “Sign sample” to create a synthetic inspection event.
 
 A protected factory device—not this browser—must own the signing key in production.</textarea>
+              </div>
               <div id="cryptoStatus" class="notice neutral" role="status" aria-live="polite">
                 Ready. No keys or inspection data leave this page.
               </div>
               <div class="hash" id="cryptoHash">Image hash: not generated</div>
-              <p style="font-size: 10px">
-                The image bytes are a synthetic text fixture, not a camera frame. The demo signs exact
-                serialized bytes (formatting changes also invalidate the signature); production should use a
-                tested signing format such as JWS and an agreed canonicalization policy. After one successful
-                ingestion, verify the same event again to see duplicate rejection. Re-signing resets this
-                local lab.
+              <p class="lab-note">
+                Tip: after a successful verify, press verify again to see the duplicate being rejected. The
+                image is a text stand-in, not a real camera frame. Production should use a tested format such
+                as JWS.
               </p>
             </div>
             <div class="module">
-              <div class="eyebrow muted">Controls that the UI cannot provide</div>
-              <h3>What each control actually protects.</h3>
-              <div class="threat">
-                <b>Changed result, image or operator field</b>
-                <p>
-                  Verify the digital signature and image digest, including job, part, station and session in
-                  the signed payload. A hash stored beside an editable image is insufficient.
-                </p>
+              <div class="eyebrow muted">Attacks the interface alone can’t stop</div>
+              <h3>Every attack has a defence.</h3>
+              <div class="attack">
+                <div class="attack-line">
+                  <span class="attack-tag">Attack</span><b>Someone edits the result, image or operator</b>
+                </div>
+                <div class="defence-line">
+                  <svg
+                    viewBox="0 0 24 24"
+                    width="15"
+                    height="15"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.7"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M12 3l8 3v6c0 5-8 9-8 9s-8-4-8-9V6l8-3z" />
+                    <path d="M8.5 12l2.5 2.5 4.5-5" /></svg
+                  ><span
+                    >The signature covers the result, image hash, job, part, station and session, so any edit
+                    breaks it.</span
+                  >
+                </div>
               </div>
-              <div class="threat">
-                <b>Authentic event, replayed for another reward</b>
-                <p>
-                  Persist unique event IDs, device sequence / boot epoch and consumed challenges on the
-                  server. Idempotent retries return the first receipt; never count twice.
-                </p>
+              <div class="attack">
+                <div class="attack-line">
+                  <span class="attack-tag">Attack</span><b>A genuine event is replayed for extra credit</b>
+                </div>
+                <div class="defence-line">
+                  <svg
+                    viewBox="0 0 24 24"
+                    width="15"
+                    height="15"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.7"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M12 3l8 3v6c0 5-8 9-8 9s-8-4-8-9V6l8-3z" />
+                    <path d="M8.5 12l2.5 2.5 4.5-5" /></svg
+                  ><span
+                    >The server remembers every event ID and device sequence. A retry returns the first
+                    receipt and never counts twice.</span
+                  >
+                </div>
               </div>
-              <div class="threat">
-                <b>Administrator edits a past decision</b>
-                <p>
-                  Keep immutable originals and append a signed amendment. Independently protect audit
-                  checkpoints; an ordinary SQL row lock is not an integrity guarantee.
-                </p>
+              <div class="attack">
+                <div class="attack-line">
+                  <span class="attack-tag">Attack</span><b>An admin quietly changes a past decision</b>
+                </div>
+                <div class="defence-line">
+                  <svg
+                    viewBox="0 0 24 24"
+                    width="15"
+                    height="15"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.7"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M12 3l8 3v6c0 5-8 9-8 9s-8-4-8-9V6l8-3z" />
+                    <path d="M8.5 12l2.5 2.5 4.5-5" /></svg
+                  ><span
+                    >Originals never change. Corrections are added as new signed records, and audit
+                    checkpoints are protected separately.</span
+                  >
+                </div>
               </div>
-              <div class="threat">
-                <b>Valid signature, wrong physical work</b>
-                <p>
-                  A signature cannot prove the correct part was placed in the camera or the named employee did
-                  the work. Bind fixture / part identification, cycle trigger, work session and observed
-                  roles.
-                </p>
+              <div class="attack">
+                <div class="attack-line">
+                  <span class="attack-tag">Attack</span><b>Valid signature, but the wrong part or person</b>
+                </div>
+                <div class="defence-line">
+                  <svg
+                    viewBox="0 0 24 24"
+                    width="15"
+                    height="15"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.7"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M12 3l8 3v6c0 5-8 9-8 9s-8-4-8-9V6l8-3z" />
+                    <path d="M8.5 12l2.5 2.5 4.5-5" /></svg
+                  ><span
+                    >A signature can’t see what was under the camera. Bind the fixture, part ID, cycle trigger
+                    and work session as well.</span
+                  >
+                </div>
               </div>
-              <div class="threat">
-                <b>Legacy camera has no signing capability</b>
-                <p>
-                  Sign on a hardened edge gateway at first trusted receipt. Display “gateway-verified,” not
-                  “camera-origin verified.” The camera-to-gateway path remains a trust boundary.
-                </p>
+              <div class="attack">
+                <div class="attack-line">
+                  <span class="attack-tag">Attack</span><b>An older camera can’t sign anything</b>
+                </div>
+                <div class="defence-line">
+                  <svg
+                    viewBox="0 0 24 24"
+                    width="15"
+                    height="15"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.7"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M12 3l8 3v6c0 5-8 9-8 9s-8-4-8-9V6l8-3z" />
+                    <path d="M8.5 12l2.5 2.5 4.5-5" /></svg
+                  ><span
+                    >Sign at a hardened edge gateway instead, and label it “gateway-verified”, never
+                    “camera-verified”.</span
+                  >
+                </div>
               </div>
-              <div class="threat">
-                <b>Connection drops or camera time changes</b>
-                <p>
-                  Queue signed records on the edge. Show “pending server verification,” preserve capture and
-                  receipt times separately, and investigate sequence gaps or counter resets.
-                </p>
+              <div class="attack">
+                <div class="attack-line">
+                  <span class="attack-tag">Attack</span><b>The connection drops or the clock changes</b>
+                </div>
+                <div class="defence-line">
+                  <svg
+                    viewBox="0 0 24 24"
+                    width="15"
+                    height="15"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.7"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M12 3l8 3v6c0 5-8 9-8 9s-8-4-8-9V6l8-3z" />
+                    <path d="M8.5 12l2.5 2.5 4.5-5" /></svg
+                  ><span
+                    >Queue signed records on the edge, show “pending verification”, and flag gaps in the
+                    sequence.</span
+                  >
+                </div>
               </div>
             </div>
           </div>
+
           <div class="threecol">
-            <div class="module">
+            <div class="module sv-card">
+              <span class="journey-icon"
+                ><svg
+                  viewBox="0 0 24 24"
+                  width="18"
+                  height="18"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.7"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <circle cx="8" cy="15" r="4" />
+                  <path d="M11 12l9-9M17 6l3 3M15 8l2 2" /></svg
+              ></span>
               <div class="eyebrow muted">Transport + identity</div>
-              <h3>Two identities. Two API surfaces.</h3>
-              <p>
-                Use enrolled device certificates and mutual TLS for the edge. Use short-lived, tenant-scoped
-                user sessions for WeChat. A user session cannot call the device evidence ingestion API. Never
-                embed AppSecret, device private keys or shared signing secrets in a Mini Program.
-              </p>
+              <h3>Two identities. Two doors.</h3>
+              <ul class="sv-list">
+                <li>Factory devices use certificates and mutual TLS</li>
+                <li>WeChat users get short-lived sessions for one factory</li>
+                <li>A user session can never submit device evidence</li>
+                <li>No secrets or private keys inside the Mini Program</li>
+              </ul>
             </div>
-            <div class="module">
+            <div class="module sv-card">
+              <span class="journey-icon"
+                ><svg
+                  viewBox="0 0 24 24"
+                  width="18"
+                  height="18"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.7"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z" />
+                  <circle cx="12" cy="12" r="3" />
+                  <path d="M3 3l18 18" /></svg
+              ></span>
               <div class="eyebrow muted">Confidentiality</div>
               <h3>Keep the raw image private.</h3>
-              <p>
-                Encrypt objects at rest. Authorize every view and evidence object. Use an authenticated media
-                proxy or carefully scoped short-lived URLs. Shared passport views exclude customer drawings,
-                part IDs and employee raw performance data by default. Screenshots cannot be reliably
-                prevented.
-              </p>
+              <ul class="sv-list">
+                <li>Everything encrypted at rest</li>
+                <li>Every view and file is permission-checked</li>
+                <li>Shared passports hide drawings, part IDs and raw scores</li>
+                <li>Screenshots can’t be fully prevented on every device</li>
+              </ul>
             </div>
-            <div class="module">
+            <div class="module sv-card">
+              <span class="journey-icon"
+                ><svg
+                  viewBox="0 0 24 24"
+                  width="18"
+                  height="18"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.7"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M5 21V4M5 4h11l-2 4 2 4H5" /></svg
+              ></span>
               <div class="eyebrow muted">Before production</div>
-              <h3>Validate the trust boundary.</h3>
-              <p>
-                Test camera interface, key storage, firmware controls, identity binding, offline behavior,
-                model validation and deletion / retention policy. Decide the China deployment and
-                data-transfer model explicitly. No feature in this wireframe constitutes a security
-                certification.
-              </p>
+              <h3>Prove the trust boundary.</h3>
+              <ul class="sv-list">
+                <li>Test cameras, key storage and firmware controls</li>
+                <li>Test identity binding and offline behaviour</li>
+                <li>Agree retention, deletion and the China data model</li>
+                <li>This prototype is not a security certification</li>
+              </ul>
             </div>
           </div>
           <details class="references">
@@ -912,7 +1159,7 @@ A protected factory device—not this browser—must own the signing key in prod
     </footer>
     <div id="modalRoot"></div>
     <div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
-    <script src="assets/js/passport.js?v=4"></script>
+    <script src="assets/js/passport.js?v=5"></script>
     <script src="assets/js/global.js?v=3"></script>
   </body>
 </html>

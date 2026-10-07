@@ -697,3 +697,30 @@ if ("IntersectionObserver" in window && !matchMedia("(prefers-reduced-motion: re
   ).observe($("workflow"));
 }
 setAutoUI();
+
+/* Secure vision lab: light up the Sign / Tamper / Verify steps from the lab's status messages */
+const labSteps = {
+  sign: document.querySelector('[data-lab-step="sign"]'),
+  tamper: document.querySelector('[data-lab-step="tamper"]'),
+  verify: document.querySelector('[data-lab-step="verify"]'),
+};
+const setStep = (name, cls) => {
+  labSteps[name].classList.remove("done", "bad", "warn");
+  if (cls) labSteps[name].classList.add(cls);
+};
+new MutationObserver(() => {
+  const text = $("cryptoStatus").textContent;
+  if (text.startsWith("Signed locally")) {
+    setStep("sign", "done");
+    setStep("tamper");
+    setStep("verify");
+  } else if (text.startsWith("Payload changed")) {
+    setStep("tamper", "bad");
+    setStep("verify");
+  } else if (text.startsWith("Original signed bytes restored")) {
+    setStep("tamper");
+    setStep("verify");
+  } else if (text.startsWith("REJECTED")) setStep("verify", "bad");
+  else if (text.startsWith("DUPLICATE")) setStep("verify", "warn");
+  else if (text.startsWith("ACCEPTED")) setStep("verify", "done");
+}).observe($("cryptoStatus"), { childList: true, characterData: true, subtree: true });
