@@ -1587,3 +1587,357 @@ h3 {
       0 0 18px rgba(85, 230, 181, 0.6);
   }
 }
+
+/* ---- Build notes ---- */
+.journey-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.journey-card,
+.test-card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 20px;
+  transition:
+    transform 0.2s,
+    border-color 0.2s,
+    box-shadow 0.2s;
+}
+.journey-card:hover {
+  transform: translateY(-3px);
+  border-color: #21c98f;
+  box-shadow: 0 14px 34px rgba(7, 17, 31, 0.08);
+}
+.journey-top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.journey-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 11px;
+  display: grid;
+  place-items: center;
+  flex: none;
+  background: linear-gradient(135deg, #0b1a2d, #102b3c);
+  color: #55e6b5;
+}
+.journey-trail {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 16px 0 12px;
+}
+.journey-trail span {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink);
+}
+.journey-trail span:not(:last-child)::after {
+  content: "→";
+  margin-left: 6px;
+  color: #21c98f;
+}
+.journey-card p {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.65;
+}
+.journey-chip {
+  display: inline-block;
+  margin-top: 14px;
+  font-size: 10px;
+  font-weight: 650;
+  color: var(--green);
+  background: var(--mint);
+  border-radius: 999px;
+  padding: 5px 10px;
+}
+.handoff-block {
+  margin-top: 24px;
+}
+.handoff-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+.legend {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10px;
+  color: var(--muted);
+}
+.legend-lock {
+  color: var(--green);
+  display: inline-flex;
+}
+.legend-lock svg {
+  width: 14px;
+  height: 14px;
+}
+.api-flow {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  counter-reset: none;
+}
+.api-card {
+  display: flex;
+  gap: 14px;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: #f8fafb;
+}
+.api-num {
+  flex: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font:
+    600 11px/1 "SFMono-Regular",
+    Consolas,
+    monospace;
+  background: #07111f;
+  color: #55e6b5;
+}
+.api-body {
+  min-width: 0;
+}
+.api-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 10px;
+}
+.api-head b {
+  font-size: 13px;
+}
+.api-head code {
+  font-size: 10px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  padding: 3px 7px 3px 3px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  overflow-wrap: anywhere;
+}
+.method {
+  font:
+    700 9px/1 "SFMono-Regular",
+    Consolas,
+    monospace;
+  border-radius: 5px;
+  padding: 4px 6px;
+  letter-spacing: 0.04em;
+}
+.method.post {
+  background: #07111f;
+  color: #55e6b5;
+}
+.method.get {
+  background: #dce9f8;
+  color: #2f6fcf;
+}
+.api-body p {
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 6px;
+  line-height: 1.55;
+}
+.api-body p.api-guard {
+  display: flex;
+  gap: 6px;
+  align-items: flex-start;
+  color: var(--ink);
+}
+.api-guard svg {
+  width: 14px;
+  height: 14px;
+  flex: none;
+  margin-top: 1px;
+  color: var(--green);
+}
+.handoff-two {
+  margin-top: 24px;
+}
+.envelope {
+  position: relative;
+  background: linear-gradient(180deg, #fff, #f6fbf9);
+}
+.envelope-seal {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #07111f;
+  background: #55e6b5;
+  border-radius: 999px;
+  padding: 6px 11px 6px 8px;
+  box-shadow: 0 0 18px rgba(85, 230, 181, 0.45);
+}
+.envelope-seal svg {
+  width: 16px;
+  height: 16px;
+}
+.field-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 14px 0;
+}
+.field-chips span {
+  font:
+    10px/1.4 "SFMono-Regular",
+    Consolas,
+    monospace;
+  background: #fff;
+  border: 1px dashed #b9cbd4;
+  border-radius: 7px;
+  padding: 4px 8px;
+  color: var(--ink);
+}
+.envelope-note {
+  font-size: 11px;
+  color: var(--muted);
+  margin-bottom: 14px;
+}
+.test-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 14px;
+}
+.test-card {
+  padding: 14px;
+  border-radius: 14px;
+}
+.test-card .journey-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
+}
+.test-card .journey-icon svg {
+  width: 16px;
+  height: 16px;
+}
+.test-card b {
+  font-size: 12px;
+}
+.test-count {
+  margin-left: auto;
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--green);
+  background: var(--mint);
+  border-radius: 999px;
+  padding: 3px 7px;
+  white-space: nowrap;
+}
+.test-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 12px 0 0;
+}
+.test-card li {
+  font-size: 11px;
+  color: var(--muted);
+  padding: 4px 0 4px 18px;
+  position: relative;
+}
+.test-card li::before {
+  content: "✕";
+  position: absolute;
+  left: 0;
+  color: #aa3d37;
+  font-size: 10px;
+}
+.callout {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  margin-top: 24px;
+  padding: 22px 24px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #0b1a2d, #102b3c);
+  color: #dbe4ee;
+}
+.callout-icon {
+  flex: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  background: rgba(255, 196, 87, 0.15);
+  color: #ffc457;
+}
+.callout b {
+  display: block;
+  font-size: 16px;
+  color: #fff;
+  margin-bottom: 4px;
+}
+.callout p {
+  font-size: 12px;
+  line-height: 1.7;
+  color: #aebccc;
+}
+@media (max-width: 1020px) {
+  .journey-grid,
+  .api-flow {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 690px) {
+  .test-grid {
+    grid-template-columns: 1fr;
+  }
+  .envelope-seal {
+    position: static;
+    width: fit-content;
+    margin-bottom: 12px;
+  }
+}
+
+/* Build notes: envelope and tests stacked full width so neither card has empty space */
+.handoff-two {
+  grid-template-columns: 1fr;
+}
+.handoff-two .envelope .field-chips {
+  max-width: 980px;
+}
+.handoff-two .test-grid {
+  grid-template-columns: repeat(4, 1fr);
+}
+@media (max-width: 1020px) {
+  .handoff-two .test-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 690px) {
+  .handoff-two .test-grid {
+    grid-template-columns: 1fr;
+  }
+}

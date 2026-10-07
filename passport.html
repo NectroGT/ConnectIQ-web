@@ -8,7 +8,7 @@
     <link rel="icon" href="assets/logo.png" />
     <title>ConnectIQ · WeChat Skill Passport + FDM Quality</title>
     <link rel="stylesheet" href="assets/css/global.css?v=4" />
-    <link rel="stylesheet" href="assets/css/passport.css?v=3" />
+    <link rel="stylesheet" href="assets/css/passport.css?v=5" />
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -371,181 +371,509 @@ A protected factory device—not this browser—must own the signing key in prod
         <section id="handoff" class="view" aria-label="Developer handoff and product decisions">
           <div class="sectiontitle">
             <div>
-              <div class="eyebrow muted">Proposed module boundary</div>
-              <h2>One backend. Several ways to do the work.</h2>
+              <div class="eyebrow muted">Build notes · for the development team</div>
+              <h2>One backend. Three ways in.</h2>
               <p>
-                A shared identity and evidence model connects the WeChat client, FDM desktop and hardware
-                integrations. This is a browser prototype, not deployable WXML / WXSS Mini Program code.
+                The WeChat app, FDM desktop and factory hardware all share one identity and evidence model.
+                This page is a browser prototype, not deployable Mini Program code.
               </p>
             </div>
             <span class="tag">No production endpoints included</span>
           </div>
-          <div class="threecol" style="margin-top: 0">
-            <div class="module">
-              <div class="eyebrow muted">First-time worker</div>
-              <h3>Invite → bind → work</h3>
+
+          <div class="journey-grid">
+            <article class="journey-card">
+              <div class="journey-top">
+                <span class="journey-icon"
+                  ><svg
+                    viewBox="0 0 24 24"
+                    width="20"
+                    height="20"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.7"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <circle cx="12" cy="8" r="4" />
+                    <path d="M4 21c1-4 4-6 8-6s7 2 8 6" /></svg></span
+                ><span class="eyebrow muted">First-time worker</span>
+              </div>
+              <div class="journey-trail"><span>Invite</span><span>Bind</span><span>Work</span></div>
               <p>
-                Use an opaque, expiring invitation with server-side scope. Pre-fill the factory and assigned
-                employee role after appropriate authentication. Verify employer membership separately from the
-                WeChat account. No email, password, résumé, phone number or certificate upload is required by
-                this proposed first-use flow.
+                An expiring, single-use invitation pre-fills the factory and role. The employer confirms who
+                the worker is, separately from their WeChat account.
               </p>
-            </div>
-            <div class="module">
-              <div class="eyebrow muted">Returning worker</div>
-              <h3>Scan → confirm task</h3>
+              <span class="journey-chip">No email · password · résumé · phone number</span>
+            </article>
+            <article class="journey-card">
+              <div class="journey-top">
+                <span class="journey-icon"
+                  ><svg
+                    viewBox="0 0 24 24"
+                    width="20"
+                    height="20"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.7"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M3 12a9 9 0 1 0 3-6.7" />
+                    <path d="M3 4v5h5" /></svg></span
+                ><span class="eyebrow muted">Returning worker</span>
+              </div>
+              <div class="journey-trail"><span>Scan</span><span>Confirm</span><span>Work</span></div>
               <p>
-                Reuse the existing account-to-employee binding after checking current employment and role
-                validity. Route back to the intended job after authentication. Refresh station / operation
-                sessions at handover; never borrow yesterday’s operator attribution.
+                Reuse the existing binding after checking the job and role are still valid, then jump straight
+                back to the task.
               </p>
-            </div>
-            <div class="module">
-              <div class="eyebrow muted">Public QR visitor</div>
-              <h3>Try → request access</h3>
+              <span class="journey-chip">Fresh session at every handover</span>
+            </article>
+            <article class="journey-card">
+              <div class="journey-top">
+                <span class="journey-icon"
+                  ><svg
+                    viewBox="0 0 24 24"
+                    width="20"
+                    height="20"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.7"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <rect x="3" y="3" width="7" height="7" rx="1" />
+                    <rect x="14" y="3" width="7" height="7" rx="1" />
+                    <rect x="3" y="14" width="7" height="7" rx="1" />
+                    <path d="M14 14h3v3h-3zM20 14v.01M14 20h.01M17 20h4" /></svg></span
+                ><span class="eyebrow muted">Public QR visitor</span>
+              </div>
+              <div class="journey-trail"><span>Try</span><span>Request</span><span>Wait</span></div>
               <p>
-                Show synthetic examples without production tenant access. A shared factory QR is an entry
-                point, not an authorization credential. An invitation alone must not grant employer-verified
-                status.
+                Explore a sample passport with no access to real factory data. A shared QR code opens the
+                door, it doesn’t unlock it.
               </p>
-            </div>
+              <span class="journey-chip">Sample data only</span>
+            </article>
           </div>
-          <div class="module" style="margin-top: 24px">
-            <div class="eyebrow muted">Proposed endpoints · names are illustrative</div>
-            <h3>Keep identity, evidence and assessment separate.</h3>
-            <div class="table-wrap">
-              <table>
-                <thead>
-                  <tr>
-                    <th>API / service</th>
-                    <th>Caller + purpose</th>
-                    <th>Required guard</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><code>POST /auth/wechat/exchange</code></td>
-                    <td>Mini Program exchanges a temporary login code through the backend.</td>
-                    <td>
-                      Server-side AppSecret. Map (AppID, OpenID) to an internal user; issue a scoped
-                      application session.
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><code>POST /membership/claims</code></td>
-                    <td>Authenticated worker requests a factory binding.</td>
-                    <td>Employer identity proof; single-use invitation; no client-selected privileges.</td>
-                  </tr>
-                  <tr>
-                    <td><code>POST /work-sessions</code></td>
-                    <td>Bound worker opens a station / task session.</td>
-                    <td>
-                      Current assignment, authorized role, part / operation binding, expiry and handover.
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><code>POST /evidence/envelopes</code></td>
-                    <td>Enrolled edge submits signed evidence; objects are staged privately.</td>
-                    <td>
-                      Device certificate, signature, schema, hashes, session, replay rules; atomically commit
-                      after object verification.
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><code>POST /quality/dispositions</code></td>
-                    <td>Authorized quality reviewer accepts / rejects evidence for quality purposes.</td>
-                    <td>Separate append-only decision; no mutation of original camera outcome.</td>
-                  </tr>
-                  <tr>
-                    <td><code>POST /skills/assessments</code></td>
-                    <td>Authorized employer assessor issues a scoped observation or qualification.</td>
-                    <td>
-                      Versioned rubric, evidence references, scope, issuer, validity and revocation status.
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><code>GET /passport/me</code></td>
-                    <td>Worker reads their current passport projection.</td>
-                    <td>
-                      Tenant and object-level authorization. No raw image or unrestricted factory payload by
-                      default.
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><code>POST /evidence/amendments</code></td>
-                    <td>Authorized reviewer explains a correction.</td>
-                    <td>Reason + actor + original event reference. Re-evaluate dependent assessments.</td>
-                  </tr>
-                </tbody>
-              </table>
+
+          <div class="module handoff-block">
+            <div class="handoff-head">
+              <div>
+                <div class="eyebrow muted">The API, step by step · names are illustrative</div>
+                <h3>Identity, evidence and assessment stay separate.</h3>
+              </div>
+              <div class="legend">
+                <span class="method post">POST</span> writes <span class="method get">GET</span> reads
+                <span class="legend-lock"
+                  ><svg
+                    viewBox="0 0 24 24"
+                    width="20"
+                    height="20"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.7"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <rect x="5" y="11" width="14" height="10" rx="2" />
+                    <path d="M8 11V8a4 4 0 0 1 8 0v3" /></svg
+                ></span>
+                guard
+              </div>
             </div>
+            <ol class="api-flow">
+              <li class="api-card">
+                <span class="api-num">01</span>
+                <div class="api-body">
+                  <div class="api-head">
+                    <b>Sign in</b><code><span class="method post">POST</span>/auth/wechat/exchange</code>
+                  </div>
+                  <p>Mini Program swaps a temporary WeChat code for an app session.</p>
+                  <p class="api-guard">
+                    <svg
+                      viewBox="0 0 24 24"
+                      width="20"
+                      height="20"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.7"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <rect x="5" y="11" width="14" height="10" rx="2" />
+                      <path d="M8 11V8a4 4 0 0 1 8 0v3" /></svg
+                    ><span>Secret stays on the server · WeChat ID mapped to an internal user</span>
+                  </p>
+                </div>
+              </li>
+              <li class="api-card">
+                <span class="api-num">02</span>
+                <div class="api-body">
+                  <div class="api-head">
+                    <b>Join a factory</b><code><span class="method post">POST</span>/membership/claims</code>
+                  </div>
+                  <p>Worker asks to be linked to their factory.</p>
+                  <p class="api-guard">
+                    <svg
+                      viewBox="0 0 24 24"
+                      width="20"
+                      height="20"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.7"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <rect x="5" y="11" width="14" height="10" rx="2" />
+                      <path d="M8 11V8a4 4 0 0 1 8 0v3" /></svg
+                    ><span>Employer proof · single-use invite · worker can’t pick their own role</span>
+                  </p>
+                </div>
+              </li>
+              <li class="api-card">
+                <span class="api-num">03</span>
+                <div class="api-body">
+                  <div class="api-head">
+                    <b>Start work</b><code><span class="method post">POST</span>/work-sessions</code>
+                  </div>
+                  <p>Worker opens a session at a station for one part and operation.</p>
+                  <p class="api-guard">
+                    <svg
+                      viewBox="0 0 24 24"
+                      width="20"
+                      height="20"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.7"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <rect x="5" y="11" width="14" height="10" rx="2" />
+                      <path d="M8 11V8a4 4 0 0 1 8 0v3" /></svg
+                    ><span>Current assignment · role · expiry · handover</span>
+                  </p>
+                </div>
+              </li>
+              <li class="api-card">
+                <span class="api-num">04</span>
+                <div class="api-body">
+                  <div class="api-head">
+                    <b>Send evidence</b><code><span class="method post">POST</span>/evidence/envelopes</code>
+                  </div>
+                  <p>Factory device submits signed inspection evidence.</p>
+                  <p class="api-guard">
+                    <svg
+                      viewBox="0 0 24 24"
+                      width="20"
+                      height="20"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.7"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <rect x="5" y="11" width="14" height="10" rx="2" />
+                      <path d="M8 11V8a4 4 0 0 1 8 0v3" /></svg
+                    ><span>Device certificate · signature · hashes · no replays</span>
+                  </p>
+                </div>
+              </li>
+              <li class="api-card">
+                <span class="api-num">05</span>
+                <div class="api-body">
+                  <div class="api-head">
+                    <b>Quality decision</b
+                    ><code><span class="method post">POST</span>/quality/dispositions</code>
+                  </div>
+                  <p>Quality reviewer accepts or rejects the evidence.</p>
+                  <p class="api-guard">
+                    <svg
+                      viewBox="0 0 24 24"
+                      width="20"
+                      height="20"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.7"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <rect x="5" y="11" width="14" height="10" rx="2" />
+                      <path d="M8 11V8a4 4 0 0 1 8 0v3" /></svg
+                    ><span>Added as a new record · original result never changed</span>
+                  </p>
+                </div>
+              </li>
+              <li class="api-card">
+                <span class="api-num">06</span>
+                <div class="api-body">
+                  <div class="api-head">
+                    <b>Skill decision</b><code><span class="method post">POST</span>/skills/assessments</code>
+                  </div>
+                  <p>Employer assessor records an observation or qualification.</p>
+                  <p class="api-guard">
+                    <svg
+                      viewBox="0 0 24 24"
+                      width="20"
+                      height="20"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.7"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <rect x="5" y="11" width="14" height="10" rx="2" />
+                      <path d="M8 11V8a4 4 0 0 1 8 0v3" /></svg
+                    ><span>Versioned rubric · evidence links · scope · can be revoked</span>
+                  </p>
+                </div>
+              </li>
+              <li class="api-card">
+                <span class="api-num">07</span>
+                <div class="api-body">
+                  <div class="api-head">
+                    <b>View passport</b><code><span class="method get">GET</span>/passport/me</code>
+                  </div>
+                  <p>Worker sees their own passport.</p>
+                  <p class="api-guard">
+                    <svg
+                      viewBox="0 0 24 24"
+                      width="20"
+                      height="20"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.7"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <rect x="5" y="11" width="14" height="10" rx="2" />
+                      <path d="M8 11V8a4 4 0 0 1 8 0v3" /></svg
+                    ><span>Own records only · no raw images or factory data</span>
+                  </p>
+                </div>
+              </li>
+              <li class="api-card">
+                <span class="api-num">08</span>
+                <div class="api-body">
+                  <div class="api-head">
+                    <b>Fix a mistake</b><code><span class="method post">POST</span>/evidence/amendments</code>
+                  </div>
+                  <p>Reviewer records a correction with a reason.</p>
+                  <p class="api-guard">
+                    <svg
+                      viewBox="0 0 24 24"
+                      width="20"
+                      height="20"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.7"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <rect x="5" y="11" width="14" height="10" rx="2" />
+                      <path d="M8 11V8a4 4 0 0 1 8 0v3" /></svg
+                    ><span>Original kept · linked decisions re-checked</span>
+                  </p>
+                </div>
+              </li>
+            </ol>
           </div>
-          <div class="twocol" style="margin-top: 24px">
-            <div class="module">
-              <div class="eyebrow muted">Minimum evidence contract</div>
-              <h3>Do not sign just “PASS”.</h3>
-              <p>
-                Sign the schema version, tenant / site, device identity, boot epoch, sequence, event and
-                capture IDs, capture time, work session, part instance, work order, revision, operation,
-                participant roles, feature ID, values / units / limits, camera result, model / recipe
-                versions, calibration reference, and hashes of all original artifacts. The server adds a
-                separate signed receipt and verification decision; it does not rewrite signed bytes.
+
+          <div class="twocol handoff-two">
+            <div class="module envelope">
+              <div class="envelope-seal">
+                <svg
+                  viewBox="0 0 24 24"
+                  width="20"
+                  height="20"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.7"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M12 3l8 3v6c0 5-8 9-8 9s-8-4-8-9V6l8-3z" />
+                  <path d="M8.5 12l2.5 2.5 4.5-5" /></svg
+                ><span>Signed</span>
+              </div>
+              <div class="eyebrow muted">What the factory device signs</div>
+              <h3>Never sign just “PASS”.</h3>
+              <p>Every inspection is sealed with its full context, so nobody can quietly change it later:</p>
+              <div class="field-chips">
+                <span>schema version</span><span>tenant / site</span><span>device ID</span
+                ><span>boot epoch</span><span>sequence</span><span>event + capture IDs</span
+                ><span>capture time</span><span>work session</span><span>part instance</span
+                ><span>work order</span><span>revision</span><span>operation</span
+                ><span>participant roles</span><span>feature ID</span><span>values · units · limits</span
+                ><span>camera result</span><span>model / recipe version</span><span>calibration ref</span
+                ><span>hashes of originals</span>
+              </div>
+              <p class="envelope-note">
+                The server adds its own signed receipt. It never rewrites the signed bytes.
               </p>
               <div class="notice">
-                FDM feature ID is a persistent characteristic identifier—not just a balloon number. Map it to
-                drawing revision and operation so a renumbered balloon does not break the evidence chain.
+                <b>Tip:</b> the FDM feature ID is a permanent identifier, not a balloon number, so renumbering
+                a drawing never breaks the evidence chain.
               </div>
-              <div class="gap"></div>
-              <p>
-                Use stable decimal-string conventions or explicit scaled integers for dimensional data. Treat
-                deduplication keys, identity claims and retention policies as server-side rules, not fields
-                that a mobile client can authorize.
-              </p>
             </div>
             <div class="module">
-              <div class="eyebrow muted">Acceptance tests before pilot</div>
-              <h3>Make failure visible.</h3>
-              <div class="threat">
-                <b>Identity + access</b>
-                <p>
-                  Forwarded / expired QR, role escalation, stale employment, cross-tenant evidence ID, stolen
-                  account recovery.
-                </p>
-              </div>
-              <div class="threat">
-                <b>Evidence + integrity</b>
-                <p>
-                  Alter result or image; replay signed event; revoke device key; delete a record; substitute a
-                  part; change the model recipe.
-                </p>
-              </div>
-              <div class="threat">
-                <b>Quality + assessment</b>
-                <p>
-                  Valid signature on a failed part; final-QC reversal; reassigned operator; expired
-                  qualification; supervisor cannot alter raw evidence.
-                </p>
-              </div>
-              <div class="threat">
-                <b>Operations + onboarding</b>
-                <p>
-                  Connectivity failure, incomplete object upload, sequence gap, counter reset; measure
-                  time-to-first-task and first accepted evidence separately.
-                </p>
+              <div class="eyebrow muted">Before the pilot</div>
+              <h3>Try to break it first.</h3>
+              <p>Each of these should fail loudly and visibly, not silently.</p>
+              <div class="test-grid">
+                <article class="test-card">
+                  <div class="journey-top">
+                    <span class="journey-icon"
+                      ><svg
+                        viewBox="0 0 24 24"
+                        width="20"
+                        height="20"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.7"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                      >
+                        <rect x="3" y="5" width="18" height="14" rx="2" />
+                        <circle cx="9" cy="12" r="2.5" />
+                        <path d="M14 10h4M14 14h3" /></svg></span
+                    ><b>Identity + access</b><span class="test-count">5 tests</span>
+                  </div>
+                  <ul>
+                    <li>Forwarded or expired QR</li>
+                    <li>Role escalation</li>
+                    <li>Ex-employee still logged in</li>
+                    <li>Another factory’s evidence ID</li>
+                    <li>Stolen account recovery</li>
+                  </ul>
+                </article>
+                <article class="test-card">
+                  <div class="journey-top">
+                    <span class="journey-icon"
+                      ><svg
+                        viewBox="0 0 24 24"
+                        width="20"
+                        height="20"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.7"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                      >
+                        <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" />
+                        <path d="M14 3v5h5M9 14l2 2 4-4" /></svg></span
+                    ><b>Evidence + integrity</b><span class="test-count">6 tests</span>
+                  </div>
+                  <ul>
+                    <li>Edited result or image</li>
+                    <li>Replayed signed event</li>
+                    <li>Revoked device key</li>
+                    <li>Deleted record</li>
+                    <li>Swapped part</li>
+                    <li>Changed model recipe</li>
+                  </ul>
+                </article>
+                <article class="test-card">
+                  <div class="journey-top">
+                    <span class="journey-icon"
+                      ><svg
+                        viewBox="0 0 24 24"
+                        width="20"
+                        height="20"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.7"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                      >
+                        <path d="M9 11l3 3 8-8" />
+                        <path d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h9" /></svg></span
+                    ><b>Quality + assessment</b><span class="test-count">5 tests</span>
+                  </div>
+                  <ul>
+                    <li>Valid signature on a failed part</li>
+                    <li>Final QC reversed</li>
+                    <li>Operator reassigned</li>
+                    <li>Expired qualification</li>
+                    <li>Supervisor tries to edit raw evidence</li>
+                  </ul>
+                </article>
+                <article class="test-card">
+                  <div class="journey-top">
+                    <span class="journey-icon"
+                      ><svg
+                        viewBox="0 0 24 24"
+                        width="20"
+                        height="20"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.7"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                      >
+                        <path d="M5 12.5a10 10 0 0 1 14 0M8.5 16a5 5 0 0 1 7 0M12 19.5h.01" /></svg></span
+                    ><b>Operations + onboarding</b><span class="test-count">6 tests</span>
+                  </div>
+                  <ul>
+                    <li>Lost connection</li>
+                    <li>Half-finished upload</li>
+                    <li>Sequence gap</li>
+                    <li>Counter reset</li>
+                    <li>Time to first task</li>
+                    <li>Time to first accepted evidence</li>
+                  </ul>
+                </article>
               </div>
             </div>
           </div>
-          <div class="notice amber" style="margin-top: 24px">
-            <b>Do not infer a human skill score directly from pass rate or Cpk.</b> Part outcomes also depend
-            on machine, material, tooling, measurement system and task difficulty. Start with traceable task
-            experience and assessor-reviewed observations. Formal qualification requires an approved
-            assessment process.
+
+          <div class="callout">
+            <span class="callout-icon"
+              ><svg
+                viewBox="0 0 24 24"
+                width="20"
+                height="20"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.7"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M12 3l10 18H2z" />
+                <path d="M12 10v5M12 18h.01" /></svg
+            ></span>
+            <div>
+              <b>A pass rate is not a skill score.</b>
+              <p>
+                Part outcomes also depend on the machine, material, tooling, gauge and task difficulty. Start
+                with traceable task experience and assessor-reviewed observations; formal qualification needs
+                an approved assessment process.
+              </p>
+            </div>
           </div>
           <p class="source-note">
-            Suggested implementation fit: reuse ConnectIQ’s shared REST / .NET services and SQL data model
-            where appropriate. Assess SQL Server / Azure SQL Ledger availability for your actual deployment;
-            do not assume the existing version supports it. A single logical product does not require
-            cross-border replication of every customer’s raw data.
+            Implementation fit: reuse ConnectIQ’s shared REST / .NET services and SQL data model where it
+            fits. Check SQL Server / Azure SQL Ledger support for your actual deployment before relying on it.
+            One logical product does not require copying every customer’s raw data across borders.
           </p>
         </section>
         <div class="foot page-note">
