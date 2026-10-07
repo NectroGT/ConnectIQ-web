@@ -188,30 +188,80 @@ svg {
   line-height: 1.65;
   margin-top: 4px;
 }
+/* Section tabs: three cards under the hero; the active one is navy with a mint glow */
 .tabsbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px solid var(--line);
-  margin: 20px 0 24px;
-  gap: 16px;
+  margin: -34px 0 28px;
+  position: relative;
+  z-index: 2;
 }
 .tabs {
-  display: flex;
-  gap: 26px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
 }
 .tab {
-  background: none;
-  color: var(--muted);
-  border-bottom: 3px solid transparent;
-  padding: 14px 0 13px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-align: left;
+  padding: 16px 18px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  color: var(--ink);
+  box-shadow: 0 10px 30px rgba(7, 17, 31, 0.06);
+  transition:
+    background 0.2s,
+    border-color 0.2s,
+    box-shadow 0.2s,
+    transform 0.2s;
+}
+.tab:hover {
+  border-color: #21c98f;
+  transform: translateY(-2px);
+}
+.tab-num {
+  flex: none;
+  width: 38px;
+  height: 38px;
+  border-radius: 11px;
+  display: grid;
+  place-items: center;
+  font: 600 12px/1 "SFMono-Regular", Consolas, monospace;
+  background: var(--mint);
+  color: var(--green);
+}
+.tab-text b {
+  display: block;
+  font-size: 14px;
   font-weight: 650;
-  font-size: 13px;
-  white-space: nowrap;
+}
+.tab-text small {
+  display: block;
+  margin-top: 2px;
+  font-size: 11px;
+  color: var(--muted);
+  font-weight: 400;
 }
 .tab.active {
-  color: var(--forest);
-  border-color: var(--green);
+  background: linear-gradient(135deg, #0b1a2d, #102b3c);
+  border-color: rgba(85, 230, 181, 0.5);
+  color: #fff;
+  box-shadow:
+    0 0 0 1px rgba(85, 230, 181, 0.25),
+    0 14px 34px rgba(7, 17, 31, 0.25);
+}
+.tab.active .tab-num {
+  background: #55e6b5;
+  color: #07111f;
+}
+.tab.active .tab-text small {
+  color: #aebccc;
+}
+.tabs-note {
+  display: block;
+  margin-top: 10px;
+  text-align: right;
 }
 .tiny {
   font-size: 10px;
@@ -1167,9 +1217,6 @@ td:first-child {
   .hero h1 {
     font-size: 36px;
   }
-  .tabsbar .tiny {
-    display: none;
-  }
 }
 @media (max-width: 1020px) {
   .workspace {
@@ -1200,9 +1247,6 @@ td:first-child {
   .hero {
     padding: 25px;
   }
-  .tabs {
-    gap: 22px;
-  }
 }
 @media (max-width: 690px) {
   .shell {
@@ -1230,17 +1274,6 @@ td:first-child {
   }
   .hero .eyebrow {
     font-size: 9px;
-  }
-  .tabs {
-    gap: 18px;
-    width: 100%;
-    justify-content: space-between;
-  }
-  .tab {
-    font-size: 11px;
-  }
-  .tabsbar {
-    margin-top: 13px;
   }
   .workspace {
     display: flex;
@@ -1326,9 +1359,6 @@ td:first-child {
   .foot span {
     display: block;
     margin-bottom: 8px;
-  }
-  .tab.active {
-    border-bottom-width: 3px;
   }
   .screen {
     padding: 20px 17px;
@@ -1418,7 +1448,7 @@ td:first-child {
 }
 .hero.navy {
   border-radius: 0;
-  padding: 125px max(42px, calc((100% - 1372px) / 2)) 46px;
+  padding: 125px max(42px, calc((100% - 1372px) / 2)) 76px;
   background:
     radial-gradient(circle at 72% 18%, rgba(85, 230, 181, 0.14), transparent 32%),
     radial-gradient(circle at 18% 62%, rgba(117, 169, 255, 0.1), transparent 28%),
@@ -1463,12 +1493,12 @@ td:first-child {
 }
 @media (max-width: 1180px) {
   .hero.navy {
-    padding: 115px 24px 40px;
+    padding: 115px 24px 70px;
   }
 }
 @media (max-width: 690px) {
   .hero.navy {
-    padding: 96px 16px 32px;
+    padding: 96px 16px 52px;
   }
   .page-note {
     flex-direction: column;
@@ -1486,4 +1516,35 @@ h3 {
 .site-header a:not(.button),
 .site-footer a {
   color: inherit;
+}
+
+@media (max-width: 1020px) {
+  .tab-text small {
+    display: none;
+  }
+}
+@media (max-width: 690px) {
+  .tabsbar {
+    margin-top: -24px;
+  }
+  .tabs {
+    gap: 8px;
+  }
+  .tab {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 12px;
+  }
+  .tab-num {
+    width: 30px;
+    height: 30px;
+    font-size: 11px;
+  }
+  .tab-text b {
+    font-size: 12px;
+  }
+  .tabs-note {
+    text-align: left;
+  }
 }

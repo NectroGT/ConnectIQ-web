@@ -8,7 +8,7 @@
     <link rel="icon" href="assets/logo.png" />
     <title>ConnectIQ · WeChat Skill Passport + FDM Quality</title>
     <link rel="stylesheet" href="assets/css/global.css?v=4" />
-    <link rel="stylesheet" href="assets/css/passport.css?v=1" />
+    <link rel="stylesheet" href="assets/css/passport.css?v=2" />
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -72,11 +72,19 @@
         <div class="tabsbar">
           <nav class="tabs" aria-label="Prototype sections">
             <button class="tab active" data-view="workflow" aria-selected="true">
-              01 &nbsp; Onboarding flow</button
-            ><button class="tab" data-view="security" aria-selected="false">02 &nbsp; Secure vision</button
-            ><button class="tab" data-view="handoff" aria-selected="false">03 &nbsp; Build notes</button>
+              <span class="tab-num">01</span
+              ><span class="tab-text"><b>Onboarding flow</b><small>From a WeChat scan to verified work</small></span>
+            </button>
+            <button class="tab" data-view="security" aria-selected="false">
+              <span class="tab-num">02</span
+              ><span class="tab-text"><b>Secure vision</b><small>Camera evidence you can trust</small></span>
+            </button>
+            <button class="tab" data-view="handoff" aria-selected="false">
+              <span class="tab-num">03</span
+              ><span class="tab-text"><b>Build notes</b><small>Decisions and developer handoff</small></span>
+            </button>
           </nav>
-          <span class="tiny muted">Synthetic data · No WeChat, FDM or camera connection</span>
+          <span class="tiny muted tabs-note">Synthetic data · No WeChat, FDM or camera connection</span>
         </div>
         <section id="workflow" class="view active" aria-label="Interactive onboarding workflow">
           <div class="workspace">
