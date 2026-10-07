@@ -1,0 +1,587 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="color-scheme" content="light" />
+    <meta name="theme-color" content="#07111f" />
+    <link rel="icon" href="assets/logo.png" />
+    <title>ConnectIQ · WeChat Skill Passport + FDM Quality</title>
+    <link rel="stylesheet" href="assets/css/global.css?v=4" />
+    <link rel="stylesheet" href="assets/css/passport.css?v=1" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="scroll-progress" aria-hidden="true"></div>
+
+    <header class="site-header navy">
+      <a href="index.html" class="brand" aria-label="ConnectIQ home"
+        ><img src="assets/logo-wordmark-white.png?v=2" alt="ConnectIQ" width="620" height="86"
+      /></a>
+      <nav class="desktop-nav" aria-label="Primary">
+        <a href="#workflow" data-tab="workflow">Onboarding flow</a
+        ><a href="#security" data-tab="security">Secure vision</a
+        ><a href="#handoff" data-tab="handoff">Build notes</a>
+      </nav>
+      <div class="nav-actions">
+        <a
+          href="https://usal.connectiq.asia/"
+          target="_blank"
+          rel="noopener"
+          data-flash
+          class="button ink small"
+          >Flash &amp; activate <span>↗</span></a
+        >
+        <button
+          class="menu-toggle"
+          aria-label="Open navigation"
+          aria-expanded="false"
+          aria-controls="mobile-nav"
+        >
+          <span></span><span></span>
+        </button>
+      </div>
+      <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile" hidden>
+        <a href="#workflow" data-tab="workflow">Onboarding flow</a
+        ><a href="#security" data-tab="security">Secure vision</a
+        ><a href="#handoff" data-tab="handoff">Build notes</a> <a href="index.html">ConnectIQ home</a
+        ><a href="fdm.html">FDM Quality</a>
+        <a href="https://usal.connectiq.asia/" target="_blank" rel="noopener" data-flash
+          >Flash &amp; activate ↗</a
+        >
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="hero navy">
+        <div>
+          <div class="eyebrow">Digital Skill Passport × FDM Quality</div>
+          <h1>Start with a scan.<br />Build skills through real work.</h1>
+          <p>
+            A WeChat front door for operators. One quality record for the factory.<br />Verified evidence
+            connects the two—without making the phone the source of truth.
+          </p>
+        </div>
+        <div class="hero-note">
+          <div class="eyebrow">Design principle</div>
+          <strong>Less typing.<br />Stronger evidence.</strong>
+          <p>Skip the long registration form.<br />Never skip identity or evidence checks.</p>
+        </div>
+      </section>
+      <div class="shell" id="ciq-dsp-module">
+        <div class="tabsbar">
+          <nav class="tabs" aria-label="Prototype sections">
+            <button class="tab active" data-view="workflow" aria-selected="true">
+              01 &nbsp; Onboarding flow</button
+            ><button class="tab" data-view="security" aria-selected="false">02 &nbsp; Secure vision</button
+            ><button class="tab" data-view="handoff" aria-selected="false">03 &nbsp; Build notes</button>
+          </nav>
+          <span class="tiny muted">Synthetic data · No WeChat, FDM or camera connection</span>
+        </div>
+        <section id="workflow" class="view active" aria-label="Interactive onboarding workflow">
+          <div class="workspace">
+            <aside class="rail">
+              <div class="eyebrow muted">The shortest safe path</div>
+              <h2>From WeChat to work.</h2>
+              <p class="muted">
+                Try the buttons inside the phone. The FDM panel updates as evidence moves through review.
+              </p>
+              <div class="route-select">
+                <label for="route" class="fieldlabel">Entry route</label
+                ><select class="select" id="route">
+                  <option value="invite">New worker · factory invitation</option>
+                  <option value="returning">Returning · already bound</option>
+                  <option value="public">Public QR · sample only</option>
+                </select>
+              </div>
+              <div class="steps" id="steps"></div>
+              <div class="railnote">
+                <b>No second quality database.</b>The passport references accepted FDM evidence. Source
+                authenticity, inspection disposition and skill authorization remain separate.
+              </div>
+              <div class="gap"></div>
+              <button class="btn secondary small" id="resetFlow">↺ &nbsp; Reset walkthrough</button>
+            </aside>
+            <div class="phone-wrap">
+              <div class="phone-caption">
+                <span class="eyebrow muted" style="font-size: 9px">WeChat Mini Program · preview</span>
+                <div class="lang">
+                  <button class="active" id="langEn" aria-label="English interface">EN</button
+                  ><button id="langZh" aria-label="Chinese interface">中文</button>
+                </div>
+              </div>
+              <div class="phone">
+                <div class="statusbar"><span>09:41</span><span>▰ &nbsp; ▮▮▮ &nbsp; ▱</span></div>
+                <div class="wxbar">
+                  <span>‹ &nbsp; ConnectIQ Passport</span><span class="capsule">••• &nbsp;│&nbsp; ◉</span>
+                </div>
+                <div class="phonebody" id="phonebody"><div class="screen" id="screen"></div></div>
+                <nav class="bottomnav" id="bottomnav" aria-label="Mini Program navigation"></nav>
+              </div>
+              <div class="phonefooter">
+                INTERACTIVE WIREFRAME · All identities, readings and approvals are samples.<br />Scroll within
+                the phone for the full screen.
+              </div>
+            </div>
+            <aside class="backend" id="backend"></aside>
+          </div>
+        </section>
+        <section id="security" class="view" aria-label="Secure camera inspection architecture">
+          <div class="sectiontitle">
+            <div>
+              <div class="eyebrow muted">Trust belongs behind the interface</div>
+              <h2>Camera → verified evidence → passport.</h2>
+              <p>
+                Send original inspection evidence to a controlled backend—not to a WeChat chat. The Mini
+                Program receives only the authorized result and evidence reference.
+              </p>
+            </div>
+            <span class="tag">Tamper-evident, not tamper-proof</span>
+          </div>
+          <div class="architecture">
+            <div class="node">
+              <div class="n">01 / CONTEXT</div>
+              <h3>Operator + task</h3>
+              <p>
+                Employer-bound identity. Server-issued job / station session. Specific part and operation.
+              </p>
+            </div>
+            <div class="node">
+              <div class="n">02 / CAPTURE</div>
+              <h3>Camera + edge</h3>
+              <p>Original image hash + structured result. Sign using a protected device or gateway key.</p>
+            </div>
+            <div class="node core">
+              <div class="n">03 / VERIFY</div>
+              <h3>Evidence gateway</h3>
+              <p>Check signer, hash, session, scope, freshness and duplicates. Quarantine failures.</p>
+            </div>
+            <div class="node">
+              <div class="n">04 / PRESERVE</div>
+              <h3>Evidence vault</h3>
+              <p>
+                Version-bound original objects. Locked retention. Append-only events and external digests.
+              </p>
+            </div>
+            <div class="node core">
+              <div class="n">05 / DECIDE</div>
+              <h3>FDM Quality</h3>
+              <p>
+                Inspection disposition, final QC, deviations and assessor decisions. No silent overwrites.
+              </p>
+            </div>
+            <div class="node">
+              <div class="n">06 / DISPLAY</div>
+              <h3>Skill Passport</h3>
+              <p>Skill evidence + employer-issued status. Scoped API view; raw data stays controlled.</p>
+            </div>
+          </div>
+          <div class="twocol">
+            <div class="module">
+              <div class="eyebrow muted">Live local cryptographic demonstration</div>
+              <h3>Change the result. Break the signature.</h3>
+              <p>
+                This lab really signs sample bytes with Web Crypto (ECDSA P-256 / SHA-256). It is not the
+                simulated verification used in the phone. Keys and replay tracking exist only in this page;
+                there is no production trust anchor.
+              </p>
+              <div class="testactions">
+                <button class="btn small" id="signEvent">1 · Sign sample</button
+                ><button class="btn secondary small" id="tamperEvent" disabled>2 · Alter result</button
+                ><button class="btn green small" id="verifyEvent" disabled>3 · Verify / ingest</button
+                ><button class="btn secondary small" id="restoreEvent" disabled>Restore signed bytes</button>
+              </div>
+              <label for="eventJson" class="fieldlabel">Signed payload · editable after signing</label
+              ><textarea
+                class="code"
+                id="eventJson"
+                spellcheck="false"
+                readonly
+                aria-label="Sample signed evidence payload"
+              >
+Press “Sign sample” to create a synthetic inspection event.
+
+A protected factory device—not this browser—must own the signing key in production.</textarea>
+              <div id="cryptoStatus" class="notice neutral" role="status" aria-live="polite">
+                Ready. No keys or inspection data leave this page.
+              </div>
+              <div class="hash" id="cryptoHash">Image hash: not generated</div>
+              <p style="font-size: 10px">
+                The image bytes are a synthetic text fixture, not a camera frame. The demo signs exact
+                serialized bytes (formatting changes also invalidate the signature); production should use a
+                tested signing format such as JWS and an agreed canonicalization policy. After one successful
+                ingestion, verify the same event again to see duplicate rejection. Re-signing resets this
+                local lab.
+              </p>
+            </div>
+            <div class="module">
+              <div class="eyebrow muted">Controls that the UI cannot provide</div>
+              <h3>What each control actually protects.</h3>
+              <div class="threat">
+                <b>Changed result, image or operator field</b>
+                <p>
+                  Verify the digital signature and image digest, including job, part, station and session in
+                  the signed payload. A hash stored beside an editable image is insufficient.
+                </p>
+              </div>
+              <div class="threat">
+                <b>Authentic event, replayed for another reward</b>
+                <p>
+                  Persist unique event IDs, device sequence / boot epoch and consumed challenges on the
+                  server. Idempotent retries return the first receipt; never count twice.
+                </p>
+              </div>
+              <div class="threat">
+                <b>Administrator edits a past decision</b>
+                <p>
+                  Keep immutable originals and append a signed amendment. Independently protect audit
+                  checkpoints; an ordinary SQL row lock is not an integrity guarantee.
+                </p>
+              </div>
+              <div class="threat">
+                <b>Valid signature, wrong physical work</b>
+                <p>
+                  A signature cannot prove the correct part was placed in the camera or the named employee did
+                  the work. Bind fixture / part identification, cycle trigger, work session and observed
+                  roles.
+                </p>
+              </div>
+              <div class="threat">
+                <b>Legacy camera has no signing capability</b>
+                <p>
+                  Sign on a hardened edge gateway at first trusted receipt. Display “gateway-verified,” not
+                  “camera-origin verified.” The camera-to-gateway path remains a trust boundary.
+                </p>
+              </div>
+              <div class="threat">
+                <b>Connection drops or camera time changes</b>
+                <p>
+                  Queue signed records on the edge. Show “pending server verification,” preserve capture and
+                  receipt times separately, and investigate sequence gaps or counter resets.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="threecol">
+            <div class="module">
+              <div class="eyebrow muted">Transport + identity</div>
+              <h3>Two identities. Two API surfaces.</h3>
+              <p>
+                Use enrolled device certificates and mutual TLS for the edge. Use short-lived, tenant-scoped
+                user sessions for WeChat. A user session cannot call the device evidence ingestion API. Never
+                embed AppSecret, device private keys or shared signing secrets in a Mini Program.
+              </p>
+            </div>
+            <div class="module">
+              <div class="eyebrow muted">Confidentiality</div>
+              <h3>Keep the raw image private.</h3>
+              <p>
+                Encrypt objects at rest. Authorize every view and evidence object. Use an authenticated media
+                proxy or carefully scoped short-lived URLs. Shared passport views exclude customer drawings,
+                part IDs and employee raw performance data by default. Screenshots cannot be reliably
+                prevented.
+              </p>
+            </div>
+            <div class="module">
+              <div class="eyebrow muted">Before production</div>
+              <h3>Validate the trust boundary.</h3>
+              <p>
+                Test camera interface, key storage, firmware controls, identity binding, offline behavior,
+                model validation and deletion / retention policy. Decide the China deployment and
+                data-transfer model explicitly. No feature in this wireframe constitutes a security
+                certification.
+              </p>
+            </div>
+          </div>
+          <details class="references">
+            <summary>Primary technical references and verification limits</summary>
+            <p>
+              <a
+                href="https://docs.cloudbase.net/authentication-v2/auth/introduce"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Tencent CloudBase · Identity and authorization</a
+              >
+              ·
+              <a
+                href="https://docs.cloudbase.net/quick-start/frameworks/wechat-miniprogram"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Tencent CloudBase · Mini Program quick-start</a
+              >
+            </p>
+            <p>
+              <a href="https://www.rfc-editor.org/rfc/rfc7515.html" target="_blank" rel="noopener noreferrer"
+                >RFC 7515 · JSON Web Signature</a
+              >
+              ·
+              <a href="https://www.rfc-editor.org/rfc/rfc8785.html" target="_blank" rel="noopener noreferrer"
+                >RFC 8785 · JSON Canonicalization</a
+              >
+              ·
+              <a href="https://www.rfc-editor.org/rfc/rfc8446.html" target="_blank" rel="noopener noreferrer"
+                >RFC 8446 · TLS 1.3</a
+              >
+            </p>
+            <p>
+              <a
+                href="https://learn.microsoft.com/en-us/azure/storage/blobs/immutable-storage-overview"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Microsoft · Immutable object storage</a
+              >
+              ·
+              <a
+                href="https://learn.microsoft.com/en-us/sql/relational-databases/security/ledger/ledger-overview?view=sql-server-ver17"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Microsoft · SQL Ledger and protected digests</a
+              >
+              ·
+              <a
+                href="https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                >OWASP · Authorization</a
+              >
+            </p>
+            <p>
+              <a
+                href="https://spec.c2pa.org/specifications/specifications/2.2/explainer/Explainer.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                >C2PA explainer · provenance is not proof of factual truth</a
+              >
+              ·
+              <a href="https://www.w3.org/TR/WebCryptoAPI/" target="_blank" rel="noopener noreferrer"
+                >W3C · Web Cryptography API</a
+              >
+            </p>
+            <p>
+              These sources support the control primitives, not a certification of this proposed system.
+              WeChat official developer pages were not retrievable during preparation. Confirm current login,
+              privacy, QR entry, subscription-message, account-eligibility and domain requirements in the
+              actual developer console before implementation.
+            </p>
+          </details>
+        </section>
+        <section id="handoff" class="view" aria-label="Developer handoff and product decisions">
+          <div class="sectiontitle">
+            <div>
+              <div class="eyebrow muted">Proposed module boundary</div>
+              <h2>One backend. Several ways to do the work.</h2>
+              <p>
+                A shared identity and evidence model connects the WeChat client, FDM desktop and hardware
+                integrations. This is a browser prototype, not deployable WXML / WXSS Mini Program code.
+              </p>
+            </div>
+            <span class="tag">No production endpoints included</span>
+          </div>
+          <div class="threecol" style="margin-top: 0">
+            <div class="module">
+              <div class="eyebrow muted">First-time worker</div>
+              <h3>Invite → bind → work</h3>
+              <p>
+                Use an opaque, expiring invitation with server-side scope. Pre-fill the factory and assigned
+                employee role after appropriate authentication. Verify employer membership separately from the
+                WeChat account. No email, password, résumé, phone number or certificate upload is required by
+                this proposed first-use flow.
+              </p>
+            </div>
+            <div class="module">
+              <div class="eyebrow muted">Returning worker</div>
+              <h3>Scan → confirm task</h3>
+              <p>
+                Reuse the existing account-to-employee binding after checking current employment and role
+                validity. Route back to the intended job after authentication. Refresh station / operation
+                sessions at handover; never borrow yesterday’s operator attribution.
+              </p>
+            </div>
+            <div class="module">
+              <div class="eyebrow muted">Public QR visitor</div>
+              <h3>Try → request access</h3>
+              <p>
+                Show synthetic examples without production tenant access. A shared factory QR is an entry
+                point, not an authorization credential. An invitation alone must not grant employer-verified
+                status.
+              </p>
+            </div>
+          </div>
+          <div class="module" style="margin-top: 24px">
+            <div class="eyebrow muted">Proposed endpoints · names are illustrative</div>
+            <h3>Keep identity, evidence and assessment separate.</h3>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>API / service</th>
+                    <th>Caller + purpose</th>
+                    <th>Required guard</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><code>POST /auth/wechat/exchange</code></td>
+                    <td>Mini Program exchanges a temporary login code through the backend.</td>
+                    <td>
+                      Server-side AppSecret. Map (AppID, OpenID) to an internal user; issue a scoped
+                      application session.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><code>POST /membership/claims</code></td>
+                    <td>Authenticated worker requests a factory binding.</td>
+                    <td>Employer identity proof; single-use invitation; no client-selected privileges.</td>
+                  </tr>
+                  <tr>
+                    <td><code>POST /work-sessions</code></td>
+                    <td>Bound worker opens a station / task session.</td>
+                    <td>
+                      Current assignment, authorized role, part / operation binding, expiry and handover.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><code>POST /evidence/envelopes</code></td>
+                    <td>Enrolled edge submits signed evidence; objects are staged privately.</td>
+                    <td>
+                      Device certificate, signature, schema, hashes, session, replay rules; atomically commit
+                      after object verification.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><code>POST /quality/dispositions</code></td>
+                    <td>Authorized quality reviewer accepts / rejects evidence for quality purposes.</td>
+                    <td>Separate append-only decision; no mutation of original camera outcome.</td>
+                  </tr>
+                  <tr>
+                    <td><code>POST /skills/assessments</code></td>
+                    <td>Authorized employer assessor issues a scoped observation or qualification.</td>
+                    <td>
+                      Versioned rubric, evidence references, scope, issuer, validity and revocation status.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><code>GET /passport/me</code></td>
+                    <td>Worker reads their current passport projection.</td>
+                    <td>
+                      Tenant and object-level authorization. No raw image or unrestricted factory payload by
+                      default.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><code>POST /evidence/amendments</code></td>
+                    <td>Authorized reviewer explains a correction.</td>
+                    <td>Reason + actor + original event reference. Re-evaluate dependent assessments.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="twocol" style="margin-top: 24px">
+            <div class="module">
+              <div class="eyebrow muted">Minimum evidence contract</div>
+              <h3>Do not sign just “PASS”.</h3>
+              <p>
+                Sign the schema version, tenant / site, device identity, boot epoch, sequence, event and
+                capture IDs, capture time, work session, part instance, work order, revision, operation,
+                participant roles, feature ID, values / units / limits, camera result, model / recipe
+                versions, calibration reference, and hashes of all original artifacts. The server adds a
+                separate signed receipt and verification decision; it does not rewrite signed bytes.
+              </p>
+              <div class="notice">
+                FDM feature ID is a persistent characteristic identifier—not just a balloon number. Map it to
+                drawing revision and operation so a renumbered balloon does not break the evidence chain.
+              </div>
+              <div class="gap"></div>
+              <p>
+                Use stable decimal-string conventions or explicit scaled integers for dimensional data. Treat
+                deduplication keys, identity claims and retention policies as server-side rules, not fields
+                that a mobile client can authorize.
+              </p>
+            </div>
+            <div class="module">
+              <div class="eyebrow muted">Acceptance tests before pilot</div>
+              <h3>Make failure visible.</h3>
+              <div class="threat">
+                <b>Identity + access</b>
+                <p>
+                  Forwarded / expired QR, role escalation, stale employment, cross-tenant evidence ID, stolen
+                  account recovery.
+                </p>
+              </div>
+              <div class="threat">
+                <b>Evidence + integrity</b>
+                <p>
+                  Alter result or image; replay signed event; revoke device key; delete a record; substitute a
+                  part; change the model recipe.
+                </p>
+              </div>
+              <div class="threat">
+                <b>Quality + assessment</b>
+                <p>
+                  Valid signature on a failed part; final-QC reversal; reassigned operator; expired
+                  qualification; supervisor cannot alter raw evidence.
+                </p>
+              </div>
+              <div class="threat">
+                <b>Operations + onboarding</b>
+                <p>
+                  Connectivity failure, incomplete object upload, sequence gap, counter reset; measure
+                  time-to-first-task and first accepted evidence separately.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="notice amber" style="margin-top: 24px">
+            <b>Do not infer a human skill score directly from pass rate or Cpk.</b> Part outcomes also depend
+            on machine, material, tooling, measurement system and task difficulty. Start with traceable task
+            experience and assessor-reviewed observations. Formal qualification requires an approved
+            assessment process.
+          </div>
+          <p class="source-note">
+            Suggested implementation fit: reuse ConnectIQ’s shared REST / .NET services and SQL data model
+            where appropriate. Assess SQL Server / Azure SQL Ledger availability for your actual deployment;
+            do not assume the existing version supports it. A single logical product does not require
+            cross-border replication of every customer’s raw data.
+          </p>
+        </section>
+        <div class="foot page-note">
+          <span
+            >ConnectIQ · Manufacturing Memory / Digital Skill Passport<br />Proposed experience and security
+            design · 6 October 2026</span
+          ><span
+            >Self-contained HTML · No analytics · No external assets · No live API calls<br />Interface states
+            are illustrative. Only the separate cryptographic lab performs real signing.</span
+          >
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-top">
+        <a href="index.html" class="brand" aria-label="ConnectIQ home"
+          ><img src="assets/logo-wordmark-white.png?v=2" alt="ConnectIQ" width="620" height="86"
+        /></a>
+        <div>
+          <a href="#workflow" data-tab="workflow">Onboarding flow</a
+          ><a href="#security" data-tab="security">Secure vision</a
+          ><a href="#handoff" data-tab="handoff">Build notes</a>
+        </div>
+        <div>
+          <a href="index.html">ConnectIQ home</a><a href="fdm.html">FDM Quality</a
+          ><a href="https://usal.connectiq.asia/" target="_blank" rel="noopener" data-flash
+            >Flash &amp; activate ↗</a
+          >
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span id="year">2026</span> ConnectIQ. All rights reserved.</span
+        ><span class="mono">FACTORY SIGNALS. CONNECTED CONTEXT.</span>
+      </div>
+    </footer>
+    <div id="modalRoot"></div>
+    <div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
+    <script src="assets/js/passport.js?v=1"></script>
+    <script src="assets/js/global.js?v=3"></script>
+  </body>
+</html>
