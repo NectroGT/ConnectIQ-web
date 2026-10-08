@@ -1594,8 +1594,7 @@ h3 {
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
 }
-.journey-card,
-.test-card {
+.journey-card {
   background: #fff;
   border: 1px solid var(--line);
   border-radius: 18px;
@@ -1823,56 +1822,6 @@ h3 {
   color: var(--muted);
   margin-bottom: 14px;
 }
-.test-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin-top: 14px;
-}
-.test-card {
-  padding: 14px;
-  border-radius: 14px;
-}
-.test-card .journey-icon {
-  width: 30px;
-  height: 30px;
-  border-radius: 9px;
-}
-.test-card .journey-icon svg {
-  width: 16px;
-  height: 16px;
-}
-.test-card b {
-  font-size: 12px;
-}
-.test-count {
-  margin-left: auto;
-  font-size: 9px;
-  font-weight: 700;
-  color: var(--green);
-  background: var(--mint);
-  border-radius: 999px;
-  padding: 3px 7px;
-  white-space: nowrap;
-}
-.test-card ul {
-  list-style: none;
-  padding: 0;
-  margin: 12px 0 0;
-}
-.test-card li {
-  font-size: 11px;
-  color: var(--muted);
-  padding: 4px 0 4px 18px;
-  position: relative;
-}
-.test-card li::before {
-  content: "✕";
-  position: absolute;
-  left: 0;
-  color: #aa3d37;
-  font-size: 10px;
-}
 .callout {
   display: flex;
   gap: 16px;
@@ -1911,9 +1860,6 @@ h3 {
   }
 }
 @media (max-width: 690px) {
-  .test-grid {
-    grid-template-columns: 1fr;
-  }
   .envelope-seal {
     position: static;
     width: fit-content;
@@ -1921,25 +1867,12 @@ h3 {
   }
 }
 
-/* Build notes: envelope and tests stacked full width so neither card has empty space */
+/* Build notes: envelope card full width */
 .handoff-two {
   grid-template-columns: 1fr;
 }
 .handoff-two .envelope .field-chips {
   max-width: 980px;
-}
-.handoff-two .test-grid {
-  grid-template-columns: repeat(4, 1fr);
-}
-@media (max-width: 1020px) {
-  .handoff-two .test-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-@media (max-width: 690px) {
-  .handoff-two .test-grid {
-    grid-template-columns: 1fr;
-  }
 }
 
 /* ConnectIQ logo on the phone's first screen */
