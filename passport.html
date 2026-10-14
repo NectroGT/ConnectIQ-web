@@ -6,7 +6,7 @@
     <meta name="color-scheme" content="light" />
     <meta name="theme-color" content="#07111f" />
     <link rel="icon" href="assets/logo.png" />
-    <title>ConnectIQ · WeChat Skill Passport + FDM Quality</title>
+    <title>ConnectIQ · App Skill Passport + FDM Quality</title>
     <link rel="stylesheet" href="assets/css/global.css?v=4" />
     <link rel="stylesheet" href="assets/css/passport.css?v=7" />
   </head>
@@ -20,7 +20,7 @@
       /></a>
       <nav class="desktop-nav" aria-label="Primary">
         <a href="#workflow" data-tab="workflow">Onboarding flow</a
-        ><a href="#security" data-tab="security">Secure vision</a
+        ><a href="#security" data-tab="security">Secure connection</a
         ><a href="#handoff" data-tab="handoff">Build notes</a>
       </nav>
       <div class="nav-actions">
@@ -35,7 +35,7 @@
       </div>
       <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile" hidden>
         <a href="#workflow" data-tab="workflow">Onboarding flow</a
-        ><a href="#security" data-tab="security">Secure vision</a
+        ><a href="#security" data-tab="security">Secure connection</a
         ><a href="#handoff" data-tab="handoff">Build notes</a> <a href="index.html">ConnectIQ home</a
         ><a href="fdm.html">FDM Quality</a>
       </nav>
@@ -47,7 +47,7 @@
           <div class="eyebrow">Digital Skill Passport × FDM Quality</div>
           <h1>Start with a scan.<br />Build skills through real work.</h1>
           <p>
-            A WeChat front door for operators. One quality record for the factory.<br />Verified evidence
+            An App front door for operators. One quality record for the factory.<br />Verified evidence
             connects the two—without making the phone the source of truth.
           </p>
         </div>
@@ -63,25 +63,25 @@
             <button class="tab active" data-view="workflow" aria-selected="true">
               <span class="tab-num">01</span
               ><span class="tab-text"
-                ><b>Onboarding flow</b><small>From a WeChat scan to verified work</small></span
+                ><b>Onboarding flow</b><small>From an App scan to verified work</small></span
               >
             </button>
             <button class="tab" data-view="security" aria-selected="false">
               <span class="tab-num">02</span
-              ><span class="tab-text"><b>Secure vision</b><small>Camera evidence you can trust</small></span>
+              ><span class="tab-text"><b>Secure connection</b><small>Quality data sent securely over BLE and Wi-Fi</small></span>
             </button>
             <button class="tab" data-view="handoff" aria-selected="false">
               <span class="tab-num">03</span
               ><span class="tab-text"><b>Build notes</b><small>Decisions and developer handoff</small></span>
             </button>
           </nav>
-          <span class="tiny muted tabs-note">Synthetic data · No WeChat, FDM or camera connection</span>
+          <span class="tiny muted tabs-note">Synthetic data · No App, FDM or device connection</span>
         </div>
         <section id="workflow" class="view active" aria-label="Interactive onboarding workflow">
           <div class="workspace">
             <aside class="rail">
               <div class="eyebrow muted">The shortest safe path</div>
-              <h2>From WeChat to work.</h2>
+              <h2>From App to work.</h2>
               <p class="muted">
                 Try the buttons inside the phone. The FDM panel updates as evidence moves through review.
               </p>
@@ -107,7 +107,7 @@
             </aside>
             <div class="phone-wrap">
               <div class="phone-caption">
-                <span class="eyebrow muted" style="font-size: 9px">WeChat Mini Program · preview</span>
+                <span class="eyebrow muted" style="font-size: 9px">App · preview</span>
                 <div class="lang">
                   <button class="active" id="langEn" aria-label="English interface">EN</button
                   ><button id="langZh" aria-label="Chinese interface">中文</button>
@@ -115,11 +115,25 @@
               </div>
               <div class="phone">
                 <div class="statusbar"><span>09:41</span><span>▰ &nbsp; ▮▮▮ &nbsp; ▱</span></div>
-                <div class="wxbar">
-                  <span>‹ &nbsp; ConnectIQ Passport</span><span class="capsule">••• &nbsp;│&nbsp; ◉</span>
+                <div class="appbar">
+                  <span class="appbar-btn" aria-hidden="true">‹</span><b>ConnectIQ Passport</b
+                  ><span class="appbar-btn" aria-hidden="true"
+                    ><svg
+                      viewBox="0 0 24 24"
+                      width="17"
+                      height="17"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                      stroke-linecap="round"
+                      aria-hidden="true"
+                    >
+                      <circle cx="12" cy="8" r="3.5" />
+                      <path d="M5 20c1-3.5 3.6-5.5 7-5.5s6 2 7 5.5" /></svg
+                  ></span>
                 </div>
                 <div class="phonebody" id="phonebody"><div class="screen" id="screen"></div></div>
-                <nav class="bottomnav" id="bottomnav" aria-label="Mini Program navigation"></nav>
+                <nav class="bottomnav" id="bottomnav" aria-label="App navigation"></nav>
               </div>
               <div class="phonefooter">
                 INTERACTIVE WIREFRAME · All identities, readings and approvals are samples.<br />Scroll within
@@ -129,14 +143,15 @@
             <aside class="backend" id="backend"></aside>
           </div>
         </section>
-        <section id="security" class="view" aria-label="Secure camera inspection architecture">
+        <section id="security" class="view" aria-label="Secure wireless quality transmission architecture">
           <div class="sectiontitle">
             <div>
-              <div class="eyebrow muted">Secure vision · how a camera result earns trust</div>
-              <h2>From camera to passport, with nothing taken on trust.</h2>
+              <div class="eyebrow muted">Secure connection · how a wireless reading earns trust</div>
+              <h2>From instrument to passport, with nothing taken on trust.</h2>
               <p>
-                Original inspection evidence goes to a controlled backend, never through a WeChat chat. The
-                Mini Program only ever receives the approved result and a reference to the evidence.
+                Quality readings travel over encrypted BLE and Wi-Fi links to a controlled backend, never
+                through a chat. The App only ever receives the approved result and a reference
+                to the evidence.
               </p>
             </div>
             <span class="tag">Tamper-evident, not tamper-proof</span>
@@ -176,13 +191,11 @@
                   stroke-linejoin="round"
                   aria-hidden="true"
                 >
-                  <rect x="3" y="6" width="18" height="14" rx="2" />
-                  <path d="M8 6l2-3h4l2 3" />
-                  <circle cx="12" cy="13" r="4" /></svg
+                  <path d="M7 7l10 10-5 5V2l5 5L7 17" /></svg
               ></span>
-              <div class="n">02 · Capture</div>
-              <h3>Camera + edge</h3>
-              <p>Hash the original image, add the result and sign it with a protected device key.</p>
+              <div class="n">02 · Transmit</div>
+              <h3>BLE + Wi-Fi link</h3>
+              <p>Sign the reading with a protected device key, then send it over an encrypted, paired link.</p>
             </div>
             <div class="node core">
               <span class="node-icon"
@@ -202,7 +215,7 @@
               ></span>
               <div class="n">03 · Verify</div>
               <h3>Evidence gateway</h3>
-              <p>Check signer, hash, session, freshness and duplicates. Failures go to quarantine.</p>
+              <p>Check signer, paired device, session, freshness and duplicates. Failures go to quarantine.</p>
             </div>
             <div class="node">
               <span class="node-icon"
@@ -268,204 +281,6 @@
             </div>
           </div>
 
-          <div class="twocol">
-            <div class="module lab">
-              <div class="lab-head">
-                <div>
-                  <div class="eyebrow muted">Try it · real cryptography in your browser</div>
-                  <h3>Change the result. Break the signature.</h3>
-                </div>
-                <ol class="lab-steps" id="labSteps">
-                  <li data-lab-step="sign"><span>1</span>Sign</li>
-                  <li data-lab-step="tamper"><span>2</span>Tamper</li>
-                  <li data-lab-step="verify"><span>3</span>Verify</li>
-                </ol>
-              </div>
-              <p>
-                This lab genuinely signs a sample record (ECDSA P-256 / SHA-256), unlike the simulated phone
-                demo. Keys live only in this page, so nothing here is a production trust anchor.
-              </p>
-              <div class="testactions">
-                <button class="btn small" id="signEvent">1 · Sign sample</button
-                ><button class="btn secondary small" id="tamperEvent" disabled>2 · Alter result</button
-                ><button class="btn green small" id="verifyEvent" disabled>3 · Verify / ingest</button
-                ><button class="btn secondary small" id="restoreEvent" disabled>Restore signed bytes</button>
-              </div>
-              <div class="console">
-                <div class="console-bar">
-                  <span></span><span></span><span></span><label for="eventJson">signed-payload.json</label>
-                </div>
-                <textarea
-                  class="code"
-                  id="eventJson"
-                  spellcheck="false"
-                  readonly
-                  aria-label="Sample signed evidence payload"
-                >
-Press “Sign sample” to create a synthetic inspection event.
-
-A protected factory device—not this browser—must own the signing key in production.</textarea>
-              </div>
-              <div id="cryptoStatus" class="notice neutral" role="status" aria-live="polite">
-                Ready. No keys or inspection data leave this page.
-              </div>
-              <div class="hash" id="cryptoHash">Image hash: not generated</div>
-              <p class="lab-note">
-                Tip: after a successful verify, press verify again to see the duplicate being rejected. The
-                image is a text stand-in, not a real camera frame. Production should use a tested format such
-                as JWS.
-              </p>
-            </div>
-            <div class="module">
-              <div class="eyebrow muted">Attacks the interface alone can’t stop</div>
-              <h3>Every attack has a defence.</h3>
-              <div class="attack">
-                <div class="attack-line">
-                  <span class="attack-tag">Attack</span><b>Someone edits the result, image or operator</b>
-                </div>
-                <div class="defence-line">
-                  <svg
-                    viewBox="0 0 24 24"
-                    width="15"
-                    height="15"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.7"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    aria-hidden="true"
-                  >
-                    <path d="M12 3l8 3v6c0 5-8 9-8 9s-8-4-8-9V6l8-3z" />
-                    <path d="M8.5 12l2.5 2.5 4.5-5" /></svg
-                  ><span
-                    >The signature covers the result, image hash, job, part, station and session, so any edit
-                    breaks it.</span
-                  >
-                </div>
-              </div>
-              <div class="attack">
-                <div class="attack-line">
-                  <span class="attack-tag">Attack</span><b>A genuine event is replayed for extra credit</b>
-                </div>
-                <div class="defence-line">
-                  <svg
-                    viewBox="0 0 24 24"
-                    width="15"
-                    height="15"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.7"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    aria-hidden="true"
-                  >
-                    <path d="M12 3l8 3v6c0 5-8 9-8 9s-8-4-8-9V6l8-3z" />
-                    <path d="M8.5 12l2.5 2.5 4.5-5" /></svg
-                  ><span
-                    >The server remembers every event ID and device sequence. A retry returns the first
-                    receipt and never counts twice.</span
-                  >
-                </div>
-              </div>
-              <div class="attack">
-                <div class="attack-line">
-                  <span class="attack-tag">Attack</span><b>An admin quietly changes a past decision</b>
-                </div>
-                <div class="defence-line">
-                  <svg
-                    viewBox="0 0 24 24"
-                    width="15"
-                    height="15"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.7"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    aria-hidden="true"
-                  >
-                    <path d="M12 3l8 3v6c0 5-8 9-8 9s-8-4-8-9V6l8-3z" />
-                    <path d="M8.5 12l2.5 2.5 4.5-5" /></svg
-                  ><span
-                    >Originals never change. Corrections are added as new signed records, and audit
-                    checkpoints are protected separately.</span
-                  >
-                </div>
-              </div>
-              <div class="attack">
-                <div class="attack-line">
-                  <span class="attack-tag">Attack</span><b>Valid signature, but the wrong part or person</b>
-                </div>
-                <div class="defence-line">
-                  <svg
-                    viewBox="0 0 24 24"
-                    width="15"
-                    height="15"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.7"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    aria-hidden="true"
-                  >
-                    <path d="M12 3l8 3v6c0 5-8 9-8 9s-8-4-8-9V6l8-3z" />
-                    <path d="M8.5 12l2.5 2.5 4.5-5" /></svg
-                  ><span
-                    >A signature can’t see what was under the camera. Bind the fixture, part ID, cycle trigger
-                    and work session as well.</span
-                  >
-                </div>
-              </div>
-              <div class="attack">
-                <div class="attack-line">
-                  <span class="attack-tag">Attack</span><b>An older camera can’t sign anything</b>
-                </div>
-                <div class="defence-line">
-                  <svg
-                    viewBox="0 0 24 24"
-                    width="15"
-                    height="15"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.7"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    aria-hidden="true"
-                  >
-                    <path d="M12 3l8 3v6c0 5-8 9-8 9s-8-4-8-9V6l8-3z" />
-                    <path d="M8.5 12l2.5 2.5 4.5-5" /></svg
-                  ><span
-                    >Sign at a hardened edge gateway instead, and label it “gateway-verified”, never
-                    “camera-verified”.</span
-                  >
-                </div>
-              </div>
-              <div class="attack">
-                <div class="attack-line">
-                  <span class="attack-tag">Attack</span><b>The connection drops or the clock changes</b>
-                </div>
-                <div class="defence-line">
-                  <svg
-                    viewBox="0 0 24 24"
-                    width="15"
-                    height="15"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.7"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    aria-hidden="true"
-                  >
-                    <path d="M12 3l8 3v6c0 5-8 9-8 9s-8-4-8-9V6l8-3z" />
-                    <path d="M8.5 12l2.5 2.5 4.5-5" /></svg
-                  ><span
-                    >Queue signed records on the edge, show “pending verification”, and flag gaps in the
-                    sequence.</span
-                  >
-                </div>
-              </div>
-            </div>
-          </div>
-
           <div class="threecol">
             <div class="module sv-card">
               <span class="journey-icon"
@@ -486,10 +301,11 @@ A protected factory device—not this browser—must own the signing key in prod
               <div class="eyebrow muted">Transport + identity</div>
               <h3>Two identities. Two doors.</h3>
               <ul class="sv-list">
-                <li>Factory devices use certificates and mutual TLS</li>
-                <li>WeChat users get short-lived sessions for one factory</li>
+                <li>BLE instruments pair with LE Secure Connections and bond to one gateway</li>
+                <li>Wi-Fi devices use WPA3-Enterprise, certificates and mutual TLS</li>
+                <li>App users get short-lived sessions for one factory</li>
                 <li>A user session can never submit device evidence</li>
-                <li>No secrets or private keys inside the Mini Program</li>
+                <li>No secrets or private keys inside the App</li>
               </ul>
             </div>
             <div class="module sv-card">
@@ -510,9 +326,9 @@ A protected factory device—not this browser—must own the signing key in prod
                   <path d="M3 3l18 18" /></svg
               ></span>
               <div class="eyebrow muted">Confidentiality</div>
-              <h3>Keep the raw image private.</h3>
+              <h3>Keep the raw data private.</h3>
               <ul class="sv-list">
-                <li>Everything encrypted at rest</li>
+                <li>Encrypted over the air and at rest</li>
                 <li>Every view and file is permission-checked</li>
                 <li>Shared passports hide drawings, part IDs and raw scores</li>
                 <li>Screenshots can’t be fully prevented on every device</li>
@@ -536,7 +352,7 @@ A protected factory device—not this browser—must own the signing key in prod
               <div class="eyebrow muted">Before production</div>
               <h3>Prove the trust boundary.</h3>
               <ul class="sv-list">
-                <li>Test cameras, key storage and firmware controls</li>
+                <li>Test BLE pairing, Wi-Fi security, key storage and firmware</li>
                 <li>Test identity binding and offline behaviour</li>
                 <li>Agree retention, deletion and the China data model</li>
                 <li>This prototype is not a security certification</li>
@@ -551,13 +367,6 @@ A protected factory device—not this browser—must own the signing key in prod
                 target="_blank"
                 rel="noopener noreferrer"
                 >Tencent CloudBase · Identity and authorization</a
-              >
-              ·
-              <a
-                href="https://docs.cloudbase.net/quick-start/frameworks/wechat-miniprogram"
-                target="_blank"
-                rel="noopener noreferrer"
-                >Tencent CloudBase · Mini Program quick-start</a
               >
             </p>
             <p>
@@ -597,19 +406,19 @@ A protected factory device—not this browser—must own the signing key in prod
             </p>
             <p>
               <a
-                href="https://spec.c2pa.org/specifications/specifications/2.2/explainer/Explainer.html"
+                href="https://csrc.nist.gov/pubs/sp/800/121/r2/upd1/final"
                 target="_blank"
                 rel="noopener noreferrer"
-                >C2PA explainer · provenance is not proof of factual truth</a
+                >NIST SP 800-121 · Guide to Bluetooth Security</a
               >
               ·
-              <a href="https://www.w3.org/TR/WebCryptoAPI/" target="_blank" rel="noopener noreferrer"
-                >W3C · Web Cryptography API</a
+              <a href="https://www.wi-fi.org/discover-wi-fi/security" target="_blank" rel="noopener noreferrer"
+                >Wi-Fi Alliance · WPA3 security</a
               >
             </p>
             <p>
               These sources support the control primitives, not a certification of this proposed system.
-              WeChat official developer pages were not retrievable during preparation. Confirm current login,
+              App platform developer pages were not retrievable during preparation. Confirm current login,
               privacy, QR entry, subscription-message, account-eligibility and domain requirements in the
               actual developer console before implementation.
             </p>
@@ -621,8 +430,8 @@ A protected factory device—not this browser—must own the signing key in prod
               <div class="eyebrow muted">Build notes · for the development team</div>
               <h2>One backend. Three ways in.</h2>
               <p>
-                The WeChat app, FDM desktop and factory hardware all share one identity and evidence model.
-                This page is a browser prototype, not deployable Mini Program code.
+                The App, FDM desktop and factory hardware all share one identity and evidence model.
+                This page is a browser prototype, not deployable App code.
               </p>
             </div>
             <span class="tag">No production endpoints included</span>
@@ -650,7 +459,7 @@ A protected factory device—not this browser—must own the signing key in prod
               <div class="journey-trail"><span>Invite</span><span>Bind</span><span>Work</span></div>
               <p>
                 An expiring, single-use invitation pre-fills the factory and role. The employer confirms who
-                the worker is, separately from their WeChat account.
+                the worker is, separately from their App account.
               </p>
               <span class="journey-chip">No email · password · résumé · phone number</span>
             </article>
@@ -708,237 +517,6 @@ A protected factory device—not this browser—must own the signing key in prod
             </article>
           </div>
 
-          <div class="module handoff-block">
-            <div class="handoff-head">
-              <div>
-                <div class="eyebrow muted">The API, step by step · names are illustrative</div>
-                <h3>Identity, evidence and assessment stay separate.</h3>
-              </div>
-              <div class="legend">
-                <span class="method post">POST</span> writes <span class="method get">GET</span> reads
-                <span class="legend-lock"
-                  ><svg
-                    viewBox="0 0 24 24"
-                    width="20"
-                    height="20"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.7"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    aria-hidden="true"
-                  >
-                    <rect x="5" y="11" width="14" height="10" rx="2" />
-                    <path d="M8 11V8a4 4 0 0 1 8 0v3" /></svg
-                ></span>
-                guard
-              </div>
-            </div>
-            <ol class="api-flow">
-              <li class="api-card">
-                <span class="api-num">01</span>
-                <div class="api-body">
-                  <div class="api-head">
-                    <b>Sign in</b><code><span class="method post">POST</span>/auth/wechat/exchange</code>
-                  </div>
-                  <p>Mini Program swaps a temporary WeChat code for an app session.</p>
-                  <p class="api-guard">
-                    <svg
-                      viewBox="0 0 24 24"
-                      width="20"
-                      height="20"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="1.7"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      aria-hidden="true"
-                    >
-                      <rect x="5" y="11" width="14" height="10" rx="2" />
-                      <path d="M8 11V8a4 4 0 0 1 8 0v3" /></svg
-                    ><span>Secret stays on the server · WeChat ID mapped to an internal user</span>
-                  </p>
-                </div>
-              </li>
-              <li class="api-card">
-                <span class="api-num">02</span>
-                <div class="api-body">
-                  <div class="api-head">
-                    <b>Join a factory</b><code><span class="method post">POST</span>/membership/claims</code>
-                  </div>
-                  <p>Worker asks to be linked to their factory.</p>
-                  <p class="api-guard">
-                    <svg
-                      viewBox="0 0 24 24"
-                      width="20"
-                      height="20"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="1.7"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      aria-hidden="true"
-                    >
-                      <rect x="5" y="11" width="14" height="10" rx="2" />
-                      <path d="M8 11V8a4 4 0 0 1 8 0v3" /></svg
-                    ><span>Employer proof · single-use invite · worker can’t pick their own role</span>
-                  </p>
-                </div>
-              </li>
-              <li class="api-card">
-                <span class="api-num">03</span>
-                <div class="api-body">
-                  <div class="api-head">
-                    <b>Start work</b><code><span class="method post">POST</span>/work-sessions</code>
-                  </div>
-                  <p>Worker opens a session at a station for one part and operation.</p>
-                  <p class="api-guard">
-                    <svg
-                      viewBox="0 0 24 24"
-                      width="20"
-                      height="20"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="1.7"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      aria-hidden="true"
-                    >
-                      <rect x="5" y="11" width="14" height="10" rx="2" />
-                      <path d="M8 11V8a4 4 0 0 1 8 0v3" /></svg
-                    ><span>Current assignment · role · expiry · handover</span>
-                  </p>
-                </div>
-              </li>
-              <li class="api-card">
-                <span class="api-num">04</span>
-                <div class="api-body">
-                  <div class="api-head">
-                    <b>Send evidence</b><code><span class="method post">POST</span>/evidence/envelopes</code>
-                  </div>
-                  <p>Factory device submits signed inspection evidence.</p>
-                  <p class="api-guard">
-                    <svg
-                      viewBox="0 0 24 24"
-                      width="20"
-                      height="20"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="1.7"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      aria-hidden="true"
-                    >
-                      <rect x="5" y="11" width="14" height="10" rx="2" />
-                      <path d="M8 11V8a4 4 0 0 1 8 0v3" /></svg
-                    ><span>Device certificate · signature · hashes · no replays</span>
-                  </p>
-                </div>
-              </li>
-              <li class="api-card">
-                <span class="api-num">05</span>
-                <div class="api-body">
-                  <div class="api-head">
-                    <b>Quality decision</b
-                    ><code><span class="method post">POST</span>/quality/dispositions</code>
-                  </div>
-                  <p>Quality reviewer accepts or rejects the evidence.</p>
-                  <p class="api-guard">
-                    <svg
-                      viewBox="0 0 24 24"
-                      width="20"
-                      height="20"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="1.7"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      aria-hidden="true"
-                    >
-                      <rect x="5" y="11" width="14" height="10" rx="2" />
-                      <path d="M8 11V8a4 4 0 0 1 8 0v3" /></svg
-                    ><span>Added as a new record · original result never changed</span>
-                  </p>
-                </div>
-              </li>
-              <li class="api-card">
-                <span class="api-num">06</span>
-                <div class="api-body">
-                  <div class="api-head">
-                    <b>Skill decision</b><code><span class="method post">POST</span>/skills/assessments</code>
-                  </div>
-                  <p>Employer assessor records an observation or qualification.</p>
-                  <p class="api-guard">
-                    <svg
-                      viewBox="0 0 24 24"
-                      width="20"
-                      height="20"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="1.7"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      aria-hidden="true"
-                    >
-                      <rect x="5" y="11" width="14" height="10" rx="2" />
-                      <path d="M8 11V8a4 4 0 0 1 8 0v3" /></svg
-                    ><span>Versioned rubric · evidence links · scope · can be revoked</span>
-                  </p>
-                </div>
-              </li>
-              <li class="api-card">
-                <span class="api-num">07</span>
-                <div class="api-body">
-                  <div class="api-head">
-                    <b>View passport</b><code><span class="method get">GET</span>/passport/me</code>
-                  </div>
-                  <p>Worker sees their own passport.</p>
-                  <p class="api-guard">
-                    <svg
-                      viewBox="0 0 24 24"
-                      width="20"
-                      height="20"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="1.7"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      aria-hidden="true"
-                    >
-                      <rect x="5" y="11" width="14" height="10" rx="2" />
-                      <path d="M8 11V8a4 4 0 0 1 8 0v3" /></svg
-                    ><span>Own records only · no raw images or factory data</span>
-                  </p>
-                </div>
-              </li>
-              <li class="api-card">
-                <span class="api-num">08</span>
-                <div class="api-body">
-                  <div class="api-head">
-                    <b>Fix a mistake</b><code><span class="method post">POST</span>/evidence/amendments</code>
-                  </div>
-                  <p>Reviewer records a correction with a reason.</p>
-                  <p class="api-guard">
-                    <svg
-                      viewBox="0 0 24 24"
-                      width="20"
-                      height="20"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="1.7"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      aria-hidden="true"
-                    >
-                      <rect x="5" y="11" width="14" height="10" rx="2" />
-                      <path d="M8 11V8a4 4 0 0 1 8 0v3" /></svg
-                    ><span>Original kept · linked decisions re-checked</span>
-                  </p>
-                </div>
-              </li>
-            </ol>
-          </div>
-
           <div class="twocol handoff-two">
             <div class="module envelope">
               <div class="envelope-seal">
@@ -966,7 +544,7 @@ A protected factory device—not this browser—must own the signing key in prod
                 ><span>capture time</span><span>work session</span><span>part instance</span
                 ><span>work order</span><span>revision</span><span>operation</span
                 ><span>participant roles</span><span>feature ID</span><span>values · units · limits</span
-                ><span>camera result</span><span>model / recipe version</span><span>calibration ref</span
+                ><span>instrument result</span><span>transport + pairing ID</span><span>calibration ref</span
                 ><span>hashes of originals</span>
               </div>
               <p class="envelope-note">
@@ -1029,7 +607,7 @@ A protected factory device—not this browser—must own the signing key in prod
         /></a>
         <div>
           <a href="#workflow" data-tab="workflow">Onboarding flow</a
-          ><a href="#security" data-tab="security">Secure vision</a
+          ><a href="#security" data-tab="security">Secure connection</a
           ><a href="#handoff" data-tab="handoff">Build notes</a>
         </div>
         <div>
