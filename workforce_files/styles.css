@@ -34,3 +34,4 @@
 .capture-summary{background:#f1fbf7;border-color:#cce9df}.capture-summary p{color:var(--muted)}
 .capture-context-top .badge{background:var(--brand-mint);color:var(--dark)}
 ::selection{background:#55e6b566;color:var(--dark)}
+.brand-logo{width:35px;height:35px;object-fit:contain;flex-shrink:0}
