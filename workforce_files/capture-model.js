@@ -27,7 +27,7 @@ const outcomes=[
 function tagForJob(job){return tags.find(t=>t.job===job)||null;}
 function resolve(value){return tags.find(t=>t.token===value)||null;}
 function link(job){const tag=tagForJob(job);if(!tag)throw Error('Unknown job label.');return origin+'/?capture='+encodeURIComponent(tag.token)+'#capture';}
-function qr(job){const tag=tagForJob(job);if(!tag)throw Error('Unknown job label.');return (origin===customOrigin?'qr-connectiq/':'qr/')+tag.token+'.png';}
+function qr(job){const tag=tagForJob(job);if(!tag)throw Error('Unknown job label.');return 'workforce_files/qr/'+tag.token+'.png';}
 function parse(search){const token=new URLSearchParams(search||'').get('capture');return {requested:token!==null,tag:token===null?null:resolve(token)};}
 function session(job,person='p2',method='sample-selection'){
  const tag=tagForJob(job),p=M.people.find(p=>p.id===person);if(!tag||!p)throw Error('Select a known sample job and employee.');
