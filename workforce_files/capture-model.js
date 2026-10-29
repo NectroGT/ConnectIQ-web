@@ -1,8 +1,7 @@
 (function(root){
 'use strict';
 const M=root.WorkforceModel;
-const customOrigin='https://workforce.connectiq.asia';
-const origin=root.location&&root.location.hostname==='workforce.connectiq.asia'?customOrigin:customOrigin;
+const origin=root.location?root.location.href.split(/[?#]/)[0]:'https://connectiq.asia/workforce.html';
 const tags=[
  {token:'housing-op30',job:'JOB-26041',record:'SIM-FDM-041-07',recordText:'Sample dimensional trend and tool-check log for OP30. Readings and effectiveness need review.'},
  {token:'valve-op40',job:'JOB-26042',record:'SIM-QC-042-03',recordText:'Sample inspection checkpoint log for OP40. Effectiveness has not been verified.'},
@@ -26,7 +25,7 @@ const outcomes=[
 ];
 function tagForJob(job){return tags.find(t=>t.job===job)||null;}
 function resolve(value){return tags.find(t=>t.token===value)||null;}
-function link(job){const tag=tagForJob(job);if(!tag)throw Error('Unknown job label.');return origin+'/?capture='+encodeURIComponent(tag.token)+'#capture';}
+function link(job){const tag=tagForJob(job);if(!tag)throw Error('Unknown job label.');return origin+'?capture='+encodeURIComponent(tag.token)+'#capture';}
 function qr(job){const tag=tagForJob(job);if(!tag)throw Error('Unknown job label.');return 'workforce_files/qr/'+tag.token+'.png';}
 function parse(search){const token=new URLSearchParams(search||'').get('capture');return {requested:token!==null,tag:token===null?null:resolve(token)};}
 function session(job,person='p2',method='sample-selection'){
